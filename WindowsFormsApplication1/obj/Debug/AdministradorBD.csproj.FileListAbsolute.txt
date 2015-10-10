@@ -10,3 +10,6 @@ c:\users\nelson\documents\visual studio 2015\Projects\WindowsFormsApplication1\W
 c:\users\nelson\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\AdministradorBD.csproj.GenerateResource.Cache
 c:\users\nelson\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\AdministradorBD.csprojResolveAssemblyReference.cache
 c:\users\nelson\documents\visual studio 2015\Projects\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Administrador.resources
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
