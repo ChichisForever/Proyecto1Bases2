@@ -25,3 +25,13 @@ C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debu
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.oracleLog.resources
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\AdministradorBD.csproj.GenerateResource.Cache
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\AdministradorBD.csprojResolveAssemblyReference.cache
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Administrador.resources
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.mssLog.resources
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Inicio.resources
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.oracleLog.resources
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\LATITUDE\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\AdministradorBD.csproj.GenerateResource.Cache

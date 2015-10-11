@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.Sql;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -39,7 +42,22 @@ namespace WindowsFormsApplication1
 
         private void entrar_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+                //Conexión usando usuario y contraseña de SQL
+                //SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=bd2;user id=sa;password=1");
+                //Conexión usando autentificación de windows
+                SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=bd2;Integrated Security=True");
+                cn.Open();
+                Console.WriteLine("Exito");
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fallo" + ex.ToString());
+            }
         }
     }
 }
