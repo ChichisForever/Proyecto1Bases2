@@ -25,3 +25,17 @@ C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debu
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.oracleLog.resources
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\AdministradorBD.csproj.GenerateResource.Cache
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\AdministradorBD.csprojResolveAssemblyReference.cache
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Administrador.resources
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.mssLog.resources
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Inicio.resources
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.oracleLog.resources
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\AdministradorBD.csproj.GenerateResource.Cache
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\Oracle.DataAccess.dll
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\Oracle.DataAccess.EntityFramework.dll
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\Oracle.Web.dll
