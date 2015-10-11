@@ -37,22 +37,19 @@ namespace WindowsFormsApplication1
             string user = NomUsuario.Text;//Request["user"];
             string contrasennia = password.Text;//Request["password"];
             string database = BD.Text;//Request["database"];
-            
-            String sConnectionString =
-             "Provider=MSDAORA.1; User ID=" + user + ";password=" + contrasennia + "; Data Source=" + database + ";Persist Security Info=False";
 
-            OleDbConnection myConnection = new OleDbConnection(sConnectionString);
+            Conexion_Oracle oracle = new Conexion_Oracle(user, database, contrasennia);
             try
             {
-                myConnection.Open();
+                oracle.myConnection.Open();
                 Administrador frm = new Administrador();
                 frm.Show();
                 this.Hide();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("No hubo conexión, intentelo nuevamente");
+                MessageBox.Show("No hubo conexión, intentelo nuevamente"+ex.ToString());
             }
 
                 

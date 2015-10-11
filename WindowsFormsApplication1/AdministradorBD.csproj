@@ -57,6 +57,8 @@
     <Compile Include="Administrador.Designer.cs">
       <DependentUpon>Administrador.cs</DependentUpon>
     </Compile>
+    <Compile Include="Conexion_MSS.cs" />
+    <Compile Include="Conexion_Oracle.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -15,9 +15,15 @@ namespace WindowsFormsApplication1
 {
     public partial class mssLog : Form
     {
+        int tipo;
         public mssLog()
         {
             InitializeComponent();
+            this.cboxtipo.Items.Add("Autentificación Windows");
+            this.cboxtipo.Items.Add("Autentificacion SQL");
+            
+
+         
         }
 
         private void mssLog_Load(object sender, EventArgs e)
@@ -42,21 +48,44 @@ namespace WindowsFormsApplication1
 
         private void entrar_Click(object sender, EventArgs e)
         {
+            String user = nomUsuario.Text;
+            String pass = password.Text;
+            String nbase = txtbase.Text;
+
+            Conexion_MSS conexion = new Conexion_MSS(user, pass, nbase, tipo);
             try
             {
 
-                //Conexión usando usuario y contraseña de SQL
-                //SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=bd2;user id=sa;password=1");
-                //Conexión usando autentificación de windows
-                SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=bd2;Integrated Security=True");
-                cn.Open();
-                Console.WriteLine("Exito");
+
+
+
+                conexion.conexion.Open();
+                Administrador frm = new Administrador();
+                frm.Show();
+                this.Hide();
 
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Fallo" + ex.ToString());
+                MessageBox.Show("No hubo conexión, intentelo nuevamente" + ex.ToString());
+            }
+        }
+
+        private void cboxtipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboxtipo.SelectedItem.ToString() == "Autentificación Windows")
+            {
+                nomUsuario.Enabled = false;
+                password.Enabled = false;
+                tipo = 0;
+            }
+
+            if (cboxtipo.SelectedItem.ToString() == "Autentificacion SQL")
+            {
+                nomUsuario.Enabled = true;
+                password.Enabled = true;
+                tipo = 1;
             }
         }
     }
