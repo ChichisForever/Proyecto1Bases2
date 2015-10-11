@@ -33,43 +33,31 @@ namespace WindowsFormsApplication1
 
         private void entrar_Click(object sender, EventArgs e)
         {
-            //NomUsuario.Text
-            //password.Text
-
+            
             string user = NomUsuario.Text;//Request["user"];
             string contrasennia = password.Text;//Request["password"];
-            string database = "pdbTest";//Request["database"];
-            //Session["user"] = user;
-            //Session["passwordOracle"] = password;
-            //Session["databaseOracle"] = database;
-
+            string database = BD.Text;//Request["database"];
+            
             String sConnectionString =
              "Provider=MSDAORA.1; User ID=" + user + ";password=" + contrasennia + "; Data Source=" + database + ";Persist Security Info=False";
 
             OleDbConnection myConnection = new OleDbConnection(sConnectionString);
-
+            try
+            {
                 myConnection.Open();
-                MessageBox.Show("Si hubo conexión :)");
-
-
-                //se crea el string connection para pasarle la información de la bd al OracleConnection
-                // string oradb = "Data Source=basesdos;User Id=hr;Password=hr;";
-                // OracleConnection conn = new OracleConnection(oradb);
-
-                // La conexión es guardada en la variable myConnection para luego ser evaluada
-                // OleDbConnection myConnection = new OleDbConnection(oradb);
-                /**
-                try
-                {
-                    myConnection.Open();
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("ta malo");
-                }
-        **/
+                Administrador frm = new Administrador();
+                frm.Show();
+                this.Hide();
 
             }
+            catch (Exception)
+            {
+                MessageBox.Show("No hubo conexión, intentelo nuevamente");
+            }
+
+                
+
+        }
 
         private void password_TextChanged(object sender, EventArgs e)
         {
