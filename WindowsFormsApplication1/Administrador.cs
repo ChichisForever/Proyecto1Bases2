@@ -26,6 +26,7 @@ namespace WindowsFormsApplication1
             orc = o;
             server = m;                
             InitializeComponent();
+            
             if (orc != null)
             {
                 mostrar_datos_oracle();
@@ -136,6 +137,27 @@ namespace WindowsFormsApplication1
         {
 
         }
+
+        //Función que ejecuta el query para crear tipos y tablas en los objetos
+        private void ejecutarObjeto_Click(object sender, EventArgs e)
+        {
+     
+        //String que tiene el query para crear objetos ingresado por el usuario
+        string query_Objetos = queryObjetos.Text;
+            
+           // OracleCommand cmd = new OracleCommand(query_Objetos, orc);
+            this.dbname.Text = orc.database;
+           // orc.cmd.CommandText = query_Objetos;
+            //orc.reader = orc.cmd.ExecuteReader(); // Ejecuta el query
+            //DataTable tabla = new DataTable();
+            DataSet datos = new DataSet();
+            OleDbDataAdapter adaptador = new OleDbDataAdapter(orc.cmd.CommandText = query_Objetos, orc.database);
+            adaptador.Fill(datos);
+            orc.cmd.ExecuteNonQuery();
+            
+
+        }
+
         //Función que realiza ma muestra de datos
         private void mostrar_datos_oracle()
         {
@@ -212,6 +234,4 @@ namespace WindowsFormsApplication1
         }
     }
 
-
-    
 }

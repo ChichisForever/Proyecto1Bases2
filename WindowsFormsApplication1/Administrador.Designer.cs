@@ -99,6 +99,7 @@
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.validarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
+            this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -113,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).BeginInit();
             this.ejecutarQuerys.SuspendLayout();
             this.objetos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).BeginInit();
             this.SuspendLayout();
             // 
             // ventana
@@ -697,6 +699,7 @@
             // 
             // objetos
             // 
+            this.objetos.Controls.Add(this.gridObjetos);
             this.objetos.Controls.Add(this.ejecutarObjeto);
             this.objetos.Controls.Add(this.validarObjeto);
             this.objetos.Controls.Add(this.queryObjetos);
@@ -710,16 +713,17 @@
             // 
             // ejecutarObjeto
             // 
-            this.ejecutarObjeto.Location = new System.Drawing.Point(590, 523);
+            this.ejecutarObjeto.Location = new System.Drawing.Point(291, 374);
             this.ejecutarObjeto.Name = "ejecutarObjeto";
             this.ejecutarObjeto.Size = new System.Drawing.Size(75, 23);
             this.ejecutarObjeto.TabIndex = 2;
             this.ejecutarObjeto.Text = "Ejecutar";
             this.ejecutarObjeto.UseVisualStyleBackColor = true;
+            this.ejecutarObjeto.Click += new System.EventHandler(this.ejecutarObjeto_Click);
             // 
             // validarObjeto
             // 
-            this.validarObjeto.Location = new System.Drawing.Point(233, 523);
+            this.validarObjeto.Location = new System.Drawing.Point(156, 374);
             this.validarObjeto.Name = "validarObjeto";
             this.validarObjeto.Size = new System.Drawing.Size(75, 23);
             this.validarObjeto.TabIndex = 1;
@@ -728,11 +732,19 @@
             // 
             // queryObjetos
             // 
-            this.queryObjetos.Location = new System.Drawing.Point(70, 39);
+            this.queryObjetos.Location = new System.Drawing.Point(21, 28);
             this.queryObjetos.Name = "queryObjetos";
-            this.queryObjetos.Size = new System.Drawing.Size(846, 439);
+            this.queryObjetos.Size = new System.Drawing.Size(462, 301);
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
+            // 
+            // gridObjetos
+            // 
+            this.gridObjetos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridObjetos.Location = new System.Drawing.Point(524, 39);
+            this.gridObjetos.Name = "gridObjetos";
+            this.gridObjetos.Size = new System.Drawing.Size(410, 272);
+            this.gridObjetos.TabIndex = 3;
             // 
             // Administrador
             // 
@@ -764,6 +776,7 @@
             this.ejecutarQuerys.ResumeLayout(false);
             this.ejecutarQuerys.PerformLayout();
             this.objetos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -840,5 +853,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Default;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nulos;
         private System.Windows.Forms.DataGridViewTextBoxColumn particio;
+        private System.Windows.Forms.DataGridView gridObjetos;
     }
 }
