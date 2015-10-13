@@ -36,7 +36,7 @@
             this.tipoVista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defultVista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nullVista = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboxvista = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.indices = new System.Windows.Forms.DataGridView();
             this.nombreInd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,8 +47,8 @@
             this.tablaEscogida = new System.Windows.Forms.DataGridView();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Default = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nulos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.particio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tablas = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -96,9 +96,9 @@
             this.entradaQuery = new System.Windows.Forms.RichTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.objetos = new System.Windows.Forms.TabPage();
-            this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.validarObjeto = new System.Windows.Forms.Button();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
+            this.validarObjeto = new System.Windows.Forms.Button();
+            this.queryObjetos = new System.Windows.Forms.RichTextBox();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -133,7 +133,7 @@
             // Informacion
             // 
             this.Informacion.Controls.Add(this.vista);
-            this.Informacion.Controls.Add(this.comboBox1);
+            this.Informacion.Controls.Add(this.cboxvista);
             this.Informacion.Controls.Add(this.label4);
             this.Informacion.Controls.Add(this.indices);
             this.Informacion.Controls.Add(this.label2);
@@ -184,13 +184,14 @@
             this.nullVista.HeaderText = "Null";
             this.nullVista.Name = "nullVista";
             // 
-            // comboBox1
+            // cboxvista
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(110, 385);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 7;
+            this.cboxvista.FormattingEnabled = true;
+            this.cboxvista.Location = new System.Drawing.Point(110, 385);
+            this.cboxvista.Name = "cboxvista";
+            this.cboxvista.Size = new System.Drawing.Size(121, 24);
+            this.cboxvista.TabIndex = 7;
+            this.cboxvista.SelectedIndexChanged += new System.EventHandler(this.cboxvista_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -251,8 +252,8 @@
             this.tablaEscogida.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombre,
             this.tipo,
-            this.pk,
-            this.fk,
+            this.Default,
+            this.Nulos,
             this.particio});
             this.tablaEscogida.Location = new System.Drawing.Point(8, 71);
             this.tablaEscogida.Name = "tablaEscogida";
@@ -270,15 +271,15 @@
             this.tipo.HeaderText = "Tipo";
             this.tipo.Name = "tipo";
             // 
-            // pk
+            // Default
             // 
-            this.pk.HeaderText = "PK";
-            this.pk.Name = "pk";
+            this.Default.HeaderText = "Default";
+            this.Default.Name = "Default";
             // 
-            // fk
+            // Nulos
             // 
-            this.fk.HeaderText = "FK";
-            this.fk.Name = "fk";
+            this.Nulos.HeaderText = "Nulos";
+            this.Nulos.Name = "Nulos";
             // 
             // particio
             // 
@@ -292,6 +293,7 @@
             this.tablas.Name = "tablas";
             this.tablas.Size = new System.Drawing.Size(121, 24);
             this.tablas.TabIndex = 2;
+            this.tablas.SelectedIndexChanged += new System.EventHandler(this.tablas_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -706,13 +708,14 @@
             this.objetos.Text = "-- Objetos --";
             this.objetos.UseVisualStyleBackColor = true;
             // 
-            // queryObjetos
+            // ejecutarObjeto
             // 
-            this.queryObjetos.Location = new System.Drawing.Point(70, 39);
-            this.queryObjetos.Name = "queryObjetos";
-            this.queryObjetos.Size = new System.Drawing.Size(846, 439);
-            this.queryObjetos.TabIndex = 0;
-            this.queryObjetos.Text = "";
+            this.ejecutarObjeto.Location = new System.Drawing.Point(590, 523);
+            this.ejecutarObjeto.Name = "ejecutarObjeto";
+            this.ejecutarObjeto.Size = new System.Drawing.Size(75, 23);
+            this.ejecutarObjeto.TabIndex = 2;
+            this.ejecutarObjeto.Text = "Ejecutar";
+            this.ejecutarObjeto.UseVisualStyleBackColor = true;
             // 
             // validarObjeto
             // 
@@ -723,14 +726,13 @@
             this.validarObjeto.Text = "Validar";
             this.validarObjeto.UseVisualStyleBackColor = true;
             // 
-            // ejecutarObjeto
+            // queryObjetos
             // 
-            this.ejecutarObjeto.Location = new System.Drawing.Point(590, 523);
-            this.ejecutarObjeto.Name = "ejecutarObjeto";
-            this.ejecutarObjeto.Size = new System.Drawing.Size(75, 23);
-            this.ejecutarObjeto.TabIndex = 2;
-            this.ejecutarObjeto.Text = "Ejecutar";
-            this.ejecutarObjeto.UseVisualStyleBackColor = true;
+            this.queryObjetos.Location = new System.Drawing.Point(70, 39);
+            this.queryObjetos.Name = "queryObjetos";
+            this.queryObjetos.Size = new System.Drawing.Size(846, 439);
+            this.queryObjetos.TabIndex = 0;
+            this.queryObjetos.Text = "";
             // 
             // Administrador
             // 
@@ -784,18 +786,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn columna;
         private System.Windows.Forms.DataGridViewTextBoxColumn unico;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pk;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fk;
-        private System.Windows.Forms.DataGridViewTextBoxColumn particio;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView vista;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomVista;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoVista;
         private System.Windows.Forms.DataGridViewTextBoxColumn defultVista;
         private System.Windows.Forms.DataGridViewTextBoxColumn nullVista;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboxvista;
         private System.Windows.Forms.TabPage ejecutarQuerys;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -838,5 +835,10 @@
         private System.Windows.Forms.Button ejecutarObjeto;
         private System.Windows.Forms.Button validarObjeto;
         private System.Windows.Forms.RichTextBox queryObjetos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Default;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nulos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn particio;
     }
 }

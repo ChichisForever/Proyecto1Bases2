@@ -11,13 +11,16 @@ using System.Data.OleDb;
 namespace WindowsFormsApplication1
 {
 
-    class Conexion_Oracle
+    public class Conexion_Oracle
     {
         public string conexion;
-        string user;
+       public string user;
         string contrasennia;
-        string database;
+       public string database;
        public OleDbConnection myConnection;
+  
+        public OleDbCommand cmd;
+        public OleDbDataReader reader;
 
 
 
@@ -30,7 +33,9 @@ namespace WindowsFormsApplication1
             conexion = "Provider=MSDAORA; User ID=" + user + ";password=" + contrasennia + "; Data Source=" + database + ";Persist Security Info=True";
 
             myConnection= new OleDbConnection(conexion);
-
+            myConnection = new OleDbConnection(conexion);
+            cmd = myConnection.CreateCommand();
+            
         }
     }
 }

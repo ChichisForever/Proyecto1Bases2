@@ -60,7 +60,7 @@ namespace WindowsFormsApplication1
 
 
                 conexion.conexion.Open();
-                Administrador frm = new Administrador();
+                Administrador frm = new Administrador(null,conexion);
                 frm.Show();
                 this.Hide();
 

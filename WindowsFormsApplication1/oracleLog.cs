@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1
             try
             {
                 oracle.myConnection.Open();
-                Administrador frm = new Administrador();
+                Administrador frm = new Administrador(oracle,null);
                 frm.Show();
                 this.Hide();
 

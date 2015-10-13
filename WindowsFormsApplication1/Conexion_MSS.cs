@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace WindowsFormsApplication1
 {
-    class Conexion_MSS
+    public class Conexion_MSS
     {
         String user;
         String pass;
