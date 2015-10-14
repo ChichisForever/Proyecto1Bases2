@@ -12,6 +12,7 @@ using Oracle.ManagedDataAccess;
 //using Oracle.Web;
 using System.Data.OleDb;
 
+
 namespace WindowsFormsApplication1
 {
     public partial class Administrador : Form
@@ -142,20 +143,13 @@ namespace WindowsFormsApplication1
         private void ejecutarObjeto_Click(object sender, EventArgs e)
         {
      
-        //String que tiene el query para crear objetos ingresado por el usuario
-        string query_Objetos = queryObjetos.Text;
-            
-           // OracleCommand cmd = new OracleCommand(query_Objetos, orc);
-            this.dbname.Text = orc.database;
-           // orc.cmd.CommandText = query_Objetos;
-            //orc.reader = orc.cmd.ExecuteReader(); // Ejecuta el query
-            //DataTable tabla = new DataTable();
-            DataSet datos = new DataSet();
-            OleDbDataAdapter adaptador = new OleDbDataAdapter(orc.cmd.CommandText = query_Objetos, orc.database);
-            adaptador.Fill(datos);
-            orc.cmd.ExecuteNonQuery();
-            
-
+            string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresado por el usuario
+            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
+            DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd); 
+            adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+            gridObjetos.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+           
         }
 
         //Función que realiza ma muestra de datos
