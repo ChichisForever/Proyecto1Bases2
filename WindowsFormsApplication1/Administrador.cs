@@ -143,7 +143,7 @@ namespace WindowsFormsApplication1
         private void ejecutarObjeto_Click(object sender, EventArgs e)
         {
      
-            string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresado por el usuario
+            string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
             OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
             DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
             OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd); 
