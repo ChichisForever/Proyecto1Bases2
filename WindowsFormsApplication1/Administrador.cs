@@ -200,7 +200,13 @@ namespace WindowsFormsApplication1
         private void mostrar_datos_sqlserver()
         {
             this.dbname.Text = this.server.nbase;
-           
+            this.listObjetos.View = View.Details;
+            this.listObjetos.Columns.Add("Selecione uno", 100,HorizontalAlignment.Center);
+            this.listObjetos.Items.Add("Procedimientos");
+            this.listObjetos.Items.Add("Funciones");
+            this.listObjetos.Items.Add("Sinonimos");
+            this.listObjetos.Items.Add("Triggers");
+
             server.cmd = new SqlCommand("Select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_CATALOG='"+server.nbase+ "' and Table_Type='BASE TABLE'", server.conexion);
             server.reader = server.cmd.ExecuteReader();
             while (server.reader.Read()){
@@ -281,6 +287,54 @@ namespace WindowsFormsApplication1
 
                     
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            String seleccion="0";   
+            if (listObjetos.SelectedItems.Count > 0)
+            {
+                ListViewItem listItem = this.listObjetos.SelectedItems[0];
+                seleccion = listItem.Text;
+                
+            }
+           
+            if (server != null && seleccion!="0"){
+
+                String comando = "";
+                if (seleccion == "Procedimientos")
+            {
+                comando = "Select name from b2.dbo.sysobjects where xtype='P'";
+
+            }
+            if (seleccion == "Funciones")
+            {
+                comando = "Select name from b2.dbo.sysobjects where xtype='FN' ";
+            }
+            if (seleccion == "Sinonimos")
+            {
+                comando = "Select name from b2.dbo.sysobjects where xtype='SN' ";
+            }
+
+                listResultado.Clear();
+                listResultado.View = View.List;
+
+                try {
+                    server.cmd = new SqlCommand(comando, server.conexion);
+                    server.reader = server.cmd.ExecuteReader();
+
+
+                    while (server.reader.Read()) {
+                        listResultado.Items.Add(server.reader[0].ToString());
+                    }
+                    server.reader.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ops.Parece que tenemos un problema");
+                }
+            }
+
         }
     }
 

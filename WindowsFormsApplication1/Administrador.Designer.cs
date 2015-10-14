@@ -54,14 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dbname = new System.Windows.Forms.Label();
             this.info2 = new System.Windows.Forms.TabPage();
-            this.espacioProcedimientos = new System.Windows.Forms.RichTextBox();
-            this.espacioTriggers = new System.Windows.Forms.RichTextBox();
-            this.espacioFunciones = new System.Windows.Forms.RichTextBox();
-            this.espacioPaquetes = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.info3 = new System.Windows.Forms.TabPage();
             this.infoTablespace = new System.Windows.Forms.DataGridView();
             this.nomTablespace = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,10 +88,12 @@
             this.entradaQuery = new System.Windows.Forms.RichTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.objetos = new System.Windows.Forms.TabPage();
+            this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.validarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.gridObjetos = new System.Windows.Forms.DataGridView();
+            this.listObjetos = new System.Windows.Forms.ListView();
+            this.listResultado = new System.Windows.Forms.ListView();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -319,14 +313,8 @@
             // 
             // info2
             // 
-            this.info2.Controls.Add(this.espacioProcedimientos);
-            this.info2.Controls.Add(this.espacioTriggers);
-            this.info2.Controls.Add(this.espacioFunciones);
-            this.info2.Controls.Add(this.espacioPaquetes);
-            this.info2.Controls.Add(this.label7);
-            this.info2.Controls.Add(this.label6);
-            this.info2.Controls.Add(this.label5);
-            this.info2.Controls.Add(this.label3);
+            this.info2.Controls.Add(this.listResultado);
+            this.info2.Controls.Add(this.listObjetos);
             this.info2.Location = new System.Drawing.Point(4, 22);
             this.info2.Name = "info2";
             this.info2.Padding = new System.Windows.Forms.Padding(3);
@@ -335,75 +323,6 @@
             this.info2.Text = "Información 2";
             this.info2.UseVisualStyleBackColor = true;
             this.info2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // espacioProcedimientos
-            // 
-            this.espacioProcedimientos.Location = new System.Drawing.Point(590, 46);
-            this.espacioProcedimientos.Name = "espacioProcedimientos";
-            this.espacioProcedimientos.Size = new System.Drawing.Size(233, 197);
-            this.espacioProcedimientos.TabIndex = 7;
-            this.espacioProcedimientos.Text = "";
-            // 
-            // espacioTriggers
-            // 
-            this.espacioTriggers.Location = new System.Drawing.Point(590, 343);
-            this.espacioTriggers.Name = "espacioTriggers";
-            this.espacioTriggers.Size = new System.Drawing.Size(233, 169);
-            this.espacioTriggers.TabIndex = 6;
-            this.espacioTriggers.Text = "";
-            // 
-            // espacioFunciones
-            // 
-            this.espacioFunciones.Location = new System.Drawing.Point(76, 343);
-            this.espacioFunciones.Name = "espacioFunciones";
-            this.espacioFunciones.Size = new System.Drawing.Size(219, 169);
-            this.espacioFunciones.TabIndex = 5;
-            this.espacioFunciones.Text = "";
-            // 
-            // espacioPaquetes
-            // 
-            this.espacioPaquetes.Location = new System.Drawing.Point(76, 46);
-            this.espacioPaquetes.Name = "espacioPaquetes";
-            this.espacioPaquetes.Size = new System.Drawing.Size(219, 197);
-            this.espacioPaquetes.TabIndex = 4;
-            this.espacioPaquetes.Text = "";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(525, 299);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 13);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Triggers";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 299);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Funciones";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(525, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 13);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Procedimientos";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Paquetes";
-            this.label3.Click += new System.EventHandler(this.label3_Click_1);
             // 
             // info3
             // 
@@ -711,6 +630,14 @@
             this.objetos.Text = "-- Objetos --";
             this.objetos.UseVisualStyleBackColor = true;
             // 
+            // gridObjetos
+            // 
+            this.gridObjetos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridObjetos.Location = new System.Drawing.Point(524, 39);
+            this.gridObjetos.Name = "gridObjetos";
+            this.gridObjetos.Size = new System.Drawing.Size(410, 272);
+            this.gridObjetos.TabIndex = 3;
+            // 
             // ejecutarObjeto
             // 
             this.ejecutarObjeto.Location = new System.Drawing.Point(291, 374);
@@ -738,13 +665,22 @@
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
             // 
-            // gridObjetos
+            // listObjetos
             // 
-            this.gridObjetos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridObjetos.Location = new System.Drawing.Point(524, 39);
-            this.gridObjetos.Name = "gridObjetos";
-            this.gridObjetos.Size = new System.Drawing.Size(410, 272);
-            this.gridObjetos.TabIndex = 3;
+            this.listObjetos.Location = new System.Drawing.Point(61, 62);
+            this.listObjetos.Name = "listObjetos";
+            this.listObjetos.Size = new System.Drawing.Size(155, 276);
+            this.listObjetos.TabIndex = 8;
+            this.listObjetos.UseCompatibleStateImageBehavior = false;
+            this.listObjetos.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // listResultado
+            // 
+            this.listResultado.Location = new System.Drawing.Point(313, 62);
+            this.listResultado.Name = "listResultado";
+            this.listResultado.Size = new System.Drawing.Size(155, 276);
+            this.listResultado.TabIndex = 9;
+            this.listResultado.UseCompatibleStateImageBehavior = false;
             // 
             // Administrador
             // 
@@ -763,7 +699,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.indices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaEscogida)).EndInit();
             this.info2.ResumeLayout(false);
-            this.info2.PerformLayout();
             this.info3.ResumeLayout(false);
             this.info3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoTablespace)).EndInit();
@@ -807,14 +742,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nullVista;
         private System.Windows.Forms.ComboBox cboxvista;
         private System.Windows.Forms.TabPage ejecutarQuerys;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox espacioProcedimientos;
-        private System.Windows.Forms.RichTextBox espacioTriggers;
-        private System.Windows.Forms.RichTextBox espacioFunciones;
-        private System.Windows.Forms.RichTextBox espacioPaquetes;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView infoSesion;
@@ -854,5 +781,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Nulos;
         private System.Windows.Forms.DataGridViewTextBoxColumn particio;
         private System.Windows.Forms.DataGridView gridObjetos;
+        private System.Windows.Forms.ListView listObjetos;
+        private System.Windows.Forms.ListView listResultado;
     }
 }
