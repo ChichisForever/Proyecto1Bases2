@@ -11,10 +11,12 @@ namespace WindowsFormsApplication1
 {
     public class Conexion_MSS
     {
-        String user;
-        String pass;
-        String nbase;
+       public String user;
+       public  String pass;
+       public  String nbase;
        public  SqlConnection conexion;
+        public SqlCommand cmd;
+        public SqlDataReader reader;
 
         public Conexion_MSS(String u,String pass,String bd,int tipo)
         {
@@ -29,6 +31,8 @@ namespace WindowsFormsApplication1
             {
                 conexion = new SqlConnection("Data Source=.;Initial Catalog=" + nbase + ";user id=" + user + ";password=" + pass);
             }
+
+            
         }
     }
 }

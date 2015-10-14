@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.DataAccess.Client;
 using Oracle.ManagedDataAccess;
+using System.Data.Sql;
+using System.Data.SqlClient;
+
 //using Oracle.Web;
 using System.Data.OleDb;
 
@@ -32,7 +35,14 @@ namespace WindowsFormsApplication1
             {
                 mostrar_datos_oracle();
             }
+            if (this.server != null)
+            {
+                mostrar_datos_sqlserver();
+                
+            }
         }
+
+      
 
         private void Administrador_Load(object sender, EventArgs e)
         {
@@ -186,8 +196,32 @@ namespace WindowsFormsApplication1
                 this.cboxvista.Items.Add(orc.reader.GetValue(0));
             }
 
+        }
+        private void mostrar_datos_sqlserver()
+        {
+            this.dbname.Text = this.server.nbase;
+           
+            server.cmd = new SqlCommand("Select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_CATALOG='"+server.nbase+ "' and Table_Type='BASE TABLE'", server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read()){
+                this.tablas.Items.Add(server.reader[0]);
 
-
+            }
+            server.reader.Close();
+            server.cmd = new SqlCommand("Select sys.indexes.name,INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.TABLE_NAME,INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.COLUMN_NAME,sys.indexes.is_unique from sys.indexes  inner join INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE on sys.indexes.name = INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.CONSTRAINT_NAME; ",server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read())
+             {
+                this.indices.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
+            }
+            server.reader.Close();
+            server.cmd = new SqlCommand("Select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_CATALOG='" + server.nbase + "' and Table_Type='VIEW'", server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read())
+            {
+                this.cboxvista.Items.Add(server.reader[0]);
+            }
+            server.reader.Close();
 
         }
 
@@ -205,6 +239,16 @@ namespace WindowsFormsApplication1
                 {
                     tablaEscogida.Rows.Add(orc.reader.GetString(0), orc.reader.GetString(1), orc.reader.GetValue(2), orc.reader.GetValue(3));
                 }
+            }
+            if (server != null)
+            {
+                server.cmd = new SqlCommand("Select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,IS_NULLABLE from INFORMATION_SCHEMA.COLUMNS where Table_Name = '"+tablas.SelectedItem.ToString() +"' and TABLE_CATALOG='"+server.nbase+"'", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    tablaEscogida.Rows.Add(server.reader[0],server.reader[1], server.reader[2], server.reader[3]);
+                }
+                server.reader.Close();
             }
 
 
@@ -224,6 +268,18 @@ namespace WindowsFormsApplication1
                 {
                     vista.Rows.Add(orc.reader.GetString(0), orc.reader.GetString(1), orc.reader.GetValue(2), orc.reader.GetValue(3));
                 }
+            }
+            if (server != null)
+            {
+                server.cmd = new SqlCommand("Select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,IS_NULLABLE from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + cboxvista.SelectedItem.ToString() + "' and TABLE_CATALOG='" + server.nbase + "'", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    vista.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
+                }
+                server.reader.Close();
+
+                    
             }
         }
     }
