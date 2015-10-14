@@ -54,6 +54,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dbname = new System.Windows.Forms.Label();
             this.info2 = new System.Windows.Forms.TabPage();
+            this.listResultado = new System.Windows.Forms.ListView();
+            this.listObjetos = new System.Windows.Forms.ListView();
             this.info3 = new System.Windows.Forms.TabPage();
             this.infoTablespace = new System.Windows.Forms.DataGridView();
             this.nomTablespace = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,12 +72,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.DdlObject = new System.Windows.Forms.TabPage();
-            this.EspacioDDL = new System.Windows.Forms.RichTextBox();
-            this.mostrarDdl = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tabladdl = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.mostrarDDL = new System.Windows.Forms.Button();
+            this.comboBoxDDL = new System.Windows.Forms.ComboBox();
+            this.labelSeleccionarDDL = new System.Windows.Forms.Label();
             this.edicionTablas = new System.Windows.Forms.TabPage();
             this.TablaGridEdit = new System.Windows.Forms.DataGridView();
             this.tablaComboEdit = new System.Windows.Forms.ComboBox();
@@ -92,8 +91,7 @@
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.validarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.listObjetos = new System.Windows.Forms.ListView();
-            this.listResultado = new System.Windows.Forms.ListView();
+            this.cuadroMostrarDDL = new System.Windows.Forms.DataGridView();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -109,6 +107,7 @@
             this.ejecutarQuerys.SuspendLayout();
             this.objetos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cuadroMostrarDDL)).BeginInit();
             this.SuspendLayout();
             // 
             // ventana
@@ -298,7 +297,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 16);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Escoga la Tabla";
+            this.label1.Text = "Escoja la Tabla";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // dbname
@@ -323,6 +322,23 @@
             this.info2.Text = "Información 2";
             this.info2.UseVisualStyleBackColor = true;
             this.info2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // listResultado
+            // 
+            this.listResultado.Location = new System.Drawing.Point(313, 62);
+            this.listResultado.Name = "listResultado";
+            this.listResultado.Size = new System.Drawing.Size(155, 276);
+            this.listResultado.TabIndex = 9;
+            this.listResultado.UseCompatibleStateImageBehavior = false;
+            // 
+            // listObjetos
+            // 
+            this.listObjetos.Location = new System.Drawing.Point(61, 62);
+            this.listObjetos.Name = "listObjetos";
+            this.listObjetos.Size = new System.Drawing.Size(155, 276);
+            this.listObjetos.TabIndex = 8;
+            this.listObjetos.UseCompatibleStateImageBehavior = false;
+            this.listObjetos.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // info3
             // 
@@ -437,12 +453,10 @@
             // 
             // DdlObject
             // 
-            this.DdlObject.Controls.Add(this.EspacioDDL);
-            this.DdlObject.Controls.Add(this.mostrarDdl);
-            this.DdlObject.Controls.Add(this.textBox1);
-            this.DdlObject.Controls.Add(this.label11);
-            this.DdlObject.Controls.Add(this.tabladdl);
-            this.DdlObject.Controls.Add(this.label10);
+            this.DdlObject.Controls.Add(this.cuadroMostrarDDL);
+            this.DdlObject.Controls.Add(this.mostrarDDL);
+            this.DdlObject.Controls.Add(this.comboBoxDDL);
+            this.DdlObject.Controls.Add(this.labelSeleccionarDDL);
             this.DdlObject.Location = new System.Drawing.Point(4, 22);
             this.DdlObject.Name = "DdlObject";
             this.DdlObject.Padding = new System.Windows.Forms.Padding(3);
@@ -451,60 +465,34 @@
             this.DdlObject.Text = "DDL del Objeto";
             this.DdlObject.UseVisualStyleBackColor = true;
             // 
-            // EspacioDDL
+            // mostrarDDL
             // 
-            this.EspacioDDL.Location = new System.Drawing.Point(160, 157);
-            this.EspacioDDL.Name = "EspacioDDL";
-            this.EspacioDDL.Size = new System.Drawing.Size(604, 358);
-            this.EspacioDDL.TabIndex = 5;
-            this.EspacioDDL.Text = "";
-            this.EspacioDDL.TextChanged += new System.EventHandler(this.richTextBox5_TextChanged);
+            this.mostrarDDL.Location = new System.Drawing.Point(491, 90);
+            this.mostrarDDL.Name = "mostrarDDL";
+            this.mostrarDDL.Size = new System.Drawing.Size(108, 23);
+            this.mostrarDDL.TabIndex = 4;
+            this.mostrarDDL.Text = "Mostrar DDL";
+            this.mostrarDDL.UseVisualStyleBackColor = true;
+            this.mostrarDDL.Click += new System.EventHandler(this.mostrarDDL_Click);
             // 
-            // mostrarDdl
+            // comboBoxDDL
             // 
-            this.mostrarDdl.Location = new System.Drawing.Point(491, 90);
-            this.mostrarDdl.Name = "mostrarDdl";
-            this.mostrarDdl.Size = new System.Drawing.Size(108, 23);
-            this.mostrarDdl.TabIndex = 4;
-            this.mostrarDdl.Text = "Mostrar DDL";
-            this.mostrarDdl.UseVisualStyleBackColor = true;
+            this.comboBoxDDL.FormattingEnabled = true;
+            this.comboBoxDDL.Location = new System.Drawing.Point(200, 92);
+            this.comboBoxDDL.Name = "comboBoxDDL";
+            this.comboBoxDDL.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDDL.TabIndex = 1;
+            this.comboBoxDDL.SelectedIndexChanged += new System.EventHandler(this.comboBoxDDL_SelectedIndexChanged);
             // 
-            // textBox1
+            // labelSeleccionarDDL
             // 
-            this.textBox1.Location = new System.Drawing.Point(206, 90);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(206, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(42, 93);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(144, 13);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Escriba el Nombre del Objeto";
-            this.label11.Click += new System.EventHandler(this.label11_Click);
-            // 
-            // tabladdl
-            // 
-            this.tabladdl.FormattingEnabled = true;
-            this.tabladdl.Location = new System.Drawing.Point(206, 28);
-            this.tabladdl.Name = "tabladdl";
-            this.tabladdl.Size = new System.Drawing.Size(121, 21);
-            this.tabladdl.TabIndex = 1;
-            this.tabladdl.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(42, 31);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(105, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Seleccione el Objeto";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
+            this.labelSeleccionarDDL.AutoSize = true;
+            this.labelSeleccionarDDL.Location = new System.Drawing.Point(43, 95);
+            this.labelSeleccionarDDL.Name = "labelSeleccionarDDL";
+            this.labelSeleccionarDDL.Size = new System.Drawing.Size(105, 13);
+            this.labelSeleccionarDDL.TabIndex = 0;
+            this.labelSeleccionarDDL.Text = "Seleccione el Objeto";
+            this.labelSeleccionarDDL.Click += new System.EventHandler(this.label10_Click);
             // 
             // edicionTablas
             // 
@@ -665,22 +653,13 @@
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
             // 
-            // listObjetos
+            // cuadroMostrarDDL
             // 
-            this.listObjetos.Location = new System.Drawing.Point(61, 62);
-            this.listObjetos.Name = "listObjetos";
-            this.listObjetos.Size = new System.Drawing.Size(155, 276);
-            this.listObjetos.TabIndex = 8;
-            this.listObjetos.UseCompatibleStateImageBehavior = false;
-            this.listObjetos.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // listResultado
-            // 
-            this.listResultado.Location = new System.Drawing.Point(313, 62);
-            this.listResultado.Name = "listResultado";
-            this.listResultado.Size = new System.Drawing.Size(155, 276);
-            this.listResultado.TabIndex = 9;
-            this.listResultado.UseCompatibleStateImageBehavior = false;
+            this.cuadroMostrarDDL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cuadroMostrarDDL.Location = new System.Drawing.Point(137, 158);
+            this.cuadroMostrarDDL.Name = "cuadroMostrarDDL";
+            this.cuadroMostrarDDL.Size = new System.Drawing.Size(723, 364);
+            this.cuadroMostrarDDL.TabIndex = 5;
             // 
             // Administrador
             // 
@@ -712,6 +691,7 @@
             this.ejecutarQuerys.PerformLayout();
             this.objetos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cuadroMostrarDDL)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -756,12 +736,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tamanio;
         private System.Windows.Forms.DataGridViewTextBoxColumn espacioUtilizado;
         private System.Windows.Forms.DataGridViewTextBoxColumn espacioDisponible;
-        private System.Windows.Forms.Button mostrarDdl;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox tabladdl;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RichTextBox EspacioDDL;
+        private System.Windows.Forms.Button mostrarDDL;
+        private System.Windows.Forms.ComboBox comboBoxDDL;
+        private System.Windows.Forms.Label labelSeleccionarDDL;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView TablaGridEdit;
         private System.Windows.Forms.ComboBox tablaComboEdit;
@@ -783,5 +760,6 @@
         private System.Windows.Forms.DataGridView gridObjetos;
         private System.Windows.Forms.ListView listObjetos;
         private System.Windows.Forms.ListView listResultado;
+        private System.Windows.Forms.DataGridView cuadroMostrarDDL;
     }
 }

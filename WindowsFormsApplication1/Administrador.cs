@@ -114,11 +114,6 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void label11_Click(object sender, EventArgs e)
         {
 
@@ -336,6 +331,30 @@ namespace WindowsFormsApplication1
             }
 
         }
+
+        private void mostrarDDL_Click(object sender, EventArgs e)
+        {
+            string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
+            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
+            DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+            adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+            gridObjetos.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+        }
+
+        private void comboBoxDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd.CommandText = "select object_name from user_objects";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+                this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+            }
+
+        }
+
     }
 
 }
