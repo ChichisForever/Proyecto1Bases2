@@ -256,7 +256,7 @@ namespace WindowsFormsApplication1
                 }
                 server.reader.Close();
             }
-
+            
 
 
         }
@@ -334,6 +334,60 @@ namespace WindowsFormsApplication1
                     MessageBox.Show("Ops.Parece que tenemos un problema");
                 }
             }
+
+        }
+
+        private void entradaQuery_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void queryObjetos_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ejecutar_Click(object sender, EventArgs e) {
+
+            if (orc != null) {
+                string query = entradaQuery.Text;
+                if (query[0].Equals('S') || query[0].Equals('s')) {
+                    try
+                    {
+                        OleDbCommand resultado = new OleDbCommand(query, orc.myConnection);
+                        //OleDbDataReader read = resultado.ExecuteReader();
+                        DataTable datos = new DataTable();
+                        //datos.Load(read);
+                        OleDbDataAdapter adaptador = new OleDbDataAdapter(resultado);
+                        adaptador.Fill(datos);
+                        GridConsultas.DataSource = datos;
+                    }
+                    catch (Exception ex) {
+                        MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
+                    }
+
+                } else {
+                    try {
+                        OleDbCommand resultado = new OleDbCommand(query, orc.myConnection);
+                        resultado.ExecuteNonQuery();
+                        MessageBox.Show("Query Ejecutado");
+                    } catch( Exception ex) {
+                        MessageBox.Show("Ops.Parece que tenemos un problema"+ ex);
+                    }
+                }
+
+
+            }
+            
+            if (orc == null)
+            {
+
+                MessageBox.Show("No conecta :((");
+            }
+            
+
+            
+
 
         }
     }

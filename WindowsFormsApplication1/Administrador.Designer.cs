@@ -54,6 +54,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dbname = new System.Windows.Forms.Label();
             this.info2 = new System.Windows.Forms.TabPage();
+            this.listResultado = new System.Windows.Forms.ListView();
+            this.listObjetos = new System.Windows.Forms.ListView();
             this.info3 = new System.Windows.Forms.TabPage();
             this.infoTablespace = new System.Windows.Forms.DataGridView();
             this.nomTablespace = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,8 +94,7 @@
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.validarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.listObjetos = new System.Windows.Forms.ListView();
-            this.listResultado = new System.Windows.Forms.ListView();
+            this.GridConsultas = new System.Windows.Forms.DataGridView();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -109,6 +110,7 @@
             this.ejecutarQuerys.SuspendLayout();
             this.objetos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).BeginInit();
             this.SuspendLayout();
             // 
             // ventana
@@ -323,6 +325,23 @@
             this.info2.Text = "Información 2";
             this.info2.UseVisualStyleBackColor = true;
             this.info2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // listResultado
+            // 
+            this.listResultado.Location = new System.Drawing.Point(313, 62);
+            this.listResultado.Name = "listResultado";
+            this.listResultado.Size = new System.Drawing.Size(155, 276);
+            this.listResultado.TabIndex = 9;
+            this.listResultado.UseCompatibleStateImageBehavior = false;
+            // 
+            // listObjetos
+            // 
+            this.listObjetos.Location = new System.Drawing.Point(61, 62);
+            this.listObjetos.Name = "listObjetos";
+            this.listObjetos.Size = new System.Drawing.Size(155, 276);
+            this.listObjetos.TabIndex = 8;
+            this.listObjetos.UseCompatibleStateImageBehavior = false;
+            this.listObjetos.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // info3
             // 
@@ -548,6 +567,7 @@
             // 
             // ejecutarQuerys
             // 
+            this.ejecutarQuerys.Controls.Add(this.GridConsultas);
             this.ejecutarQuerys.Controls.Add(this.mostrarExecutionPlan);
             this.ejecutarQuerys.Controls.Add(this.executionPlan);
             this.ejecutarQuerys.Controls.Add(this.ejecutar);
@@ -564,15 +584,15 @@
             // 
             // mostrarExecutionPlan
             // 
-            this.mostrarExecutionPlan.Location = new System.Drawing.Point(150, 353);
+            this.mostrarExecutionPlan.Location = new System.Drawing.Point(9, 306);
             this.mostrarExecutionPlan.Name = "mostrarExecutionPlan";
-            this.mostrarExecutionPlan.Size = new System.Drawing.Size(619, 199);
+            this.mostrarExecutionPlan.Size = new System.Drawing.Size(527, 199);
             this.mostrarExecutionPlan.TabIndex = 5;
             this.mostrarExecutionPlan.Text = "";
             // 
             // executionPlan
             // 
-            this.executionPlan.Location = new System.Drawing.Point(60, 305);
+            this.executionPlan.Location = new System.Drawing.Point(9, 266);
             this.executionPlan.Name = "executionPlan";
             this.executionPlan.Size = new System.Drawing.Size(131, 23);
             this.executionPlan.TabIndex = 4;
@@ -582,16 +602,17 @@
             // 
             // ejecutar
             // 
-            this.ejecutar.Location = new System.Drawing.Point(481, 249);
+            this.ejecutar.Location = new System.Drawing.Point(233, 200);
             this.ejecutar.Name = "ejecutar";
             this.ejecutar.Size = new System.Drawing.Size(75, 23);
             this.ejecutar.TabIndex = 3;
             this.ejecutar.Text = "Ejecutar";
             this.ejecutar.UseVisualStyleBackColor = true;
+            this.ejecutar.Click += new System.EventHandler(this.ejecutar_Click);
             // 
             // validar
             // 
-            this.validar.Location = new System.Drawing.Point(241, 249);
+            this.validar.Location = new System.Drawing.Point(9, 200);
             this.validar.Name = "validar";
             this.validar.Size = new System.Drawing.Size(75, 23);
             this.validar.TabIndex = 2;
@@ -600,16 +621,17 @@
             // 
             // entradaQuery
             // 
-            this.entradaQuery.Location = new System.Drawing.Point(150, 36);
+            this.entradaQuery.Location = new System.Drawing.Point(9, 19);
             this.entradaQuery.Name = "entradaQuery";
-            this.entradaQuery.Size = new System.Drawing.Size(619, 207);
+            this.entradaQuery.Size = new System.Drawing.Size(488, 175);
             this.entradaQuery.TabIndex = 1;
             this.entradaQuery.Text = "";
+            this.entradaQuery.TextChanged += new System.EventHandler(this.entradaQuery_TextChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(57, 20);
+            this.label13.Location = new System.Drawing.Point(6, 3);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(90, 13);
             this.label13.TabIndex = 0;
@@ -664,23 +686,15 @@
             this.queryObjetos.Size = new System.Drawing.Size(462, 301);
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
+            this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
-            // listObjetos
+            // GridConsultas
             // 
-            this.listObjetos.Location = new System.Drawing.Point(61, 62);
-            this.listObjetos.Name = "listObjetos";
-            this.listObjetos.Size = new System.Drawing.Size(155, 276);
-            this.listObjetos.TabIndex = 8;
-            this.listObjetos.UseCompatibleStateImageBehavior = false;
-            this.listObjetos.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // listResultado
-            // 
-            this.listResultado.Location = new System.Drawing.Point(313, 62);
-            this.listResultado.Name = "listResultado";
-            this.listResultado.Size = new System.Drawing.Size(155, 276);
-            this.listResultado.TabIndex = 9;
-            this.listResultado.UseCompatibleStateImageBehavior = false;
+            this.GridConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridConsultas.Location = new System.Drawing.Point(518, 19);
+            this.GridConsultas.Name = "GridConsultas";
+            this.GridConsultas.Size = new System.Drawing.Size(442, 175);
+            this.GridConsultas.TabIndex = 6;
             // 
             // Administrador
             // 
@@ -712,6 +726,7 @@
             this.ejecutarQuerys.PerformLayout();
             this.objetos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -783,5 +798,6 @@
         private System.Windows.Forms.DataGridView gridObjetos;
         private System.Windows.Forms.ListView listObjetos;
         private System.Windows.Forms.ListView listResultado;
+        private System.Windows.Forms.DataGridView GridConsultas;
     }
 }

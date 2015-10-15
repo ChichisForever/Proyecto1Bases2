@@ -98,3 +98,7 @@ C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Deb
 C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.xml
 C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.dll
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.xml
+C:\Users\Nelson\Documents\Visual Studio 2015\Projects\WindowsFormsApplication1\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.xml
