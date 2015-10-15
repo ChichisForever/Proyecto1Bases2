@@ -114,11 +114,6 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void label11_Click(object sender, EventArgs e)
         {
 
@@ -151,15 +146,49 @@ namespace WindowsFormsApplication1
 
         //Función que ejecuta el query para crear tipos y tablas en los objetos
         private void ejecutarObjeto_Click(object sender, EventArgs e)
+
         {
-     
-            string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
-            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
-            DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
-            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd); 
-            adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
-            gridObjetos.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
-           
+            string query_Objetos = queryObjetos.Text;
+            string comando = query_Objetos.Substring(0, 6);
+            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection);
+
+            if (comando.ToUpper() == "INSERT" | comando.ToUpper() == "DELETE" | comando.ToUpper() == "CREATE" | comando.ToUpper() == "UPDATE")
+            {
+                try
+                {
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("El query se ha realizado correctamente");
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al ejecutar el query, vuelva a intentarlo");
+
+                }
+            }
+            else
+            {
+                try
+                {
+                    // string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
+                    // OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
+                    DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                    OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                    adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                    gridObjetos.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+                    MessageBox.Show("La consulta se ha realizado correctamente");
+
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al ejecutar la consulta, vuelva a intentarlo");
+
+                }
+
+
+            }
         }
 
         //Función que realiza ma muestra de datos
@@ -194,6 +223,24 @@ namespace WindowsFormsApplication1
             while (orc.reader.Read())
             {
                 this.cboxvista.Items.Add(orc.reader.GetValue(0));
+            }
+
+            //Tipos de Objetos
+            orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd.CommandText = "select object_name from user_objects";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+                this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+            }
+
+            //Nombres de los Objetos
+            orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd.CommandText = "select distinct object_type from user_objects";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+                this.comboBoxDDLTipo.Items.Add(orc.reader.GetValue(0));
             }
 
         }
@@ -337,6 +384,7 @@ namespace WindowsFormsApplication1
 
         }
 
+<<<<<<< HEAD
         private void entradaQuery_TextChanged(object sender, EventArgs e)
         {
 
@@ -389,6 +437,54 @@ namespace WindowsFormsApplication1
             
 
 
+=======
+        private void mostrarDDL_Click(object sender, EventArgs e)
+        {
+            string objeto = comboBoxDDL.SelectedItem.ToString();
+            string tipo = comboBoxDDLTipo.SelectedItem.ToString();
+
+            if (tipo == "TABLE")
+            {
+                string query_Objetos = "SELECT DBMS_METADATA.GET_DDL('TABLE',u.table_name) FROM USER_TABLES u WHERE u.TABLE_NAME = " + objeto; //String que tiene el query para crear objetos ingresados por el usuario
+                OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
+                DataSet datos = new DataSet(); // Guarda los datos en un set para poder mostrarlos
+                OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                cuadroMostrarDDL.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+            }
+
+
+        }
+
+        private void comboBoxDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd.CommandText = "select object_name from user_objects";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+              
+                this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+            }
+
+        }
+
+        private void label3_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxDDLTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd.CommandText = "select object_type from user_objects";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+
+                this.comboBoxDDLTipo.Items.Add(orc.reader.GetString(0));
+            }
+>>>>>>> origin/master
         }
     }
 
