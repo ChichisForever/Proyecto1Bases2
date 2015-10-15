@@ -146,15 +146,49 @@ namespace WindowsFormsApplication1
 
         //Función que ejecuta el query para crear tipos y tablas en los objetos
         private void ejecutarObjeto_Click(object sender, EventArgs e)
+
         {
-     
-            string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
-            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
-            DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
-            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd); 
-            adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
-            gridObjetos.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
-           
+            string query_Objetos = queryObjetos.Text;
+            string comando = query_Objetos.Substring(0, 6);
+            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection);
+
+            if (comando.ToUpper() == "INSERT" | comando.ToUpper() == "DELETE" | comando.ToUpper() == "CREATE" | comando.ToUpper() == "UPDATE")
+            {
+                try
+                {
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("El query se ha realizado correctamente");
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al ejecutar el query, vuelva a intentarlo");
+
+                }
+            }
+            else
+            {
+                try
+                {
+                    // string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
+                    // OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
+                    DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                    OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                    adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                    gridObjetos.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+                    MessageBox.Show("La consulta se ha realizado correctamente");
+
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al ejecutar la consulta, vuelva a intentarlo");
+
+                }
+
+
+            }
         }
 
         //Función que realiza ma muestra de datos
