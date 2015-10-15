@@ -388,14 +388,15 @@ namespace WindowsFormsApplication1
         {
             string objeto = comboBoxDDL.SelectedItem.ToString();
             string tipo = comboBoxDDLTipo.SelectedItem.ToString();
-            if (tipo == "Table")
+
+            if (tipo == "TABLE")
             {
-                string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
+                string query_Objetos = "SELECT DBMS_METADATA.GET_DDL('TABLE',u.table_name) FROM USER_TABLES u WHERE u.TABLE_NAME = " + objeto; //String que tiene el query para crear objetos ingresados por el usuario
                 OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
                 DataSet datos = new DataSet(); // Guarda los datos en un set para poder mostrarlos
                 OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
                 adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
-                gridObjetos.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+                cuadroMostrarDDL.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
             }
 
 
@@ -422,7 +423,7 @@ namespace WindowsFormsApplication1
         private void comboBoxDDLTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             orc.cmd = orc.myConnection.CreateCommand();
-            orc.cmd.CommandText = "select type_name from user_objects";
+            orc.cmd.CommandText = "select object_type from user_objects";
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
             {
