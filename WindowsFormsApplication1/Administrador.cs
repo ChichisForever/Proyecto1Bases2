@@ -196,6 +196,13 @@ namespace WindowsFormsApplication1
         {
 
             this.dbname.Text = orc.database;
+            this.listObjetos.View = View.Details;
+            this.listObjetos.Columns.Add("Selecione uno", 100, HorizontalAlignment.Center);
+            this.listObjetos.Items.Add("Procedimientos");
+            this.listObjetos.Items.Add("Funciones");
+            this.listObjetos.Items.Add("Sinonimos");
+            this.listObjetos.Items.Add("Triggers");
+            this.listObjetos.Items.Add("Paquetes");
             //Crea el objeto para la conexion y poder enviar comandos
             //orc.cmd = orc.myConnection.CreateCommand();
             //Se le inserta el query
@@ -213,7 +220,7 @@ namespace WindowsFormsApplication1
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
             {
-                indices.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(3), orc.reader.GetValue(2), orc.reader.GetValue(1));
+                indices.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(2), orc.reader.GetValue(3), orc.reader.GetValue(1));
             }
 
             //Vistas
@@ -247,6 +254,7 @@ namespace WindowsFormsApplication1
         private void mostrar_datos_sqlserver()
         {
             this.dbname.Text = this.server.nbase;
+            this.ventana.TabPages.Remove(objetos);
             this.listObjetos.View = View.Details;
             this.listObjetos.Columns.Add("Selecione uno", 100,HorizontalAlignment.Center);
             this.listObjetos.Items.Add("Procedimientos");
@@ -338,40 +346,86 @@ namespace WindowsFormsApplication1
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String seleccion="0";   
+            String seleccion = "0";
+            String comando = "";
+            listResultado.Clear();
+            listResultado.View = View.List;
             if (listObjetos.SelectedItems.Count > 0)
             {
                 ListViewItem listItem = this.listObjetos.SelectedItems[0];
                 seleccion = listItem.Text;
-                
-            }
-           
-            if (server != null && seleccion!="0"){
 
-                String comando = "";
+            }
+            if (orc != null && seleccion != "0")
+            {
                 if (seleccion == "Procedimientos")
-            {
-                comando = "Select name from b2.dbo.sysobjects where xtype='P'";
+                {
+                    comando = "select object_name from all_objects where object_type = 'PROCEDURE' AND owner='" + orc.user.ToUpper() + "'";
+
+                }
+                if (seleccion == "Funciones")
+                {
+                    comando = "select object_name from all_objects where object_type = 'FUNCTION' AND owner='" + orc.user.ToUpper() + "'";
+                }
+                if (seleccion == "Sinonimos")
+                {
+                    comando = "select object_name from all_objects where object_type = 'SYNONYM' AND owner='" + orc.user.ToUpper() + "'";
+                }
+                if (seleccion == "Triggers")
+                {
+                    comando = "select object_name from all_objects where object_type = 'TRIGGER' AND owner='" + orc.user.ToUpper() + "'";
+                }
+                if (seleccion == "Paquetes")
+                {
+                    comando = "select object_name from all_objects where object_type = 'PACKAGE' AND owner='" + orc.user.ToUpper() + "'";
+                }
+
+
+
+                orc.cmd = orc.myConnection.CreateCommand();
+                orc.cmd.CommandText = comando;
+                orc.reader = orc.cmd.ExecuteReader();
+
+                while (orc.reader.Read())
+                {
+                    listResultado.Items.Add(orc.reader.GetValue(0).ToString());
+                }
 
             }
-            if (seleccion == "Funciones")
+            if (server != null && seleccion != "0")
             {
-                comando = "Select name from b2.dbo.sysobjects where xtype='FN' ";
-            }
-            if (seleccion == "Sinonimos")
-            {
-                comando = "Select name from b2.dbo.sysobjects where xtype='SN' ";
-            }
 
-                listResultado.Clear();
-                listResultado.View = View.List;
 
-                try {
+                if (seleccion == "Procedimientos")
+                {
+                    comando = "Select name from " + server.nbase + ".dbo.sysobjects where xtype='P'";
+
+                }
+                if (seleccion == "Funciones")
+                {
+                    comando = "Select name from " + server.nbase + ".dbo.sysobjects where xtype='FN' ";
+                }
+                if (seleccion == "Sinonimos")
+                {
+                    comando = "Select name from " + server.nbase + ".dbo.sysobjects where xtype='SN' ";
+                }
+                if (seleccion == "Triggers")
+                {
+                    comando = "Select name from " + server.nbase + ".dbo.sysobjects where xtype='TR'";
+                }
+
+
+
+
+
+                try
+                {
                     server.cmd = new SqlCommand(comando, server.conexion);
                     server.reader = server.cmd.ExecuteReader();
 
 
-                    while (server.reader.Read()) {
+                    while (server.reader.Read())
+                    {
                         listResultado.Items.Add(server.reader[0].ToString());
                     }
                     server.reader.Close();
