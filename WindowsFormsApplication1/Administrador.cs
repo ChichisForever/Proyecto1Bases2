@@ -384,7 +384,7 @@ namespace WindowsFormsApplication1
 
         }
 
-<<<<<<< HEAD
+
         private void entradaQuery_TextChanged(object sender, EventArgs e)
         {
 
@@ -395,11 +395,14 @@ namespace WindowsFormsApplication1
 
         }
 
-        private void ejecutar_Click(object sender, EventArgs e) {
+        private void ejecutar_Click(object sender, EventArgs e)
+        {
 
-            if (orc != null) {
+            if (orc != null)
+            {
                 string query = entradaQuery.Text;
-                if (query[0].Equals('S') || query[0].Equals('s')) {
+                if (query[0].Equals('S') || query[0].Equals('s'))
+                {
                     try
                     {
                         OleDbCommand resultado = new OleDbCommand(query, orc.myConnection);
@@ -410,34 +413,40 @@ namespace WindowsFormsApplication1
                         adaptador.Fill(datos);
                         GridConsultas.DataSource = datos;
                     }
-                    catch (Exception ex) {
+                    catch (Exception ex)
+                    {
                         MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
                     }
 
-                } else {
-                    try {
+                }
+                else
+                {
+                    try
+                    {
                         OleDbCommand resultado = new OleDbCommand(query, orc.myConnection);
                         resultado.ExecuteNonQuery();
                         MessageBox.Show("Query Ejecutado");
-                    } catch( Exception ex) {
-                        MessageBox.Show("Ops.Parece que tenemos un problema"+ ex);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
                     }
                 }
 
 
             }
-            
+
             if (orc == null)
             {
 
                 MessageBox.Show("No conecta :((");
             }
+
+        }
             
 
-            
 
 
-=======
         private void mostrarDDL_Click(object sender, EventArgs e)
         {
             string objeto = comboBoxDDL.SelectedItem.ToString();
@@ -484,7 +493,7 @@ namespace WindowsFormsApplication1
 
                 this.comboBoxDDLTipo.Items.Add(orc.reader.GetString(0));
             }
->>>>>>> origin/master
+
         }
     }
 

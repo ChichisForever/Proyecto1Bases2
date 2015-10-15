@@ -92,12 +92,12 @@
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.validarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-<<<<<<< HEAD
+
             this.GridConsultas = new System.Windows.Forms.DataGridView();
-=======
+
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxDDLTipo = new System.Windows.Forms.ComboBox();
->>>>>>> origin/master
+
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -674,7 +674,7 @@
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
-<<<<<<< HEAD
+
             // GridConsultas
             // 
             this.GridConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -682,7 +682,7 @@
             this.GridConsultas.Name = "GridConsultas";
             this.GridConsultas.Size = new System.Drawing.Size(442, 175);
             this.GridConsultas.TabIndex = 6;
-=======
+
             // label3
             // 
             this.label3.AutoSize = true;
@@ -701,7 +701,7 @@
             this.comboBoxDDLTipo.Size = new System.Drawing.Size(186, 21);
             this.comboBoxDDLTipo.TabIndex = 7;
             this.comboBoxDDLTipo.SelectedIndexChanged += new System.EventHandler(this.comboBoxDDLTipo_SelectedIndexChanged);
->>>>>>> origin/master
+
             // 
             // Administrador
             // 
@@ -803,12 +803,12 @@
         private System.Windows.Forms.DataGridView gridObjetos;
         private System.Windows.Forms.ListView listObjetos;
         private System.Windows.Forms.ListView listResultado;
-<<<<<<< HEAD
+
         private System.Windows.Forms.DataGridView GridConsultas;
-=======
+
         private System.Windows.Forms.DataGridView cuadroMostrarDDL;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxDDLTipo;
->>>>>>> origin/master
+
     }
 }
