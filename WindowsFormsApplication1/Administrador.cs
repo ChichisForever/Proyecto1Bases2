@@ -167,8 +167,29 @@ namespace WindowsFormsApplication1
                 
                 }
 
-
+            if (this.server != null)
+            {
+                try
+                {
+                    string query = entradaQuery.Text;
+                    string nuevoquery = "With CTE AS( " + query + ") Select* from cte";
+                    server.cmd = new SqlCommand("SET SHOWPLAN_ALL ON", server.conexion);
+                    server.cmd.ExecuteNonQuery();
+                    //server.cmd = new SqlCommand("GO", server.conexion);
+                    //server.cmd.ExecuteNonQuery();
+                    server.cmd = new SqlCommand(nuevoquery, server.conexion);
+                    SqlDataAdapter adaptador = new SqlDataAdapter(server.cmd);
+                    DataTable datos = new DataTable();
+                    adaptador.Fill(datos);
+                    GridExecPlan.DataSource = datos;
+                }
+                catch (Exception ex) {
+                    MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
+                }
             }
+
+
+        }
 
             
 
