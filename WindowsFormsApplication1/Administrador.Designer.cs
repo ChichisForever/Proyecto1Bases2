@@ -72,6 +72,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.DdlObject = new System.Windows.Forms.TabPage();
+            this.comboBoxDDLTipo = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.cuadroMostrarDDL = new System.Windows.Forms.DataGridView();
             this.mostrarDDL = new System.Windows.Forms.Button();
             this.comboBoxDDL = new System.Windows.Forms.ComboBox();
@@ -81,10 +83,9 @@
             this.tablaComboEdit = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ejecutarQuerys = new System.Windows.Forms.TabPage();
-            this.mostrarExecutionPlan = new System.Windows.Forms.RichTextBox();
+            this.GridConsultas = new System.Windows.Forms.DataGridView();
             this.executionPlan = new System.Windows.Forms.Button();
             this.ejecutar = new System.Windows.Forms.Button();
-            this.validar = new System.Windows.Forms.Button();
             this.entradaQuery = new System.Windows.Forms.RichTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.objetos = new System.Windows.Forms.TabPage();
@@ -92,12 +93,7 @@
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.validarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-
-            this.GridConsultas = new System.Windows.Forms.DataGridView();
-
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxDDLTipo = new System.Windows.Forms.ComboBox();
-
+            this.GridExecPlan = new System.Windows.Forms.DataGridView();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -112,9 +108,10 @@
             this.edicionTablas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).BeginInit();
             this.ejecutarQuerys.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).BeginInit();
             this.objetos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).BeginInit();
             this.SuspendLayout();
             // 
             // ventana
@@ -474,6 +471,25 @@
             this.DdlObject.Text = "DDL del Objeto";
             this.DdlObject.UseVisualStyleBackColor = true;
             // 
+            // comboBoxDDLTipo
+            // 
+            this.comboBoxDDLTipo.FormattingEnabled = true;
+            this.comboBoxDDLTipo.Location = new System.Drawing.Point(200, 54);
+            this.comboBoxDDLTipo.Name = "comboBoxDDLTipo";
+            this.comboBoxDDLTipo.Size = new System.Drawing.Size(186, 21);
+            this.comboBoxDDLTipo.TabIndex = 7;
+            this.comboBoxDDLTipo.SelectedIndexChanged += new System.EventHandler(this.comboBoxDDLTipo_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(43, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(138, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Seleccione el tipo de objeto";
+            this.label3.Click += new System.EventHandler(this.label3_Click_2);
+            // 
             // cuadroMostrarDDL
             // 
             this.cuadroMostrarDDL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -553,11 +569,10 @@
             // 
             // ejecutarQuerys
             // 
+            this.ejecutarQuerys.Controls.Add(this.GridExecPlan);
             this.ejecutarQuerys.Controls.Add(this.GridConsultas);
-            this.ejecutarQuerys.Controls.Add(this.mostrarExecutionPlan);
             this.ejecutarQuerys.Controls.Add(this.executionPlan);
             this.ejecutarQuerys.Controls.Add(this.ejecutar);
-            this.ejecutarQuerys.Controls.Add(this.validar);
             this.ejecutarQuerys.Controls.Add(this.entradaQuery);
             this.ejecutarQuerys.Controls.Add(this.label13);
             this.ejecutarQuerys.Location = new System.Drawing.Point(4, 22);
@@ -568,13 +583,13 @@
             this.ejecutarQuerys.Text = "Ejecutar Querys";
             this.ejecutarQuerys.UseVisualStyleBackColor = true;
             // 
-            // mostrarExecutionPlan
+            // GridConsultas
             // 
-            this.mostrarExecutionPlan.Location = new System.Drawing.Point(9, 306);
-            this.mostrarExecutionPlan.Name = "mostrarExecutionPlan";
-            this.mostrarExecutionPlan.Size = new System.Drawing.Size(527, 199);
-            this.mostrarExecutionPlan.TabIndex = 5;
-            this.mostrarExecutionPlan.Text = "";
+            this.GridConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridConsultas.Location = new System.Drawing.Point(518, 19);
+            this.GridConsultas.Name = "GridConsultas";
+            this.GridConsultas.Size = new System.Drawing.Size(442, 175);
+            this.GridConsultas.TabIndex = 6;
             // 
             // executionPlan
             // 
@@ -588,22 +603,13 @@
             // 
             // ejecutar
             // 
-            this.ejecutar.Location = new System.Drawing.Point(233, 200);
+            this.ejecutar.Location = new System.Drawing.Point(182, 200);
             this.ejecutar.Name = "ejecutar";
             this.ejecutar.Size = new System.Drawing.Size(75, 23);
             this.ejecutar.TabIndex = 3;
             this.ejecutar.Text = "Ejecutar";
             this.ejecutar.UseVisualStyleBackColor = true;
             this.ejecutar.Click += new System.EventHandler(this.ejecutar_Click);
-            // 
-            // validar
-            // 
-            this.validar.Location = new System.Drawing.Point(9, 200);
-            this.validar.Name = "validar";
-            this.validar.Size = new System.Drawing.Size(75, 23);
-            this.validar.TabIndex = 2;
-            this.validar.Text = "Validar";
-            this.validar.UseVisualStyleBackColor = true;
             // 
             // entradaQuery
             // 
@@ -674,34 +680,13 @@
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
-
-            // GridConsultas
+            // GridExecPlan
             // 
-            this.GridConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridConsultas.Location = new System.Drawing.Point(518, 19);
-            this.GridConsultas.Name = "GridConsultas";
-            this.GridConsultas.Size = new System.Drawing.Size(442, 175);
-            this.GridConsultas.TabIndex = 6;
-
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(138, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Seleccione el tipo de objeto";
-            this.label3.Click += new System.EventHandler(this.label3_Click_2);
-            // 
-            // comboBoxDDLTipo
-            // 
-            this.comboBoxDDLTipo.FormattingEnabled = true;
-            this.comboBoxDDLTipo.Location = new System.Drawing.Point(200, 54);
-            this.comboBoxDDLTipo.Name = "comboBoxDDLTipo";
-            this.comboBoxDDLTipo.Size = new System.Drawing.Size(186, 21);
-            this.comboBoxDDLTipo.TabIndex = 7;
-            this.comboBoxDDLTipo.SelectedIndexChanged += new System.EventHandler(this.comboBoxDDLTipo_SelectedIndexChanged);
-
+            this.GridExecPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridExecPlan.Location = new System.Drawing.Point(9, 310);
+            this.GridExecPlan.Name = "GridExecPlan";
+            this.GridExecPlan.Size = new System.Drawing.Size(488, 194);
+            this.GridExecPlan.TabIndex = 7;
             // 
             // Administrador
             // 
@@ -732,9 +717,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).EndInit();
             this.ejecutarQuerys.ResumeLayout(false);
             this.ejecutarQuerys.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).EndInit();
             this.objetos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -788,9 +774,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button executionPlan;
         private System.Windows.Forms.Button ejecutar;
-        private System.Windows.Forms.Button validar;
         private System.Windows.Forms.RichTextBox entradaQuery;
-        private System.Windows.Forms.RichTextBox mostrarExecutionPlan;
         private System.Windows.Forms.TabPage objetos;
         private System.Windows.Forms.Button ejecutarObjeto;
         private System.Windows.Forms.Button validarObjeto;
@@ -809,6 +793,6 @@
         private System.Windows.Forms.DataGridView cuadroMostrarDDL;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxDDLTipo;
-
+        private System.Windows.Forms.DataGridView GridExecPlan;
     }
 }

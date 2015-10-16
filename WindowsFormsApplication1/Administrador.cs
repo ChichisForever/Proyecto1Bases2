@@ -141,8 +141,36 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (orc != null)
+            {
+                string query = entradaQuery.Text;
+                    try {
+                       string nuevoquery = "EXPLAIN PLAN FOR " + query;
+                       OleDbCommand resultado = new OleDbCommand(nuevoquery, orc.myConnection);
+                       resultado.ExecuteNonQuery();
+                       string ExcPlan = "select plan_table_output from table(dbms_xplan.display('plan_table', null, 'basic'))";
+                       OleDbCommand plan = new OleDbCommand(ExcPlan, orc.myConnection);
+                       DataTable datos = new DataTable();
+                       OleDbDataAdapter adaptador = new OleDbDataAdapter(plan);
+                       adaptador.Fill(datos);
+                       GridExecPlan.DataSource = datos;
 
-        }
+                    //DataTable datos = new DataTable();
+                    //datos.Load(read);
+
+                }
+                catch (Exception ex)
+                    {
+                        MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
+                    }
+
+                
+                }
+
+
+            }
+
+            
 
         //Función que ejecuta el query para crear tipos y tablas en los objetos
         private void ejecutarObjeto_Click(object sender, EventArgs e)
@@ -490,8 +518,7 @@ namespace WindowsFormsApplication1
 
             }
 
-            if (orc == null)
-            {
+            if (this.server != null) {
 
                 MessageBox.Show("No conecta :((");
             }
@@ -547,6 +574,11 @@ namespace WindowsFormsApplication1
 
                 this.comboBoxDDLTipo.Items.Add(orc.reader.GetString(0));
             }
+
+        }
+
+        private void planEjecution_Click(object sender, EventArgs e)
+        {
 
         }
     }
