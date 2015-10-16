@@ -519,8 +519,35 @@ namespace WindowsFormsApplication1
             }
 
             if (this.server != null) {
+                string query = entradaQuery.Text;
+                if (query[0].Equals('S') || query[0].Equals('s'))
+                {
+                    try
+                    {
+                        server.cmd = new SqlCommand(query, server.conexion);
+                        SqlDataAdapter adaptador = new SqlDataAdapter(server.cmd);
+                        DataTable datos = new DataTable();
+                        adaptador.Fill(datos);
+                        GridConsultas.DataSource = datos;
 
-                MessageBox.Show("No conecta :((");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
+                    }
+                }
+                 else {
+                    try
+                    {
+                        server.cmd = new SqlCommand(query, server.conexion);
+                        server.cmd.ExecuteNonQuery();
+                        MessageBox.Show("El query fue ejecutado correctamente");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
+                    }
+                }
             }
 
         }
