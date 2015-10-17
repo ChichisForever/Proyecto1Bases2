@@ -579,13 +579,27 @@ namespace WindowsFormsApplication1
 
             if (tipo == "TABLE")
             {
-                string query_Objetos = "SELECT DBMS_METADATA.GET_DDL('TABLE',u.table_name) FROM USER_TABLES u WHERE u.TABLE_NAME = " + objeto; //String que tiene el query para crear objetos ingresados por el usuario
-               OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
-                DataSet datos = new DataSet(); // Guarda los datos en un set para poder mostrarlos
-                OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
-                adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
-                cuadroMostrarDDL.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+                orc.cmd = orc.myConnection.CreateCommand(); // Pasarle el string del select con la conexión a la base
+                orc.cmd.CommandText = "SELECT DBMS_METADATA.GET_DDL('TABLE', table_name) FROM USER_TABLES WHERE TABLE_NAME = '" + objeto + "'"; //String que tiene el query para crear objetos ingresados por el usuario
+                orc.reader = orc.cmd.ExecuteReader();
+
+                if (orc.reader.Read())
+                {
+                    cuadroMostrarDDL.Text = Convert.ToString(orc.cmd.ExecuteReader());
+                }
+
+                orc.reader.Close();
             }
+
+            //if (tipo == "INDEX")
+            //{
+
+            //}
+
+            //if (tipo == "VIEW")
+            //{
+
+            //}
 
 
         }

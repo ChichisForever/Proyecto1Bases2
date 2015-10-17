@@ -74,7 +74,6 @@
             this.DdlObject = new System.Windows.Forms.TabPage();
             this.comboBoxDDLTipo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cuadroMostrarDDL = new System.Windows.Forms.DataGridView();
             this.mostrarDDL = new System.Windows.Forms.Button();
             this.comboBoxDDL = new System.Windows.Forms.ComboBox();
             this.labelSeleccionarDDL = new System.Windows.Forms.Label();
@@ -93,6 +92,7 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
+            this.cuadroMostrarDDL = new System.Windows.Forms.TextBox();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -103,7 +103,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.infoTablespace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoSesion)).BeginInit();
             this.DdlObject.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cuadroMostrarDDL)).BeginInit();
             this.edicionTablas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).BeginInit();
             this.ejecutarQuerys.SuspendLayout();
@@ -456,9 +455,9 @@
             // 
             // DdlObject
             // 
+            this.DdlObject.Controls.Add(this.cuadroMostrarDDL);
             this.DdlObject.Controls.Add(this.comboBoxDDLTipo);
             this.DdlObject.Controls.Add(this.label3);
-            this.DdlObject.Controls.Add(this.cuadroMostrarDDL);
             this.DdlObject.Controls.Add(this.mostrarDDL);
             this.DdlObject.Controls.Add(this.comboBoxDDL);
             this.DdlObject.Controls.Add(this.labelSeleccionarDDL);
@@ -488,14 +487,6 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Seleccione el tipo de objeto";
             this.label3.Click += new System.EventHandler(this.label3_Click_2);
-            // 
-            // cuadroMostrarDDL
-            // 
-            this.cuadroMostrarDDL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cuadroMostrarDDL.Location = new System.Drawing.Point(137, 158);
-            this.cuadroMostrarDDL.Name = "cuadroMostrarDDL";
-            this.cuadroMostrarDDL.Size = new System.Drawing.Size(723, 364);
-            this.cuadroMostrarDDL.TabIndex = 5;
             // 
             // mostrarDDL
             // 
@@ -677,6 +668,13 @@
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
+            // cuadroMostrarDDL
+            // 
+            this.cuadroMostrarDDL.Location = new System.Drawing.Point(46, 155);
+            this.cuadroMostrarDDL.Name = "cuadroMostrarDDL";
+            this.cuadroMostrarDDL.Size = new System.Drawing.Size(761, 20);
+            this.cuadroMostrarDDL.TabIndex = 8;
+            // 
             // Administrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -700,7 +698,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.infoSesion)).EndInit();
             this.DdlObject.ResumeLayout(false);
             this.DdlObject.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cuadroMostrarDDL)).EndInit();
             this.edicionTablas.ResumeLayout(false);
             this.edicionTablas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).EndInit();
@@ -777,10 +774,9 @@
         private System.Windows.Forms.ListView listResultado;
 
         private System.Windows.Forms.DataGridView GridConsultas;
-
-        private System.Windows.Forms.DataGridView cuadroMostrarDDL;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxDDLTipo;
         private System.Windows.Forms.DataGridView GridExecPlan;
+        private System.Windows.Forms.TextBox cuadroMostrarDDL;
     }
 }
