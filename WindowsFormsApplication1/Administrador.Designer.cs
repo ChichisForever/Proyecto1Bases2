@@ -72,6 +72,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.DdlObject = new System.Windows.Forms.TabPage();
+            this.cuadroMostrarDDL = new System.Windows.Forms.TextBox();
             this.comboBoxDDLTipo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.mostrarDDL = new System.Windows.Forms.Button();
@@ -92,7 +93,6 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.cuadroMostrarDDL = new System.Windows.Forms.TextBox();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -468,6 +468,14 @@
             this.DdlObject.TabIndex = 3;
             this.DdlObject.Text = "DDL del Objeto";
             this.DdlObject.UseVisualStyleBackColor = true;
+            this.DdlObject.Click += new System.EventHandler(this.DdlObject_Click);
+            // 
+            // cuadroMostrarDDL
+            // 
+            this.cuadroMostrarDDL.Location = new System.Drawing.Point(46, 155);
+            this.cuadroMostrarDDL.Name = "cuadroMostrarDDL";
+            this.cuadroMostrarDDL.Size = new System.Drawing.Size(761, 20);
+            this.cuadroMostrarDDL.TabIndex = 8;
             // 
             // comboBoxDDLTipo
             // 
@@ -667,13 +675,6 @@
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
-            // 
-            // cuadroMostrarDDL
-            // 
-            this.cuadroMostrarDDL.Location = new System.Drawing.Point(46, 155);
-            this.cuadroMostrarDDL.Name = "cuadroMostrarDDL";
-            this.cuadroMostrarDDL.Size = new System.Drawing.Size(761, 20);
-            this.cuadroMostrarDDL.TabIndex = 8;
             // 
             // Administrador
             // 

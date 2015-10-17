@@ -12,6 +12,7 @@ using Oracle.ManagedDataAccess;
 using System.Data.Sql;
 using System.Data.SqlClient;
 
+
 //using Oracle.Web;
 using System.Data.OleDb;
 
@@ -574,22 +575,10 @@ namespace WindowsFormsApplication1
 
         private void mostrarDDL_Click(object sender, EventArgs e)
         {
-            string objeto = comboBoxDDL.SelectedItem.ToString();
+           
             string tipo = comboBoxDDLTipo.SelectedItem.ToString();
 
-            if (tipo == "TABLE")
-            {
-                orc.cmd = orc.myConnection.CreateCommand(); // Pasarle el string del select con la conexión a la base
-                orc.cmd.CommandText = "SELECT DBMS_METADATA.GET_DDL('TABLE', table_name) FROM USER_TABLES WHERE TABLE_NAME = '" + objeto + "'"; //String que tiene el query para crear objetos ingresados por el usuario
-                orc.reader = orc.cmd.ExecuteReader();
-
-                if (orc.reader.Read())
-                {
-                    cuadroMostrarDDL.Text = Convert.ToString(orc.cmd.ExecuteReader());
-                }
-
-                orc.reader.Close();
-            }
+            EjecutarDLL(tipo);
 
             //if (tipo == "INDEX")
             //{
@@ -603,6 +592,53 @@ namespace WindowsFormsApplication1
 
 
         }
+
+        private void EjecutarDLL(String tipo)
+        {
+            string objeto = comboBoxDDL.SelectedItem.ToString();
+            using (OracleConnection oraConn = new OracleConnection("data source=PDB;user id=SA;password=sa"))
+            {
+                oraConn.Open();
+
+                using (OracleCommand cmd = new OracleCommand())
+                {
+                    cmd.Connection = oraConn;
+                    cmd.CommandText = "dbms_metadata.get_ddl";
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    OracleParameter clobparam = new OracleParameter();
+                    clobparam.OracleDbType = OracleDbType.Clob;
+                    clobparam.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(clobparam);
+
+                    OracleParameter parmObjectType = new OracleParameter();
+                    parmObjectType.OracleDbType = OracleDbType.Varchar2;
+                    parmObjectType.ParameterName = "OBJECT_TYPE";
+                    parmObjectType.Value = tipo;
+                    cmd.Parameters.Add(parmObjectType);
+
+                    OracleParameter parmObjectName = new OracleParameter();
+                    parmObjectName.OracleDbType = OracleDbType.Varchar2;
+                    parmObjectName.ParameterName = "NAME";
+                    parmObjectName.Value = objeto;
+                    cmd.Parameters.Add(parmObjectName);
+
+                    OracleParameter parmObjectOwner = new OracleParameter();
+                    parmObjectOwner.OracleDbType = OracleDbType.Varchar2;
+                    parmObjectOwner.ParameterName = "SCHEMA";
+                    parmObjectOwner.Value = orc.user.ToUpper();
+                    cmd.Parameters.Add(parmObjectOwner);
+
+                    cmd.ExecuteNonQuery();
+
+                    this.cuadroMostrarDDL.Text=(((Oracle.DataAccess.Types.OracleClob)clobparam.Value).Value);
+                   
+                    clobparam.Dispose();
+                }
+            }
+
+        }
+
 
         private void comboBoxDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -636,6 +672,11 @@ namespace WindowsFormsApplication1
         }
 
         private void planEjecution_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DdlObject_Click(object sender, EventArgs e)
         {
 
         }
