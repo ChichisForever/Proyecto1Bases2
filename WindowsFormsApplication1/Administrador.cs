@@ -190,16 +190,15 @@ namespace WindowsFormsApplication1
 
 
         }
+ 
 
-            
-
-        //Función que ejecuta el query para crear tipos y tablas en los objetos
+        //Función que ejecuta el query para crear tipos y tablas, insertar, eliminar y actualizar los objetos en oracle
         private void ejecutarObjeto_Click(object sender, EventArgs e)
 
         {
-            string query_Objetos = queryObjetos.Text;
-            string comando = query_Objetos.Substring(0, 6);
-            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection);
+            string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
+            string comando = query_Objetos.Substring(0, 6); // Pasarle el string del select con la conexión a la base
+            OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); //Se pasa el query y la conexion para que lo ejecute
 
             if (comando.ToUpper() == "INSERT" | comando.ToUpper() == "DELETE" | comando.ToUpper() == "CREATE" | comando.ToUpper() == "UPDATE")
             {
@@ -220,8 +219,6 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
-                    // string query_Objetos = queryObjetos.Text; //String que tiene el query para crear objetos ingresados por el usuario
-                    // OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
                     DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
                     OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
                     adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
@@ -239,7 +236,6 @@ namespace WindowsFormsApplication1
 
             }
         }
-
         //Función que realiza ma muestra de datos
         private void mostrar_datos_oracle()
         {
@@ -584,7 +580,7 @@ namespace WindowsFormsApplication1
             if (tipo == "TABLE")
             {
                 string query_Objetos = "SELECT DBMS_METADATA.GET_DDL('TABLE',u.table_name) FROM USER_TABLES u WHERE u.TABLE_NAME = " + objeto; //String que tiene el query para crear objetos ingresados por el usuario
-                OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
+               OleDbCommand cmd = new OleDbCommand(query_Objetos, orc.myConnection); // Pasarle el string del select con la conexión a la base
                 DataSet datos = new DataSet(); // Guarda los datos en un set para poder mostrarlos
                 OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
                 adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query

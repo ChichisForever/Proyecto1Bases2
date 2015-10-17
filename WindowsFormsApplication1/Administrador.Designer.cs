@@ -83,6 +83,7 @@
             this.tablaComboEdit = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ejecutarQuerys = new System.Windows.Forms.TabPage();
+            this.GridExecPlan = new System.Windows.Forms.DataGridView();
             this.GridConsultas = new System.Windows.Forms.DataGridView();
             this.executionPlan = new System.Windows.Forms.Button();
             this.ejecutar = new System.Windows.Forms.Button();
@@ -91,9 +92,7 @@
             this.objetos = new System.Windows.Forms.TabPage();
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
-            this.validarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.GridExecPlan = new System.Windows.Forms.DataGridView();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -108,10 +107,10 @@
             this.edicionTablas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).BeginInit();
             this.ejecutarQuerys.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).BeginInit();
             this.objetos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).BeginInit();
             this.SuspendLayout();
             // 
             // ventana
@@ -583,6 +582,14 @@
             this.ejecutarQuerys.Text = "Ejecutar Querys";
             this.ejecutarQuerys.UseVisualStyleBackColor = true;
             // 
+            // GridExecPlan
+            // 
+            this.GridExecPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridExecPlan.Location = new System.Drawing.Point(9, 310);
+            this.GridExecPlan.Name = "GridExecPlan";
+            this.GridExecPlan.Size = new System.Drawing.Size(488, 194);
+            this.GridExecPlan.TabIndex = 7;
+            // 
             // GridConsultas
             // 
             this.GridConsultas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -634,7 +641,6 @@
             // 
             this.objetos.Controls.Add(this.gridObjetos);
             this.objetos.Controls.Add(this.ejecutarObjeto);
-            this.objetos.Controls.Add(this.validarObjeto);
             this.objetos.Controls.Add(this.queryObjetos);
             this.objetos.Location = new System.Drawing.Point(4, 22);
             this.objetos.Name = "objetos";
@@ -647,14 +653,14 @@
             // gridObjetos
             // 
             this.gridObjetos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridObjetos.Location = new System.Drawing.Point(524, 39);
+            this.gridObjetos.Location = new System.Drawing.Point(89, 319);
             this.gridObjetos.Name = "gridObjetos";
-            this.gridObjetos.Size = new System.Drawing.Size(410, 272);
+            this.gridObjetos.Size = new System.Drawing.Size(759, 234);
             this.gridObjetos.TabIndex = 3;
             // 
             // ejecutarObjeto
             // 
-            this.ejecutarObjeto.Location = new System.Drawing.Point(291, 374);
+            this.ejecutarObjeto.Location = new System.Drawing.Point(415, 281);
             this.ejecutarObjeto.Name = "ejecutarObjeto";
             this.ejecutarObjeto.Size = new System.Drawing.Size(75, 23);
             this.ejecutarObjeto.TabIndex = 2;
@@ -662,31 +668,14 @@
             this.ejecutarObjeto.UseVisualStyleBackColor = true;
             this.ejecutarObjeto.Click += new System.EventHandler(this.ejecutarObjeto_Click);
             // 
-            // validarObjeto
-            // 
-            this.validarObjeto.Location = new System.Drawing.Point(156, 374);
-            this.validarObjeto.Name = "validarObjeto";
-            this.validarObjeto.Size = new System.Drawing.Size(75, 23);
-            this.validarObjeto.TabIndex = 1;
-            this.validarObjeto.Text = "Validar";
-            this.validarObjeto.UseVisualStyleBackColor = true;
-            // 
             // queryObjetos
             // 
             this.queryObjetos.Location = new System.Drawing.Point(21, 28);
             this.queryObjetos.Name = "queryObjetos";
-            this.queryObjetos.Size = new System.Drawing.Size(462, 301);
+            this.queryObjetos.Size = new System.Drawing.Size(903, 247);
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
-            // 
-            // GridExecPlan
-            // 
-            this.GridExecPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridExecPlan.Location = new System.Drawing.Point(9, 310);
-            this.GridExecPlan.Name = "GridExecPlan";
-            this.GridExecPlan.Size = new System.Drawing.Size(488, 194);
-            this.GridExecPlan.TabIndex = 7;
             // 
             // Administrador
             // 
@@ -717,10 +706,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).EndInit();
             this.ejecutarQuerys.ResumeLayout(false);
             this.ejecutarQuerys.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).EndInit();
             this.objetos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -777,7 +766,6 @@
         private System.Windows.Forms.RichTextBox entradaQuery;
         private System.Windows.Forms.TabPage objetos;
         private System.Windows.Forms.Button ejecutarObjeto;
-        private System.Windows.Forms.Button validarObjeto;
         private System.Windows.Forms.RichTextBox queryObjetos;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo;
