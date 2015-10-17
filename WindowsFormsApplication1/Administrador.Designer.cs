@@ -121,7 +121,7 @@
             this.ventana.Controls.Add(this.edicionTablas);
             this.ventana.Controls.Add(this.ejecutarQuerys);
             this.ventana.Controls.Add(this.objetos);
-            this.ventana.Location = new System.Drawing.Point(0, 0);
+            this.ventana.Location = new System.Drawing.Point(0, 2);
             this.ventana.Name = "ventana";
             this.ventana.SelectedIndex = 0;
             this.ventana.Size = new System.Drawing.Size(974, 671);
@@ -355,6 +355,7 @@
             this.info3.TabIndex = 2;
             this.info3.Text = "Información 3";
             this.info3.UseVisualStyleBackColor = true;
+            this.info3.Click += new System.EventHandler(this.info3_Click);
             // 
             // infoTablespace
             // 
@@ -368,6 +369,7 @@
             this.infoTablespace.Name = "infoTablespace";
             this.infoTablespace.Size = new System.Drawing.Size(444, 150);
             this.infoTablespace.TabIndex = 3;
+            this.infoTablespace.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.infoTablespace_CellContentClick);
             // 
             // nomTablespace
             // 

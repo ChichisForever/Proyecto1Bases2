@@ -242,6 +242,7 @@ namespace WindowsFormsApplication1
         {
 
             this.dbname.Text = orc.database;
+            this.label9.Text = "Informaciòn TableSpaces";
             this.listObjetos.View = View.Details;
             this.listObjetos.Columns.Add("Selecione uno", 100, HorizontalAlignment.Center);
             this.listObjetos.Items.Add("Procedimientos");
@@ -296,10 +297,21 @@ namespace WindowsFormsApplication1
                 this.comboBoxDDLTipo.Items.Add(orc.reader.GetValue(0));
             }
 
+            //Tablespaces
+            orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd.CommandText = "Select user_tablespaces.tablespace_name,sys.v_$datafile.bytes,(sys.v_$datafile.bytes-sys.dba_free_space.bytes),sys.dba_free_space.bytes from sys.dba_free_space  inner join sys.v_$tablespace on sys.dba_free_space.tablespace_name = sys.v_$tablespace.name inner join user_tablespaces on sys.v_$tablespace.name = user_tablespaces.tablespace_name inner join sys.v_$datafile on sys.v_$datafile.TS# = sys.v_$tablespace.TS#";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+
+                this.infoTablespace.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1).ToString(), orc.reader.GetValue(2), orc.reader.GetValue(3));
+            }
+
         }
         private void mostrar_datos_sqlserver()
         {
             this.dbname.Text = this.server.nbase;
+            this.label9.Text = "Informacion Archivos del Sistema";
             this.ventana.TabPages.Remove(objetos);
             this.listObjetos.View = View.Details;
             this.listObjetos.Columns.Add("Selecione uno", 100,HorizontalAlignment.Center);
@@ -330,6 +342,13 @@ namespace WindowsFormsApplication1
             }
             server.reader.Close();
 
+            //Informacion de Archivos del sistema
+            server.cmd=new SqlCommand("SELECT f.name,total_bytes,(total_bytes-available_bytes),available_bytes FROM sys.database_files AS f CROSS APPLY sys.dm_os_volume_stats(DB_ID(f.name), f.file_id); ", server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read()){
+                this.infoTablespace.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
+            }
+            server.reader.Close();
         }
 
         private void tablas_SelectedIndexChanged(object sender, EventArgs e)
@@ -677,6 +696,16 @@ namespace WindowsFormsApplication1
         }
 
         private void DdlObject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void info3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void infoTablespace_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
