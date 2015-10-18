@@ -349,6 +349,20 @@ namespace WindowsFormsApplication1
                 this.infoTablespace.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
             }
             server.reader.Close();
+            server.cmd = new SqlCommand("select DISTINCT type_desc from sys.objects;", server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read())
+            {
+                this.comboBoxDDLTipo.Items.Add(server.reader[0]);
+            }
+            server.reader.Close();
+            server.cmd = new SqlCommand("select DISTINCT name from sys.objects;", server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read())
+            {
+                this.comboBoxDDL.Items.Add(server.reader[0]);
+            }
+            server.reader.Close();
         }
 
         private void tablas_SelectedIndexChanged(object sender, EventArgs e)
@@ -478,16 +492,10 @@ namespace WindowsFormsApplication1
                 {
                     comando = "Select name from " + server.nbase + ".dbo.sysobjects where xtype='TR'";
                 }
-
-
-
-
-
                 try
                 {
                     server.cmd = new SqlCommand(comando, server.conexion);
                     server.reader = server.cmd.ExecuteReader();
-
 
                     while (server.reader.Read())
                     {
@@ -497,12 +505,11 @@ namespace WindowsFormsApplication1
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Ops.Parece que tenemos un problema");
+                    MessageBox.Show("Ops.Parece que tenemos un problema. ");
                 }
             }
 
         }
-
 
         private void entradaQuery_TextChanged(object sender, EventArgs e)
         {
@@ -588,34 +595,43 @@ namespace WindowsFormsApplication1
             }
 
         }
-            
+
 
 
 
         private void mostrarDDL_Click(object sender, EventArgs e)
         {
-           
-            string tipo = comboBoxDDLTipo.SelectedItem.ToString();
+            if (orc != null)
+            {
+                try
+                {
+                    string tipo = comboBoxDDLTipo.SelectedItem.ToString();
+                    EjecutarDLLOracle(tipo);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un Problema, no se pudo ejecutar la consulta.");
+                }
+            }
 
-            EjecutarDLL(tipo);
-
-            //if (tipo == "INDEX")
-            //{
-
-            //}
-
-            //if (tipo == "VIEW")
-            //{
-
-            //}
-
-
+            if (server != null)
+            {
+                try
+                {
+                    string tipo = comboBoxDDLTipo.SelectedItem.ToString();
+                    EjecutarDDLMSS(tipo);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un Problema, no se pudo ejecutar la consulta.");
+                }
+            }
         }
 
-        private void EjecutarDLL(String tipo)
+        private void EjecutarDLLOracle(String tipo)
         {
             string objeto = comboBoxDDL.SelectedItem.ToString();
-            using (OracleConnection oraConn = new OracleConnection("data source=PDB;user id=SA;password=sa"))
+            using (OracleConnection oraConn = new OracleConnection("data source=proyectoBases;user id=pdb;password=Liza"))
             {
                 oraConn.Open();
 
@@ -658,18 +674,70 @@ namespace WindowsFormsApplication1
 
         }
 
+        private void EjecutarDDLMSS(String tipo)
+        {
+            string objeto = comboBoxDDL.SelectedItem.ToString();
+            String comando = "DECLARE @find NVARCHAR(4000) " +
+                                   "SELECT @find = '" + objeto + "'; " +
+                                   "WITH  definitions AS (SELECT  so.name, OBJECT_DEFINITION(id) AS TEXT " +
+                                   "FROM sys.sysobjects so WHERE name NOT LIKE 'sys%') " +
+                                   "SELECT  name,SUBSTRING(TEXT,CHARINDEX(@find,TEXT COLLATE Latin1_General_CI_AI) ,50) " +
+                                   "AS context FROM definitions " +
+                                   "WHERE CHARINDEX(@find, TEXT COLLATE Latin1_General_CI_AI) <> 0";
+            // query para mostrar ddl 
+            try
+            {
+                SqlCommand myCommand = new SqlCommand(comando, server.conexion);
+                SqlDataReader myReader = myCommand.ExecuteReader();
+
+                this.cuadroMostrarDDL.Text = myReader.ToString();
+            }
+
+            catch
+            {
+                MessageBox.Show("Ocurrió un Problema, no se pudo ejecutar la consulta.");
+            }
+        }
+
 
         private void comboBoxDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            orc.cmd = orc.myConnection.CreateCommand();
-            orc.cmd.CommandText = "select object_name from user_objects";
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
+            if (orc != null)
             {
-              
-                this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+                try
+                {
+                    orc.cmd = orc.myConnection.CreateCommand();
+                    orc.cmd.CommandText = "select object_name from user_objects";
+                    orc.reader = orc.cmd.ExecuteReader();
+                    while (orc.reader.Read())
+                    {
+
+                        this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                }
             }
 
+            if (server != null)
+            {
+                try
+                {
+                    server.cmd = new SqlCommand("select DISTINCT name from sys.objects;", server.conexion);
+                    server.reader = server.cmd.ExecuteReader();
+                    while (server.reader.Read())
+                    {
+                        this.comboBoxDDL.Items.Add(server.reader[0]);
+                    }
+                    server.reader.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                }
+            }
         }
 
         private void label3_Click_2(object sender, EventArgs e)
@@ -679,13 +747,27 @@ namespace WindowsFormsApplication1
 
         private void comboBoxDDLTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            orc.cmd = orc.myConnection.CreateCommand();
-            orc.cmd.CommandText = "select object_type from user_objects";
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
+            if (orc != null)
             {
+                orc.cmd = orc.myConnection.CreateCommand();
+                orc.cmd.CommandText = "select object_type from user_objects";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
 
-                this.comboBoxDDLTipo.Items.Add(orc.reader.GetString(0));
+                    this.comboBoxDDLTipo.Items.Add(orc.reader.GetString(0));
+                }
+            }
+
+            if (server != null)
+            {
+                server.cmd = new SqlCommand("select DISTINCT type_desc from sys.objects;", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    this.comboBoxDDLTipo.Items.Add(server.reader[0]);
+                }
+                server.reader.Close();
             }
 
         }
