@@ -72,15 +72,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.DdlObject = new System.Windows.Forms.TabPage();
+            this.cuadroMostrarDDL = new System.Windows.Forms.TextBox();
             this.comboBoxDDLTipo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.mostrarDDL = new System.Windows.Forms.Button();
             this.comboBoxDDL = new System.Windows.Forms.ComboBox();
             this.labelSeleccionarDDL = new System.Windows.Forms.Label();
             this.edicionTablas = new System.Windows.Forms.TabPage();
-            this.TablaGridEdit = new System.Windows.Forms.DataGridView();
-            this.tablaComboEdit = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.ejecutarQuerys = new System.Windows.Forms.TabPage();
             this.GridExecPlan = new System.Windows.Forms.DataGridView();
             this.GridConsultas = new System.Windows.Forms.DataGridView();
@@ -92,7 +90,10 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.cuadroMostrarDDL = new System.Windows.Forms.TextBox();
+            this.actualizar = new System.Windows.Forms.Button();
+            this.eliminar = new System.Windows.Forms.Button();
+            this.insertar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -104,7 +105,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.infoSesion)).BeginInit();
             this.DdlObject.SuspendLayout();
             this.edicionTablas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).BeginInit();
             this.ejecutarQuerys.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).BeginInit();
@@ -472,6 +472,14 @@
             this.DdlObject.UseVisualStyleBackColor = true;
             this.DdlObject.Click += new System.EventHandler(this.DdlObject_Click);
             // 
+            // cuadroMostrarDDL
+            // 
+            this.cuadroMostrarDDL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.35F);
+            this.cuadroMostrarDDL.Location = new System.Drawing.Point(138, 151);
+            this.cuadroMostrarDDL.Name = "cuadroMostrarDDL";
+            this.cuadroMostrarDDL.Size = new System.Drawing.Size(688, 20);
+            this.cuadroMostrarDDL.TabIndex = 8;
+            // 
             // comboBoxDDLTipo
             // 
             this.comboBoxDDLTipo.FormattingEnabled = true;
@@ -522,9 +530,10 @@
             // 
             // edicionTablas
             // 
-            this.edicionTablas.Controls.Add(this.TablaGridEdit);
-            this.edicionTablas.Controls.Add(this.tablaComboEdit);
-            this.edicionTablas.Controls.Add(this.label12);
+            this.edicionTablas.Controls.Add(this.label5);
+            this.edicionTablas.Controls.Add(this.actualizar);
+            this.edicionTablas.Controls.Add(this.eliminar);
+            this.edicionTablas.Controls.Add(this.insertar);
             this.edicionTablas.Location = new System.Drawing.Point(4, 22);
             this.edicionTablas.Name = "edicionTablas";
             this.edicionTablas.Padding = new System.Windows.Forms.Padding(3);
@@ -532,33 +541,8 @@
             this.edicionTablas.TabIndex = 4;
             this.edicionTablas.Text = "Edicion Tablas";
             this.edicionTablas.UseVisualStyleBackColor = true;
+            
             // 
-            // TablaGridEdit
-            // 
-            this.TablaGridEdit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TablaGridEdit.Location = new System.Drawing.Point(138, 125);
-            this.TablaGridEdit.Name = "TablaGridEdit";
-            this.TablaGridEdit.Size = new System.Drawing.Size(725, 309);
-            this.TablaGridEdit.TabIndex = 2;
-            // 
-            // tablaComboEdit
-            // 
-            this.tablaComboEdit.FormattingEnabled = true;
-            this.tablaComboEdit.Location = new System.Drawing.Point(433, 42);
-            this.tablaComboEdit.Name = "tablaComboEdit";
-            this.tablaComboEdit.Size = new System.Drawing.Size(121, 21);
-            this.tablaComboEdit.TabIndex = 1;
-            this.tablaComboEdit.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged_1);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(313, 45);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(100, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Escoga una Tabla: ";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // ejecutarQuerys
             // 
@@ -671,13 +655,44 @@
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
-            // cuadroMostrarDDL
+            // actualizar
             // 
-            this.cuadroMostrarDDL.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.35F);
-            this.cuadroMostrarDDL.Location = new System.Drawing.Point(138, 151);
-            this.cuadroMostrarDDL.Name = "cuadroMostrarDDL";
-            this.cuadroMostrarDDL.Size = new System.Drawing.Size(688, 20);
-            this.cuadroMostrarDDL.TabIndex = 8;
+            this.actualizar.Location = new System.Drawing.Point(646, 232);
+            this.actualizar.Name = "actualizar";
+            this.actualizar.Size = new System.Drawing.Size(118, 23);
+            this.actualizar.TabIndex = 19;
+            this.actualizar.Text = "Actualizar";
+            this.actualizar.UseVisualStyleBackColor = true;
+            this.actualizar.Click += new System.EventHandler(this.actualizar_Click);
+            // 
+            // eliminar
+            // 
+            this.eliminar.Location = new System.Drawing.Point(403, 232);
+            this.eliminar.Name = "eliminar";
+            this.eliminar.Size = new System.Drawing.Size(123, 23);
+            this.eliminar.TabIndex = 18;
+            this.eliminar.Text = "Eliminar";
+            this.eliminar.UseVisualStyleBackColor = true;
+            this.eliminar.Click += new System.EventHandler(this.eliminar_Click);
+            // 
+            // insertar
+            // 
+            this.insertar.Location = new System.Drawing.Point(180, 232);
+            this.insertar.Name = "insertar";
+            this.insertar.Size = new System.Drawing.Size(111, 23);
+            this.insertar.TabIndex = 17;
+            this.insertar.Text = "Insertar";
+            this.insertar.UseVisualStyleBackColor = true;
+            this.insertar.Click += new System.EventHandler(this.insertar_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(419, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Edición de Tablas";
             // 
             // Administrador
             // 
@@ -704,7 +719,6 @@
             this.DdlObject.PerformLayout();
             this.edicionTablas.ResumeLayout(false);
             this.edicionTablas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaGridEdit)).EndInit();
             this.ejecutarQuerys.ResumeLayout(false);
             this.ejecutarQuerys.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridExecPlan)).EndInit();
@@ -758,9 +772,6 @@
         private System.Windows.Forms.Button mostrarDDL;
         private System.Windows.Forms.ComboBox comboBoxDDL;
         private System.Windows.Forms.Label labelSeleccionarDDL;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView TablaGridEdit;
-        private System.Windows.Forms.ComboBox tablaComboEdit;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button executionPlan;
         private System.Windows.Forms.Button ejecutar;
@@ -782,5 +793,9 @@
         private System.Windows.Forms.ComboBox comboBoxDDLTipo;
         private System.Windows.Forms.DataGridView GridExecPlan;
         private System.Windows.Forms.TextBox cuadroMostrarDDL;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button actualizar;
+        private System.Windows.Forms.Button eliminar;
+        private System.Windows.Forms.Button insertar;
     }
 }

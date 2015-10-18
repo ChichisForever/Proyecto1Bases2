@@ -114,3 +114,5 @@ C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Debu
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.xml
 C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\bin\Debug\EntityFramework.SqlServer.xml
 >>>>>>> origin/master
+C:\Users\Administrador\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Actualizar.resources
+C:\Users\Administrador\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Eliminar.resources

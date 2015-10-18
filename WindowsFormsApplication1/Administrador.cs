@@ -23,6 +23,7 @@ namespace WindowsFormsApplication1
     {
         public Conexion_Oracle orc;
         private Conexion_MSS server;
+        public Eliminar elim;
 
        
         public Administrador(Conexion_Oracle o,Conexion_MSS m)
@@ -35,10 +36,12 @@ namespace WindowsFormsApplication1
             if (orc != null)
             {
                 mostrar_datos_oracle();
+                //elim.Datos_oracle(orc);
             }
             if (this.server != null)
             {
                 mostrar_datos_sqlserver();
+               // elim.Datos_sqlserver(server);
                 
             }
         }
@@ -191,7 +194,34 @@ namespace WindowsFormsApplication1
 
 
         }
- 
+
+   
+        private void insertar_Click(object sender, EventArgs e)
+        {
+
+            Insertar frm = new Insertar();
+            frm.Show();
+            //this.Hide();
+
+        }
+        
+        private void eliminar_Click(object sender, EventArgs e)
+        {
+            Eliminar frm = new Eliminar();
+            frm.Show();
+            //this.Hide();
+
+        }
+
+        private void actualizar_Click(object sender, EventArgs e)
+        {
+            Actualizar frm = new Actualizar();
+            frm.Show();
+           // this.Hide();
+
+
+        }
+
 
         //Función que ejecuta el query para crear tipos y tablas, insertar, eliminar y actualizar los objetos en oracle
         private void ejecutarObjeto_Click(object sender, EventArgs e)
@@ -298,14 +328,17 @@ namespace WindowsFormsApplication1
             }
 
             //Tablespaces
-            orc.cmd = orc.myConnection.CreateCommand();
+            /*orc.cmd = orc.myConnection.CreateCommand();
             orc.cmd.CommandText = "Select user_tablespaces.tablespace_name,sys.v_$datafile.bytes,(sys.v_$datafile.bytes-sys.dba_free_space.bytes),sys.dba_free_space.bytes from sys.dba_free_space  inner join sys.v_$tablespace on sys.dba_free_space.tablespace_name = sys.v_$tablespace.name inner join user_tablespaces on sys.v_$tablespace.name = user_tablespaces.tablespace_name inner join sys.v_$datafile on sys.v_$datafile.TS# = sys.v_$tablespace.TS#";
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
             {
 
                 this.infoTablespace.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1).ToString(), orc.reader.GetValue(2), orc.reader.GetValue(3));
-            }
+            }*/
+
+            
+
 
         }
         private void mostrar_datos_sqlserver()
