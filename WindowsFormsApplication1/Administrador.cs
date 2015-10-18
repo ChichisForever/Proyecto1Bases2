@@ -300,7 +300,7 @@ namespace WindowsFormsApplication1
             {
                 indices.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(2), orc.reader.GetValue(3), orc.reader.GetValue(1));
             }
-
+            orc.reader.Close();
             //Vistas
             orc.cmd = orc.myConnection.CreateCommand();
             orc.cmd.CommandText = "select view_name from user_views";
@@ -309,6 +309,7 @@ namespace WindowsFormsApplication1
             {
                 this.cboxvista.Items.Add(orc.reader.GetValue(0));
             }
+            orc.reader.Close();
 
             //Tipos de Objetos
             orc.cmd = orc.myConnection.CreateCommand();
@@ -318,6 +319,7 @@ namespace WindowsFormsApplication1
             {
                 this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
             }
+            orc.reader.Close();
 
             //Nombres de los Objetos
             orc.cmd = orc.myConnection.CreateCommand();
@@ -327,6 +329,8 @@ namespace WindowsFormsApplication1
             {
                 this.comboBoxDDLTipo.Items.Add(orc.reader.GetValue(0));
             }
+            orc.reader.Close();
+
 
             //Tablespaces
             /*orc.cmd = orc.myConnection.CreateCommand();
@@ -338,7 +342,7 @@ namespace WindowsFormsApplication1
                 this.infoTablespace.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1).ToString(), orc.reader.GetValue(2), orc.reader.GetValue(3));
             }*/
 
-            
+
 
 
         }
@@ -413,6 +417,8 @@ namespace WindowsFormsApplication1
                 {
                     tablaEscogida.Rows.Add(orc.reader.GetString(0), orc.reader.GetString(1), orc.reader.GetValue(2), orc.reader.GetValue(3));
                 }
+                orc.reader.Close();
+
             }
             if (server != null)
             {
@@ -442,6 +448,8 @@ namespace WindowsFormsApplication1
                 {
                     vista.Rows.Add(orc.reader.GetString(0), orc.reader.GetString(1), orc.reader.GetValue(2), orc.reader.GetValue(3));
                 }
+                orc.reader.Close();
+
             }
             if (server != null)
             {
@@ -503,6 +511,7 @@ namespace WindowsFormsApplication1
                 {
                     listResultado.Items.Add(orc.reader.GetValue(0).ToString());
                 }
+                orc.reader.Close();
 
             }
             if (server != null && seleccion != "0")
@@ -748,6 +757,8 @@ namespace WindowsFormsApplication1
 
                         this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
                     }
+                    orc.reader.Close();
+
                 }
                 catch (Exception)
                 {
@@ -791,6 +802,8 @@ namespace WindowsFormsApplication1
 
                     this.comboBoxDDLTipo.Items.Add(orc.reader.GetString(0));
                 }
+                orc.reader.Close();
+
             }
 
             if (server != null)
