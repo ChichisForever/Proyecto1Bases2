@@ -11,6 +11,7 @@ using Oracle.DataAccess.Client;
 using Oracle.ManagedDataAccess;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 
 namespace WindowsFormsApplication1
 {
@@ -61,6 +62,24 @@ namespace WindowsFormsApplication1
                 this.ComboEliminar.Items.Add(server.reader[0]);
             }
             server.reader.Close();
+        }
+
+        //Funcion que borra los datos de las tablas
+        private void Borrar_Click(object sender, EventArgs e)
+        {
+            if (orc != null)
+            {
+                string Nombre_idEliminar = TextBoxIDEliminar.Text;
+                string id_eliminar = textBoxNumIDEliminar.Text;
+                string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE" + Nombre_idEliminar + "=" + id_eliminar + ";";
+                OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
+                cmd.ExecuteNonQuery();
+            }
+            if(server != null)
+            {
+
+            }
+
         }
 
     }

@@ -11,6 +11,7 @@ using Oracle.DataAccess.Client;
 using Oracle.ManagedDataAccess;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Data.OleDb;
 
 namespace WindowsFormsApplication1
 {
@@ -60,5 +61,29 @@ namespace WindowsFormsApplication1
             }
             server.reader.Close();
         }
+
+        //Funcion para actualizar los datos de las tablas
+        private void Actualizar_Click(object sender, EventArgs e)
+        {
+            if (orc != null)
+            {
+                string Nombre_idActualizar = textBoxIDActualizar.Text;
+                string id_actualizar = textBoxNumIDActualizar.Text;
+                string valor_actualizar = TextBoxValorActualizar.Text;
+                string columna_actualizar = textBoxColumnaActualizar.Text;
+                string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + "SET" + columna_actualizar + "=" + valor_actualizar + "WHERE" + Nombre_idActualizar.ToUpper() + "=" + id_actualizar + ";";
+                OleDbCommand cmd = new OleDbCommand(update, orc.myConnection);
+                cmd.ExecuteNonQuery();
+            }
+            if(server != null)
+            {
+
+            }
+
+
+        }
     }
+
+
+    
 }
