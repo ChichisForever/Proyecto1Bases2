@@ -79,6 +79,10 @@
             this.comboBoxDDL = new System.Windows.Forms.ComboBox();
             this.labelSeleccionarDDL = new System.Windows.Forms.Label();
             this.edicionTablas = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.actualizar = new System.Windows.Forms.Button();
+            this.eliminar = new System.Windows.Forms.Button();
+            this.insertar = new System.Windows.Forms.Button();
             this.ejecutarQuerys = new System.Windows.Forms.TabPage();
             this.GridExecPlan = new System.Windows.Forms.DataGridView();
             this.GridConsultas = new System.Windows.Forms.DataGridView();
@@ -90,10 +94,6 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.actualizar = new System.Windows.Forms.Button();
-            this.eliminar = new System.Windows.Forms.Button();
-            this.insertar = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -541,8 +541,45 @@
             this.edicionTablas.TabIndex = 4;
             this.edicionTablas.Text = "Edicion Tablas";
             this.edicionTablas.UseVisualStyleBackColor = true;
-            
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(419, 65);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Edición de Tablas";
+            // 
+            // actualizar
+            // 
+            this.actualizar.Location = new System.Drawing.Point(646, 232);
+            this.actualizar.Name = "actualizar";
+            this.actualizar.Size = new System.Drawing.Size(118, 23);
+            this.actualizar.TabIndex = 19;
+            this.actualizar.Text = "Actualizar";
+            this.actualizar.UseVisualStyleBackColor = true;
+            this.actualizar.Click += new System.EventHandler(this.actualizar_Click);
+            // 
+            // eliminar
+            // 
+            this.eliminar.Location = new System.Drawing.Point(403, 232);
+            this.eliminar.Name = "eliminar";
+            this.eliminar.Size = new System.Drawing.Size(123, 23);
+            this.eliminar.TabIndex = 18;
+            this.eliminar.Text = "Eliminar";
+            this.eliminar.UseVisualStyleBackColor = true;
+            this.eliminar.Click += new System.EventHandler(this.eliminar_Click);
+            // 
+            // insertar
+            // 
+            this.insertar.Location = new System.Drawing.Point(180, 232);
+            this.insertar.Name = "insertar";
+            this.insertar.Size = new System.Drawing.Size(111, 23);
+            this.insertar.TabIndex = 17;
+            this.insertar.Text = "Insertar";
+            this.insertar.UseVisualStyleBackColor = true;
+            this.insertar.Click += new System.EventHandler(this.insertar_Click);
             // 
             // ejecutarQuerys
             // 
@@ -654,45 +691,6 @@
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
-            // 
-            // actualizar
-            // 
-            this.actualizar.Location = new System.Drawing.Point(646, 232);
-            this.actualizar.Name = "actualizar";
-            this.actualizar.Size = new System.Drawing.Size(118, 23);
-            this.actualizar.TabIndex = 19;
-            this.actualizar.Text = "Actualizar";
-            this.actualizar.UseVisualStyleBackColor = true;
-            this.actualizar.Click += new System.EventHandler(this.actualizar_Click);
-            // 
-            // eliminar
-            // 
-            this.eliminar.Location = new System.Drawing.Point(403, 232);
-            this.eliminar.Name = "eliminar";
-            this.eliminar.Size = new System.Drawing.Size(123, 23);
-            this.eliminar.TabIndex = 18;
-            this.eliminar.Text = "Eliminar";
-            this.eliminar.UseVisualStyleBackColor = true;
-            this.eliminar.Click += new System.EventHandler(this.eliminar_Click);
-            // 
-            // insertar
-            // 
-            this.insertar.Location = new System.Drawing.Point(180, 232);
-            this.insertar.Name = "insertar";
-            this.insertar.Size = new System.Drawing.Size(111, 23);
-            this.insertar.TabIndex = 17;
-            this.insertar.Text = "Insertar";
-            this.insertar.UseVisualStyleBackColor = true;
-            this.insertar.Click += new System.EventHandler(this.insertar_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(419, 65);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Edición de Tablas";
             // 
             // Administrador
             // 

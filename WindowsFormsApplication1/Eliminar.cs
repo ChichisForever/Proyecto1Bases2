@@ -7,19 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.DataAccess.Client;
+using Oracle.ManagedDataAccess;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace WindowsFormsApplication1
 {
     public partial class Eliminar : Form
     {
-       
-        public Eliminar()
+
+        public Conexion_Oracle orc;
+        private Conexion_MSS server;
+
+        public Eliminar(Conexion_Oracle o, Conexion_MSS m)
         {
+            //Se inicializan las variables con el objeto creado anteriormente
+            orc = o;
+            server = m;
             InitializeComponent();
+
+            if(orc != null)
+            {
+                Datos_oracle();
+            }
+
+            if (server != null)
+            {
+                Datos_sqlserver();
+            }
 
         }
 
-        public void Datos_oracle(Conexion_Oracle orc)
+        public void Datos_oracle()
         {
             
             //Llenar ComboEliminar con las tablas
@@ -29,17 +49,18 @@ namespace WindowsFormsApplication1
             {
                 ComboEliminar.Items.Add(orc.reader.GetString(0)); 
             }
-
-            this.Nombre_tabla_eliminar.Text = this.ComboEliminar.SelectedItem.ToString();
-
-
+            orc.reader.Close();           
         }
 
-        public void Datos_sqlserver(Conexion_MSS server)
+        public void Datos_sqlserver()
         {
-            this.Nombre_tabla_eliminar.Text = this.ComboEliminar.SelectedItem.ToString();
-
-
+            server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read())
+            {
+                this.ComboEliminar.Items.Add(server.reader[0]);
+            }
+            server.reader.Close();
         }
 
     }

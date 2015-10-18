@@ -207,7 +207,7 @@ namespace WindowsFormsApplication1
         
         private void eliminar_Click(object sender, EventArgs e)
         {
-            Eliminar frm = new Eliminar();
+            Eliminar frm = new Eliminar(orc,server);
             frm.Show();
             //this.Hide();
 
@@ -215,7 +215,7 @@ namespace WindowsFormsApplication1
 
         private void actualizar_Click(object sender, EventArgs e)
         {
-            Actualizar frm = new Actualizar();
+            Actualizar frm = new Actualizar(orc, server);
             frm.Show();
            // this.Hide();
 
@@ -291,6 +291,7 @@ namespace WindowsFormsApplication1
             {
                 tablas.Items.Add(orc.reader.GetString(0)); //Usar mejor GetValue(Posiciòn de la columna de oracle)
             }
+            orc.reader.Close();
             //Indices
             orc.cmd = orc.myConnection.CreateCommand();
             orc.cmd.CommandText = "Select i.index_name,i.uniqueness,i.Table_name,col.column_name from user_indexes i inner join user_ind_columns col on i.Index_name = col.Index_name";
