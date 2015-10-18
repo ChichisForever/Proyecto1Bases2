@@ -70,11 +70,12 @@ namespace WindowsFormsApplication1
             if (orc != null)
             {
                 try {
-                    string Nombre_idActualizar = textBoxIDActualizar.Text;
-                    string id_actualizar = textBoxNumIDActualizar.Text;
+                    string Nombre_idActualizar = comboBoxColumnaIDActualizar.SelectedItem.ToString();
+                    string id_actualizar = comboBoxIDActualizar.SelectedItem.ToString();
+                    //int id_actualizar_numero = int.Parse(id_actualizar); // Convierte el string de un textBox a int en este caso el id de las tablas
                     string valor_actualizar = TextBoxValorActualizar.Text;
-                    string columna_actualizar = textBoxColumnaActualizar.Text;
-                    string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + "SET" + columna_actualizar + "=" + valor_actualizar + "WHERE" + Nombre_idActualizar.ToUpper() + "=" + id_actualizar + ";";
+                    string columna_actualizar = comboBoxColumnaActualizar.SelectedItem.ToString();
+                    string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + "SET" + columna_actualizar + "=" + valor_actualizar + "WHERE" + Nombre_idActualizar + "=" + id_actualizar;
                     OleDbCommand cmd = new OleDbCommand(update, orc.myConnection);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Los datos de la tabla se han actualizado correctamente");
@@ -113,6 +114,17 @@ namespace WindowsFormsApplication1
 
             }
 
+        }
+
+        //Funcion que muestra los datos de la tabla después de actualizarla
+       private void MostrarDatosActualizar_Click(object sender, EventArgs e)
+        {
+            string mostrar_tabla_actualizada = "Select * from " + Combo_actualizar.SelectedItem.ToString();
+            OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
+            DataTable datos = new DataTable();
+            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+            adaptador.Fill(datos);
+            GridActualizar.DataSource = datos;
         }
     }
 

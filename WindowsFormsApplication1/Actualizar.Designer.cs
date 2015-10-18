@@ -38,12 +38,12 @@
             this.buttonDatosActualizados_Actualizar = new System.Windows.Forms.Button();
             this.GridActualizar = new System.Windows.Forms.DataGridView();
             this.Tabla_actualizar = new System.Windows.Forms.Label();
-            this.textBoxColumnaActualizar = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxNumIDActualizar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxIDActualizar = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxColumnaActualizar = new System.Windows.Forms.ComboBox();
+            this.comboBoxColumnaIDActualizar = new System.Windows.Forms.ComboBox();
+            this.comboBoxIDActualizar = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridActualizar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,6 +117,7 @@
             this.buttonDatosActualizados_Actualizar.TabIndex = 28;
             this.buttonDatosActualizados_Actualizar.Text = "Mostrar datos actualizados";
             this.buttonDatosActualizados_Actualizar.UseVisualStyleBackColor = true;
+            this.buttonDatosActualizados_Actualizar.Click += new System.EventHandler(this.MostrarDatosActualizar_Click);
             // 
             // GridActualizar
             // 
@@ -135,64 +136,67 @@
             this.Tabla_actualizar.TabIndex = 30;
             this.Tabla_actualizar.Text = "<Nombre de la tabla>";
             // 
-            // textBoxColumnaActualizar
-            // 
-            this.textBoxColumnaActualizar.Location = new System.Drawing.Point(238, 153);
-            this.textBoxColumnaActualizar.Name = "textBoxColumnaActualizar";
-            this.textBoxColumnaActualizar.Size = new System.Drawing.Size(150, 20);
-            this.textBoxColumnaActualizar.TabIndex = 40;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 156);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(220, 13);
+            this.label2.Size = new System.Drawing.Size(217, 13);
             this.label2.TabIndex = 39;
-            this.label2.Text = "Ingrese el nombre de la columna a actualizar:";
-            // 
-            // textBoxNumIDActualizar
-            // 
-            this.textBoxNumIDActualizar.Location = new System.Drawing.Point(250, 266);
-            this.textBoxNumIDActualizar.Name = "textBoxNumIDActualizar";
-            this.textBoxNumIDActualizar.Size = new System.Drawing.Size(89, 20);
-            this.textBoxNumIDActualizar.TabIndex = 38;
+            this.label2.Text = "Escoja el nombre de la columna a actualizar:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 269);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 13);
+            this.label1.Size = new System.Drawing.Size(127, 13);
             this.label1.TabIndex = 37;
-            this.label1.Text = "Ingrese el  número del ID  que desea actualizar:";
-            // 
-            // textBoxIDActualizar
-            // 
-            this.textBoxIDActualizar.Location = new System.Drawing.Point(238, 203);
-            this.textBoxIDActualizar.Name = "textBoxIDActualizar";
-            this.textBoxIDActualizar.Size = new System.Drawing.Size(150, 20);
-            this.textBoxIDActualizar.TabIndex = 36;
+            this.label1.Text = "Escoja el  ID a actualizar:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 203);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(194, 13);
+            this.label4.Size = new System.Drawing.Size(191, 13);
             this.label4.TabIndex = 35;
-            this.label4.Text = "Ingrese el nombre de la columna del ID:";
+            this.label4.Text = "Escoja el nombre de la columna del ID:";
+            // 
+            // comboBoxColumnaActualizar
+            // 
+            this.comboBoxColumnaActualizar.FormattingEnabled = true;
+            this.comboBoxColumnaActualizar.Location = new System.Drawing.Point(250, 153);
+            this.comboBoxColumnaActualizar.Name = "comboBoxColumnaActualizar";
+            this.comboBoxColumnaActualizar.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxColumnaActualizar.TabIndex = 40;
+            // 
+            // comboBoxColumnaIDActualizar
+            // 
+            this.comboBoxColumnaIDActualizar.FormattingEnabled = true;
+            this.comboBoxColumnaIDActualizar.Location = new System.Drawing.Point(250, 203);
+            this.comboBoxColumnaIDActualizar.Name = "comboBoxColumnaIDActualizar";
+            this.comboBoxColumnaIDActualizar.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxColumnaIDActualizar.TabIndex = 41;
+            // 
+            // comboBoxIDActualizar
+            // 
+            this.comboBoxIDActualizar.FormattingEnabled = true;
+            this.comboBoxIDActualizar.Location = new System.Drawing.Point(250, 269);
+            this.comboBoxIDActualizar.Name = "comboBoxIDActualizar";
+            this.comboBoxIDActualizar.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxIDActualizar.TabIndex = 42;
             // 
             // Actualizar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 448);
-            this.Controls.Add(this.textBoxColumnaActualizar);
+            this.Controls.Add(this.comboBoxIDActualizar);
+            this.Controls.Add(this.comboBoxColumnaIDActualizar);
+            this.Controls.Add(this.comboBoxColumnaActualizar);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxNumIDActualizar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxIDActualizar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Tabla_actualizar);
             this.Controls.Add(this.label3);
@@ -224,11 +228,11 @@
         private System.Windows.Forms.Button buttonDatosActualizados_Actualizar;
         private System.Windows.Forms.DataGridView GridActualizar;
         private System.Windows.Forms.Label Tabla_actualizar;
-        private System.Windows.Forms.TextBox textBoxColumnaActualizar;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxNumIDActualizar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxIDActualizar;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxColumnaActualizar;
+        private System.Windows.Forms.ComboBox comboBoxColumnaIDActualizar;
+        private System.Windows.Forms.ComboBox comboBoxIDActualizar;
     }
 }

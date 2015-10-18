@@ -71,16 +71,17 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
-                    string Nombre_idEliminar = TextBoxIDEliminar.Text;
-                    string id_eliminar = textBoxNumIDEliminar.Text;
-                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE" + Nombre_idEliminar + "=" + id_eliminar + ";";
+                    string Nombre_idEliminar = comboBoxColumnaID.SelectedItem.ToString();
+                    string id_eliminar = comboBoxIDEliminar.SelectedItem.ToString();
+                    //int id_eliminar_numero = int.Parse(id_eliminar); // Convierte el string de un textBox a int en este caso el id de las tablas
+                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE " + Nombre_idEliminar +" " + "=" +" " + id_eliminar ;
                     OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Los datos se han borrado correctamente");
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error al borrar los datos de la tabla, intentelo de nuevo");
+                    MessageBox.Show("Error al borrar los datos de la tabla, intentelo de nuevo" + ex);
                 }
             }
             if (server != null)
@@ -107,6 +108,18 @@ namespace WindowsFormsApplication1
                     {
 
                     }
+
+        }
+
+        //Funcion que muestra los datos actualizados después de eliminar algún dato
+       private void MostrarDatosEliminar_Click(object sender, EventArgs e)
+        {
+            string mostrar_tabla_actualizada = "Select * from " + ComboEliminar.SelectedItem.ToString();
+            OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
+            DataTable datos = new DataTable();
+            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+            adaptador.Fill(datos);
+            GridEliminar.DataSource = datos;
 
         }
 

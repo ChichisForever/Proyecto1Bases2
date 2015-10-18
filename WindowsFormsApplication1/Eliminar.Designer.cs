@@ -31,15 +31,15 @@
             this.Escoger_Tabla_eliminar = new System.Windows.Forms.Label();
             this.ComboEliminar = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.TextBoxIDEliminar = new System.Windows.Forms.TextBox();
             this.GridEliminar = new System.Windows.Forms.DataGridView();
             this.Tabla_eliminar = new System.Windows.Forms.Label();
             this.ButtonDatos_actualizados_eliminar = new System.Windows.Forms.Button();
             this.ButtonBorrar = new System.Windows.Forms.Button();
             this.Nombre_tabla_eliminar = new System.Windows.Forms.Label();
-            this.textBoxNumIDEliminar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.id_eliminar = new System.Windows.Forms.Label();
+            this.comboBoxIDEliminar = new System.Windows.Forms.ComboBox();
+            this.comboBoxColumnaID = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridEliminar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             // ComboEliminar
             // 
             this.ComboEliminar.FormattingEnabled = true;
-            this.ComboEliminar.Location = new System.Drawing.Point(130, 40);
+            this.ComboEliminar.Location = new System.Drawing.Point(135, 40);
             this.ComboEliminar.Name = "ComboEliminar";
             this.ComboEliminar.Size = new System.Drawing.Size(121, 21);
             this.ComboEliminar.TabIndex = 15;
@@ -69,13 +69,6 @@
             this.label13.Size = new System.Drawing.Size(134, 13);
             this.label13.TabIndex = 16;
             this.label13.Text = "Eliminar datos de una tabla";
-            // 
-            // TextBoxIDEliminar
-            // 
-            this.TextBoxIDEliminar.Location = new System.Drawing.Point(215, 120);
-            this.TextBoxIDEliminar.Name = "TextBoxIDEliminar";
-            this.TextBoxIDEliminar.Size = new System.Drawing.Size(169, 20);
-            this.TextBoxIDEliminar.TabIndex = 18;
             // 
             // GridEliminar
             // 
@@ -102,6 +95,7 @@
             this.ButtonDatos_actualizados_eliminar.TabIndex = 21;
             this.ButtonDatos_actualizados_eliminar.Text = "Mostrar datos actualizados";
             this.ButtonDatos_actualizados_eliminar.UseVisualStyleBackColor = true;
+            this.ButtonDatos_actualizados_eliminar.Click += new System.EventHandler(this.MostrarDatosEliminar_Click);
             // 
             // ButtonBorrar
             // 
@@ -111,6 +105,7 @@
             this.ButtonBorrar.TabIndex = 22;
             this.ButtonBorrar.Text = "Borrar";
             this.ButtonBorrar.UseVisualStyleBackColor = true;
+            this.ButtonBorrar.Click += new System.EventHandler(this.Borrar_Click);
             // 
             // Nombre_tabla_eliminar
             // 
@@ -121,45 +116,54 @@
             this.Nombre_tabla_eliminar.TabIndex = 31;
             this.Nombre_tabla_eliminar.Text = "<Nombre de la tabla>";
             // 
-            // textBoxNumIDEliminar
-            // 
-            this.textBoxNumIDEliminar.Location = new System.Drawing.Point(204, 227);
-            this.textBoxNumIDEliminar.Name = "textBoxNumIDEliminar";
-            this.textBoxNumIDEliminar.Size = new System.Drawing.Size(74, 20);
-            this.textBoxNumIDEliminar.TabIndex = 35;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 227);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 13);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 34;
-            this.label1.Text = "Ingrese el numero del ID a eliminar:";
+            this.label1.Text = "Escoja el  ID a eliminar:";
             // 
             // id_eliminar
             // 
             this.id_eliminar.AutoSize = true;
             this.id_eliminar.Location = new System.Drawing.Point(12, 123);
             this.id_eliminar.Name = "id_eliminar";
-            this.id_eliminar.Size = new System.Drawing.Size(197, 13);
+            this.id_eliminar.Size = new System.Drawing.Size(130, 13);
             this.id_eliminar.TabIndex = 36;
-            this.id_eliminar.Text = "Ingrese el nombre de la columna del ID :";
+            this.id_eliminar.Text = "Escoja la columna del ID :";
+            // 
+            // comboBoxIDEliminar
+            // 
+            this.comboBoxIDEliminar.FormattingEnabled = true;
+            this.comboBoxIDEliminar.Location = new System.Drawing.Point(130, 227);
+            this.comboBoxIDEliminar.Name = "comboBoxIDEliminar";
+            this.comboBoxIDEliminar.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxIDEliminar.TabIndex = 37;
+            // 
+            // comboBoxColumnaID
+            // 
+            this.comboBoxColumnaID.FormattingEnabled = true;
+            this.comboBoxColumnaID.Location = new System.Drawing.Point(135, 123);
+            this.comboBoxColumnaID.Name = "comboBoxColumnaID";
+            this.comboBoxColumnaID.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxColumnaID.TabIndex = 38;
             // 
             // Eliminar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 428);
+            this.Controls.Add(this.comboBoxColumnaID);
+            this.Controls.Add(this.comboBoxIDEliminar);
             this.Controls.Add(this.id_eliminar);
-            this.Controls.Add(this.textBoxNumIDEliminar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Nombre_tabla_eliminar);
             this.Controls.Add(this.ButtonBorrar);
             this.Controls.Add(this.ButtonDatos_actualizados_eliminar);
             this.Controls.Add(this.Tabla_eliminar);
             this.Controls.Add(this.GridEliminar);
-            this.Controls.Add(this.TextBoxIDEliminar);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.ComboEliminar);
             this.Controls.Add(this.Escoger_Tabla_eliminar);
@@ -176,14 +180,14 @@
         private System.Windows.Forms.Label Escoger_Tabla_eliminar;
         private System.Windows.Forms.ComboBox ComboEliminar;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox TextBoxIDEliminar;
         private System.Windows.Forms.DataGridView GridEliminar;
         private System.Windows.Forms.Label Tabla_eliminar;
         private System.Windows.Forms.Button ButtonDatos_actualizados_eliminar;
         private System.Windows.Forms.Button ButtonBorrar;
         private System.Windows.Forms.Label Nombre_tabla_eliminar;
-        private System.Windows.Forms.TextBox textBoxNumIDEliminar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label id_eliminar;
+        private System.Windows.Forms.ComboBox comboBoxIDEliminar;
+        private System.Windows.Forms.ComboBox comboBoxColumnaID;
     }
 }
