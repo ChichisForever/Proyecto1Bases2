@@ -42,6 +42,7 @@ namespace WindowsFormsApplication1
         {
 
             //Llenar ComboEliminar con las tablas
+           // this.Tabla_actualizar.Text = Combo_actualizar.SelectedItem.ToString();
             orc.cmd.CommandText = "Select Table_Name from user_tables";
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
@@ -49,6 +50,7 @@ namespace WindowsFormsApplication1
                 Combo_actualizar.Items.Add(orc.reader.GetString(0));
             }
             orc.reader.Close();
+           
         }
 
         public void Datos_sqlserver()
@@ -87,6 +89,29 @@ namespace WindowsFormsApplication1
 
             }
 
+
+        }
+
+        private void comboActualizar_SelectedIndexChanged(object sender, EventArgs e)
+
+        {
+        
+            if (orc != null)
+            {
+                this.Tabla_actualizar.Text = Combo_actualizar.SelectedItem.ToString();
+                string extraer_tabla = "Select * from " + Combo_actualizar.SelectedItem.ToString();
+                
+                OleDbCommand cmd = new OleDbCommand(extraer_tabla, orc.myConnection);
+                DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                GridActualizar.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+            }
+            if(server != null)
+            {
+
+            }
 
         }
     }

@@ -69,25 +69,48 @@ namespace WindowsFormsApplication1
         {
             if (orc != null)
             {
-                try { 
-                string Nombre_idEliminar = TextBoxIDEliminar.Text;
-                string id_eliminar = textBoxNumIDEliminar.Text;
-                string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE" + Nombre_idEliminar + "=" + id_eliminar + ";";
-                OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Los datos se han borrado correctamente");
+                try
+                {
+                    string Nombre_idEliminar = TextBoxIDEliminar.Text;
+                    string id_eliminar = textBoxNumIDEliminar.Text;
+                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE" + Nombre_idEliminar + "=" + id_eliminar + ";";
+                    OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Los datos se han borrado correctamente");
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Error al borrar los datos de la tabla, intentelo de nuevo");
                 }
             }
-            if(server != null)
+            if (server != null)
             {
-                           
+
             }
+        }
+
+        private void comboEliminar_SelectedIndexChanged(object sender, EventArgs e){
+                    
+                    if (orc != null)
+                    {
+                        this.Nombre_tabla_eliminar.Text = ComboEliminar.SelectedItem.ToString();
+                        string extraer_tabla = "Select * from " + ComboEliminar.SelectedItem.ToString();
+
+                        OleDbCommand cmd = new OleDbCommand(extraer_tabla, orc.myConnection);
+                        DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                        OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                        adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                        GridEliminar.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+                    }
+                    if (server != null)
+                    {
+
+                    }
 
         }
+
+    }
 
     }
 
@@ -98,6 +121,6 @@ namespace WindowsFormsApplication1
 
 
 
-}
+
 
 

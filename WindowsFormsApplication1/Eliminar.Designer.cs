@@ -59,6 +59,7 @@
             this.ComboEliminar.Name = "ComboEliminar";
             this.ComboEliminar.Size = new System.Drawing.Size(121, 21);
             this.ComboEliminar.TabIndex = 15;
+            this.ComboEliminar.SelectedIndexChanged += new System.EventHandler(this.comboEliminar_SelectedIndexChanged);
             // 
             // label13
             // 
@@ -71,7 +72,7 @@
             // 
             // TextBoxIDEliminar
             // 
-            this.TextBoxIDEliminar.Location = new System.Drawing.Point(15, 154);
+            this.TextBoxIDEliminar.Location = new System.Drawing.Point(215, 120);
             this.TextBoxIDEliminar.Name = "TextBoxIDEliminar";
             this.TextBoxIDEliminar.Size = new System.Drawing.Size(169, 20);
             this.TextBoxIDEliminar.TabIndex = 18;
@@ -79,9 +80,9 @@
             // GridEliminar
             // 
             this.GridEliminar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridEliminar.Location = new System.Drawing.Point(357, 75);
+            this.GridEliminar.Location = new System.Drawing.Point(451, 78);
             this.GridEliminar.Name = "GridEliminar";
-            this.GridEliminar.Size = new System.Drawing.Size(493, 246);
+            this.GridEliminar.Size = new System.Drawing.Size(369, 246);
             this.GridEliminar.TabIndex = 19;
             // 
             // Tabla_eliminar
