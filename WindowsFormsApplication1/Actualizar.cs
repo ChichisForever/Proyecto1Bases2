@@ -67,13 +67,20 @@ namespace WindowsFormsApplication1
         {
             if (orc != null)
             {
-                string Nombre_idActualizar = textBoxIDActualizar.Text;
-                string id_actualizar = textBoxNumIDActualizar.Text;
-                string valor_actualizar = TextBoxValorActualizar.Text;
-                string columna_actualizar = textBoxColumnaActualizar.Text;
-                string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + "SET" + columna_actualizar + "=" + valor_actualizar + "WHERE" + Nombre_idActualizar.ToUpper() + "=" + id_actualizar + ";";
-                OleDbCommand cmd = new OleDbCommand(update, orc.myConnection);
-                cmd.ExecuteNonQuery();
+                try {
+                    string Nombre_idActualizar = textBoxIDActualizar.Text;
+                    string id_actualizar = textBoxNumIDActualizar.Text;
+                    string valor_actualizar = TextBoxValorActualizar.Text;
+                    string columna_actualizar = textBoxColumnaActualizar.Text;
+                    string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + "SET" + columna_actualizar + "=" + valor_actualizar + "WHERE" + Nombre_idActualizar.ToUpper() + "=" + id_actualizar + ";";
+                    OleDbCommand cmd = new OleDbCommand(update, orc.myConnection);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Los datos de la tabla se han actualizado correctamente");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al actualizar los datos de la tabla, intentelo de nuevo");
+                }
             }
             if(server != null)
             {

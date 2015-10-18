@@ -69,15 +69,22 @@ namespace WindowsFormsApplication1
         {
             if (orc != null)
             {
+                try { 
                 string Nombre_idEliminar = TextBoxIDEliminar.Text;
                 string id_eliminar = textBoxNumIDEliminar.Text;
                 string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE" + Nombre_idEliminar + "=" + id_eliminar + ";";
                 OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
                 cmd.ExecuteNonQuery();
+                MessageBox.Show("Los datos se han borrado correctamente");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al borrar los datos de la tabla, intentelo de nuevo");
+                }
             }
             if(server != null)
             {
-
+                           
             }
 
         }

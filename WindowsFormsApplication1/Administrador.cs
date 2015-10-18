@@ -333,14 +333,14 @@ namespace WindowsFormsApplication1
 
 
             //Tablespaces
-            /*orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd = orc.myConnection.CreateCommand();
             orc.cmd.CommandText = "Select user_tablespaces.tablespace_name,sys.v_$datafile.bytes,(sys.v_$datafile.bytes-sys.dba_free_space.bytes),sys.dba_free_space.bytes from sys.dba_free_space  inner join sys.v_$tablespace on sys.dba_free_space.tablespace_name = sys.v_$tablespace.name inner join user_tablespaces on sys.v_$tablespace.name = user_tablespaces.tablespace_name inner join sys.v_$datafile on sys.v_$datafile.TS# = sys.v_$tablespace.TS#";
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
             {
 
                 this.infoTablespace.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1).ToString(), orc.reader.GetValue(2), orc.reader.GetValue(3));
-            }*/
+            }
 
 
 
