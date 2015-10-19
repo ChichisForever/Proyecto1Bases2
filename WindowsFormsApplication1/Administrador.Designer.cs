@@ -94,6 +94,11 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
+            this.Modificar_Columna = new System.Windows.Forms.Button();
+            this.Eliminar_Columna = new System.Windows.Forms.Button();
+            this.Agregar_Columna = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
@@ -530,6 +535,11 @@
             // 
             // edicionTablas
             // 
+            this.edicionTablas.Controls.Add(this.label6);
+            this.edicionTablas.Controls.Add(this.Modificar_Columna);
+            this.edicionTablas.Controls.Add(this.Eliminar_Columna);
+            this.edicionTablas.Controls.Add(this.Agregar_Columna);
+            this.edicionTablas.Controls.Add(this.label7);
             this.edicionTablas.Controls.Add(this.label5);
             this.edicionTablas.Controls.Add(this.actualizar);
             this.edicionTablas.Controls.Add(this.eliminar);
@@ -553,17 +563,18 @@
             // 
             // actualizar
             // 
-            this.actualizar.Location = new System.Drawing.Point(646, 232);
+            this.actualizar.Location = new System.Drawing.Point(787, 250);
             this.actualizar.Name = "actualizar";
             this.actualizar.Size = new System.Drawing.Size(118, 23);
             this.actualizar.TabIndex = 19;
             this.actualizar.Text = "Actualizar";
             this.actualizar.UseVisualStyleBackColor = true;
             this.actualizar.Click += new System.EventHandler(this.actualizar_Click);
+           
             // 
             // eliminar
             // 
-            this.eliminar.Location = new System.Drawing.Point(403, 232);
+            this.eliminar.Location = new System.Drawing.Point(644, 250);
             this.eliminar.Name = "eliminar";
             this.eliminar.Size = new System.Drawing.Size(123, 23);
             this.eliminar.TabIndex = 18;
@@ -573,7 +584,7 @@
             // 
             // insertar
             // 
-            this.insertar.Location = new System.Drawing.Point(180, 232);
+            this.insertar.Location = new System.Drawing.Point(514, 250);
             this.insertar.Name = "insertar";
             this.insertar.Size = new System.Drawing.Size(111, 23);
             this.insertar.TabIndex = 17;
@@ -692,6 +703,54 @@
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
+            // Modificar_Columna
+            // 
+            this.Modificar_Columna.Location = new System.Drawing.Point(273, 250);
+            this.Modificar_Columna.Name = "Modificar_Columna";
+            this.Modificar_Columna.Size = new System.Drawing.Size(111, 23);
+            this.Modificar_Columna.TabIndex = 29;
+            this.Modificar_Columna.Text = "Modificar Columna";
+            this.Modificar_Columna.UseVisualStyleBackColor = true;
+            this.Modificar_Columna.Click += new System.EventHandler(this.Modificar_Columna_Click);
+            // 
+            // Eliminar_Columna
+            // 
+            this.Eliminar_Columna.Location = new System.Drawing.Point(147, 250);
+            this.Eliminar_Columna.Name = "Eliminar_Columna";
+            this.Eliminar_Columna.Size = new System.Drawing.Size(111, 23);
+            this.Eliminar_Columna.TabIndex = 28;
+            this.Eliminar_Columna.Text = "Eliminar Columna";
+            this.Eliminar_Columna.UseVisualStyleBackColor = true;
+            this.Eliminar_Columna.Click += new System.EventHandler(this.Eliminar_Columna_Click);
+            // 
+            // Agregar_Columna
+            // 
+            this.Agregar_Columna.Location = new System.Drawing.Point(30, 250);
+            this.Agregar_Columna.Name = "Agregar_Columna";
+            this.Agregar_Columna.Size = new System.Drawing.Size(111, 23);
+            this.Agregar_Columna.TabIndex = 27;
+            this.Agregar_Columna.Text = "Agregar Columna";
+            this.Agregar_Columna.UseVisualStyleBackColor = true;
+            this.Agregar_Columna.Click += new System.EventHandler(this.Agregar_Columna_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(65, 141);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(269, 13);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Edición de Tablas(Agregar,eliminar, modificar columnas)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(568, 127);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(272, 13);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "Edición de Tablas(Insercion,eliminar, actualizar registros)";
+            // 
             // Administrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -795,5 +854,10 @@
         private System.Windows.Forms.Button actualizar;
         private System.Windows.Forms.Button eliminar;
         private System.Windows.Forms.Button insertar;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button Modificar_Columna;
+        private System.Windows.Forms.Button Eliminar_Columna;
+        private System.Windows.Forms.Button Agregar_Columna;
+        private System.Windows.Forms.Label label7;
     }
 }

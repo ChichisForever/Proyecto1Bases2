@@ -222,6 +222,33 @@ namespace WindowsFormsApplication1
 
         }
 
+        private void Agregar_Columna_Click(object sender, EventArgs e)
+        {
+            AgregarColumna frm = new AgregarColumna(orc, server);
+            frm.Show();
+            // this.Hide();
+
+
+        }
+
+        private void Eliminar_Columna_Click(object sender, EventArgs e)
+        {
+            EliminarColumna frm = new EliminarColumna(orc, server);
+            frm.Show();
+            // this.Hide();
+
+
+        }
+
+        private void Modificar_Columna_Click(object sender, EventArgs e)
+        {
+            ModificarTamañoColumna frm = new ModificarTamañoColumna(orc, server);
+            frm.Show();
+            // this.Hide();
+
+
+        }
+
 
         //Función que ejecuta el query para crear tipos y tablas, insertar, eliminar y actualizar los objetos en oracle
         private void ejecutarObjeto_Click(object sender, EventArgs e)
