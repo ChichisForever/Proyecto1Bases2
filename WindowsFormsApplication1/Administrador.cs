@@ -359,16 +359,20 @@ namespace WindowsFormsApplication1
             orc.reader.Close();
 
 
-            //Tablespaces
-           /* orc.cmd = orc.myConnection.CreateCommand();
-            orc.cmd.CommandText = "Select user_tablespaces.tablespace_name,sys.v_$datafile.bytes,(sys.v_$datafile.bytes-sys.dba_free_space.bytes),sys.dba_free_space.bytes from sys.dba_free_space  inner join sys.v_$tablespace on sys.dba_free_space.tablespace_name = sys.v_$tablespace.name inner join user_tablespaces on sys.v_$tablespace.name = user_tablespaces.tablespace_name inner join sys.v_$datafile on sys.v_$datafile.TS# = sys.v_$tablespace.TS#";
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
+            try {
+                orc.cmd = orc.myConnection.CreateCommand();
+                orc.cmd.CommandText = "Select user_tablespaces.tablespace_name,sys.v_$datafile.bytes,(sys.v_$datafile.bytes-sys.dba_free_space.bytes),sys.dba_free_space.bytes from sys.dba_free_space  inner join sys.v_$tablespace on sys.dba_free_space.tablespace_name = sys.v_$tablespace.name inner join user_tablespaces on sys.v_$tablespace.name = user_tablespaces.tablespace_name inner join sys.v_$datafile on sys.v_$datafile.TS# = sys.v_$tablespace.TS#";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+
+                    this.infoTablespace.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1).ToString(), orc.reader.GetValue(2), orc.reader.GetValue(3));
+                }
+            }
+            catch (Exception)
             {
-
-                this.infoTablespace.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1).ToString(), orc.reader.GetValue(2), orc.reader.GetValue(3));
-            }*/
-
+                MessageBox.Show("Parece que no tenemos suficientes permisos para mostrar la información del tablespace");
+            }
 
 
 
@@ -446,7 +450,52 @@ namespace WindowsFormsApplication1
                 }
                 orc.reader.Close();
 
+                orc.cmd = orc.myConnection.CreateCommand();
+                orc.cmd.CommandText = "select partitioned from user_tables where table_name='" + tablas.SelectedItem.ToString() + "'";
+                orc.reader = orc.cmd.ExecuteReader();
+
+                while (orc.reader.Read())
+                {
+                    if (orc.reader.GetValue(0).ToString() == "YES")
+                    {
+
+                        this.lblparticion.Visible = true;
+                        this.tableParticiones.Visible = true;
+                        this.lbltipoparticiones.Visible = true;
+
+                    }
+                    else
+                    {
+                        this.lblparticion.Visible = false;
+                        this.tableParticiones.Visible = false;
+                        this.lbltipoparticiones.Visible = false;
+                    }
+                }
+                orc.reader.Close();
+                this.tableParticiones.Rows.Clear();
+                orc.cmd = orc.myConnection.CreateCommand();
+                orc.cmd.CommandText = "Select partition_name,composite from user_tab_partitions where table_name='"+tablas.SelectedItem.ToString()+"'";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    this.tableParticiones.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1));
+                }
+
+                orc.reader.Close();
+                lbltipoparticiones.Text = "Esta tabla cuenta con las siguientes particiones:";
+                orc.cmd = orc.myConnection.CreateCommand();
+                orc.cmd.CommandText = "select partitioning_type from user_part_tables where table_name='" + tablas.SelectedItem.ToString() + "'";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    this.lbltipoparticiones.Text = lbltipoparticiones.Text + "   " +orc.reader.GetValue(0);
+                }
+                orc.reader.Close();
+                
+
+
             }
+            
             if (server != null)
             {
                 server.cmd = new SqlCommand("Select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,IS_NULLABLE from INFORMATION_SCHEMA.COLUMNS where Table_Name = '"+tablas.SelectedItem.ToString() +"' and TABLE_CATALOG='"+server.nbase+"'", server.conexion);
@@ -457,6 +506,38 @@ namespace WindowsFormsApplication1
                 }
                 server.reader.Close();
             }
+
+            int contador=0;
+            server.cmd = new SqlCommand("SELECT *FROM sys.tables AS t JOIN sys.indexes AS i ON t.[object_id] = i.[object_id]  AND i.[type] IN (0,1) JOIN sys.partition_schemes ps ON i.data_space_id = ps.data_space_id  WHERE t.name ='"+ tablas.SelectedItem.ToString()+"'",server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read())
+            {
+                contador = contador + 1;
+            }
+
+           
+            server.reader.Close();
+
+            if (contador > 0)
+            {
+                this.tableparticionesw.Visible = true;
+                this.lblparticion.Visible = true;
+                server.cmd = new SqlCommand("SELECT i.name AS IndexName, p.partition_number, f.name, f.type_desc  FROM sys.tables AS t JOIN sys.indexes AS i ON t.object_id = i.object_id JOIN sys.partitions AS p ON i.object_id = p.object_id AND i.index_id = p.index_id JOIN  sys.partition_schemes AS s ON i.data_space_id = s.data_space_id JOIN sys.partition_functions AS f  ON s.function_id = f.function_id WHERE t.name = '" + this.tablas.SelectedItem.ToString() + "'AND i.type <= 1 ORDER BY p.partition_number", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    this.tableparticionesw.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
+                }
+                server.reader.Close();
+            }
+            else
+            {
+                this.tableparticionesw.Visible = false;
+                this.lblparticion.Visible = false;
+                
+            }
+
+
             
 
 
