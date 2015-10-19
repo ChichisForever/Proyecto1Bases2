@@ -31,6 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Administrador));
             this.ventana = new System.Windows.Forms.TabControl();
             this.Informacion = new System.Windows.Forms.TabPage();
+            this.tableparticionesw = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.funcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo_p = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbltipoparticiones = new System.Windows.Forms.Label();
+            this.tableParticiones = new System.Windows.Forms.DataGridView();
+            this.Nombre_Particion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Compuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblparticion = new System.Windows.Forms.Label();
             this.vista = new System.Windows.Forms.DataGridView();
             this.nomVista = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoVista = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +55,10 @@
             this.unico = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.tablaEscogida = new System.Windows.Forms.DataGridView();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Default = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nulos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tablas = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dbname = new System.Windows.Forms.Label();
@@ -82,7 +96,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.actualizar = new System.Windows.Forms.Button();
             this.eliminar = new System.Windows.Forms.Button();
-            this.insertar = new System.Windows.Forms.Button();
             this.ejecutarQuerys = new System.Windows.Forms.TabPage();
             this.GridExecPlan = new System.Windows.Forms.DataGridView();
             this.GridConsultas = new System.Windows.Forms.DataGridView();
@@ -94,22 +107,10 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Default = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nulos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblparticion = new System.Windows.Forms.Label();
-            this.tableParticiones = new System.Windows.Forms.DataGridView();
-            this.Nombre_Particion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Compuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lbltipoparticiones = new System.Windows.Forms.Label();
-            this.tableparticionesw = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.funcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo_p = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableparticionesw)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableParticiones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.indices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaEscogida)).BeginInit();
@@ -124,8 +125,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).BeginInit();
             this.objetos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableParticiones)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableparticionesw)).BeginInit();
             this.SuspendLayout();
             // 
             // ventana
@@ -167,6 +166,83 @@
             this.Informacion.Text = "Información";
             this.Informacion.UseVisualStyleBackColor = true;
             this.Informacion.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // tableparticionesw
+            // 
+            this.tableparticionesw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableparticionesw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.funcion,
+            this.Tipo_p});
+            this.tableparticionesw.Location = new System.Drawing.Point(514, 71);
+            this.tableparticionesw.Name = "tableparticionesw";
+            this.tableparticionesw.Size = new System.Drawing.Size(446, 107);
+            this.tableparticionesw.TabIndex = 12;
+            this.tableparticionesw.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Numero de Particion";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // funcion
+            // 
+            this.funcion.HeaderText = "Funcion";
+            this.funcion.Name = "funcion";
+            // 
+            // Tipo_p
+            // 
+            this.Tipo_p.HeaderText = "Tipo";
+            this.Tipo_p.Name = "Tipo_p";
+            // 
+            // lbltipoparticiones
+            // 
+            this.lbltipoparticiones.AutoSize = true;
+            this.lbltipoparticiones.Location = new System.Drawing.Point(521, 188);
+            this.lbltipoparticiones.Name = "lbltipoparticiones";
+            this.lbltipoparticiones.Size = new System.Drawing.Size(312, 16);
+            this.lbltipoparticiones.TabIndex = 11;
+            this.lbltipoparticiones.Text = "Esta tabla cuenta con las siguientes particiones:";
+            this.lbltipoparticiones.Visible = false;
+            // 
+            // tableParticiones
+            // 
+            this.tableParticiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableParticiones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nombre_Particion,
+            this.Compuesto});
+            this.tableParticiones.Location = new System.Drawing.Point(515, 71);
+            this.tableParticiones.Name = "tableParticiones";
+            this.tableParticiones.Size = new System.Drawing.Size(243, 107);
+            this.tableParticiones.TabIndex = 10;
+            this.tableParticiones.Visible = false;
+            // 
+            // Nombre_Particion
+            // 
+            this.Nombre_Particion.HeaderText = "Nombre";
+            this.Nombre_Particion.Name = "Nombre_Particion";
+            // 
+            // Compuesto
+            // 
+            this.Compuesto.HeaderText = "Compuesto";
+            this.Compuesto.Name = "Compuesto";
+            // 
+            // lblparticion
+            // 
+            this.lblparticion.AutoSize = true;
+            this.lblparticion.Enabled = false;
+            this.lblparticion.Location = new System.Drawing.Point(512, 40);
+            this.lblparticion.Name = "lblparticion";
+            this.lblparticion.Size = new System.Drawing.Size(78, 16);
+            this.lblparticion.TabIndex = 9;
+            this.lblparticion.Text = "Particiones";
+            this.lblparticion.Visible = false;
             // 
             // vista
             // 
@@ -276,6 +352,26 @@
             this.tablaEscogida.Size = new System.Drawing.Size(445, 107);
             this.tablaEscogida.TabIndex = 3;
             this.tablaEscogida.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            // 
+            // tipo
+            // 
+            this.tipo.HeaderText = "Tipo";
+            this.tipo.Name = "tipo";
+            // 
+            // Default
+            // 
+            this.Default.HeaderText = "Default";
+            this.Default.Name = "Default";
+            // 
+            // Nulos
+            // 
+            this.Nulos.HeaderText = "Nulos";
+            this.Nulos.Name = "Nulos";
             // 
             // tablas
             // 
@@ -532,7 +628,6 @@
             this.edicionTablas.Controls.Add(this.label5);
             this.edicionTablas.Controls.Add(this.actualizar);
             this.edicionTablas.Controls.Add(this.eliminar);
-            this.edicionTablas.Controls.Add(this.insertar);
             this.edicionTablas.Location = new System.Drawing.Point(4, 22);
             this.edicionTablas.Name = "edicionTablas";
             this.edicionTablas.Padding = new System.Windows.Forms.Padding(3);
@@ -600,7 +695,7 @@
             // 
             // actualizar
             // 
-            this.actualizar.Location = new System.Drawing.Point(787, 250);
+            this.actualizar.Location = new System.Drawing.Point(739, 239);
             this.actualizar.Name = "actualizar";
             this.actualizar.Size = new System.Drawing.Size(118, 23);
             this.actualizar.TabIndex = 19;
@@ -610,23 +705,13 @@
             // 
             // eliminar
             // 
-            this.eliminar.Location = new System.Drawing.Point(644, 250);
+            this.eliminar.Location = new System.Drawing.Point(571, 239);
             this.eliminar.Name = "eliminar";
             this.eliminar.Size = new System.Drawing.Size(123, 23);
             this.eliminar.TabIndex = 18;
             this.eliminar.Text = "Eliminar";
             this.eliminar.UseVisualStyleBackColor = true;
             this.eliminar.Click += new System.EventHandler(this.eliminar_Click);
-            // 
-            // insertar
-            // 
-            this.insertar.Location = new System.Drawing.Point(514, 250);
-            this.insertar.Name = "insertar";
-            this.insertar.Size = new System.Drawing.Size(111, 23);
-            this.insertar.TabIndex = 17;
-            this.insertar.Text = "Insertar";
-            this.insertar.UseVisualStyleBackColor = true;
-            this.insertar.Click += new System.EventHandler(this.insertar_Click);
             // 
             // ejecutarQuerys
             // 
@@ -739,103 +824,6 @@
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            // 
-            // tipo
-            // 
-            this.tipo.HeaderText = "Tipo";
-            this.tipo.Name = "tipo";
-            // 
-            // Default
-            // 
-            this.Default.HeaderText = "Default";
-            this.Default.Name = "Default";
-            // 
-            // Nulos
-            // 
-            this.Nulos.HeaderText = "Nulos";
-            this.Nulos.Name = "Nulos";
-            // 
-            // lblparticion
-            // 
-            this.lblparticion.AutoSize = true;
-            this.lblparticion.Enabled = false;
-            this.lblparticion.Location = new System.Drawing.Point(512, 40);
-            this.lblparticion.Name = "lblparticion";
-            this.lblparticion.Size = new System.Drawing.Size(78, 16);
-            this.lblparticion.TabIndex = 9;
-            this.lblparticion.Text = "Particiones";
-            this.lblparticion.Visible = false;
-            // 
-            // tableParticiones
-            // 
-            this.tableParticiones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableParticiones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nombre_Particion,
-            this.Compuesto});
-            this.tableParticiones.Location = new System.Drawing.Point(515, 71);
-            this.tableParticiones.Name = "tableParticiones";
-            this.tableParticiones.Size = new System.Drawing.Size(243, 107);
-            this.tableParticiones.TabIndex = 10;
-            this.tableParticiones.Visible = false;
-            // 
-            // Nombre_Particion
-            // 
-            this.Nombre_Particion.HeaderText = "Nombre";
-            this.Nombre_Particion.Name = "Nombre_Particion";
-            // 
-            // Compuesto
-            // 
-            this.Compuesto.HeaderText = "Compuesto";
-            this.Compuesto.Name = "Compuesto";
-            // 
-            // lbltipoparticiones
-            // 
-            this.lbltipoparticiones.AutoSize = true;
-            this.lbltipoparticiones.Location = new System.Drawing.Point(521, 188);
-            this.lbltipoparticiones.Name = "lbltipoparticiones";
-            this.lbltipoparticiones.Size = new System.Drawing.Size(312, 16);
-            this.lbltipoparticiones.TabIndex = 11;
-            this.lbltipoparticiones.Text = "Esta tabla cuenta con las siguientes particiones:";
-            this.lbltipoparticiones.Visible = false;
-            // 
-            // tableparticionesw
-            // 
-            this.tableparticionesw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableparticionesw.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.funcion,
-            this.Tipo_p});
-            this.tableparticionesw.Location = new System.Drawing.Point(514, 71);
-            this.tableparticionesw.Name = "tableparticionesw";
-            this.tableparticionesw.Size = new System.Drawing.Size(446, 107);
-            this.tableparticionesw.TabIndex = 12;
-            this.tableparticionesw.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Numero de Particion";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // funcion
-            // 
-            this.funcion.HeaderText = "Funcion";
-            this.funcion.Name = "funcion";
-            // 
-            // Tipo_p
-            // 
-            this.Tipo_p.HeaderText = "Tipo";
-            this.Tipo_p.Name = "Tipo_p";
-            // 
             // Administrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -849,6 +837,8 @@
             this.ventana.ResumeLayout(false);
             this.Informacion.ResumeLayout(false);
             this.Informacion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableparticionesw)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableParticiones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vista)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.indices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tablaEscogida)).EndInit();
@@ -867,8 +857,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.GridConsultas)).EndInit();
             this.objetos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridObjetos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableParticiones)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableparticionesw)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -935,7 +923,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button actualizar;
         private System.Windows.Forms.Button eliminar;
-        private System.Windows.Forms.Button insertar;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button Modificar_Columna;
         private System.Windows.Forms.Button Eliminar_Columna;

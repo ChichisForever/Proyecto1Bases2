@@ -196,14 +196,7 @@ namespace WindowsFormsApplication1
         }
 
    
-        private void insertar_Click(object sender, EventArgs e)
-        {
-
-            Insertar frm = new Insertar();
-            frm.Show();
-            //this.Hide();
-
-        }
+      
         
         private void eliminar_Click(object sender, EventArgs e)
         {

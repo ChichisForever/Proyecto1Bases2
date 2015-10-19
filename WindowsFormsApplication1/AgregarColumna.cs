@@ -82,6 +82,22 @@ namespace WindowsFormsApplication1
             }
             if (server != null)
             {
+                try
+                {
+
+                    string Nombre_ColumnaAgregar = TextBoxColumnaAgregar.Text;
+                    string tipo_Columna = TextBoxTipoColumnaAgregar.Text;
+                    string tamanio_Columna = textBoxTamanioAgregar.Text;
+                    int tamanio_numero = int.Parse(tamanio_Columna);
+                    string delete = "ALTER TABLE " + ComboAgregarColumna.SelectedItem.ToString() + "ADD " + Nombre_ColumnaAgregar + " " + tipo_Columna + "(" + tamanio_numero + ")";
+                    SqlCommand cmd = new SqlCommand(delete, server.conexion);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("La columna se ha agregado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al agregar la columna, intentelo de nuevo" + ex);
+                }
 
             }
 
@@ -91,6 +107,15 @@ namespace WindowsFormsApplication1
 
             if (orc != null)
             {
+                //Llenar ComboEliminar con las tablas
+                orc.cmd.CommandText = "Select Table_Name from user_tables";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    ComboAgregarColumna.Items.Add(orc.reader.GetString(0));
+                }
+                orc.reader.Close();
+
                 this.Tabla_AgregarColumna.Text = ComboAgregarColumna.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + ComboAgregarColumna.SelectedItem.ToString();
 
@@ -104,18 +129,48 @@ namespace WindowsFormsApplication1
             if (server != null)
             {
 
+                server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    this.ComboAgregarColumna.Items.Add(server.reader[0]);
+                }
+                server.reader.Close();
+
+                this.Tabla_AgregarColumna.Text = ComboAgregarColumna.SelectedItem.ToString();
+                string extraer_tabla = "Select * from " + ComboAgregarColumna.SelectedItem.ToString();
+
+                SqlCommand cmd = new SqlCommand(extraer_tabla, server.conexion);
+                DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                GridAgregarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
             }
 
         }
         //Funcion que muestra los datos actualizados después de agregar algún dato
         private void MostrarDatosAgregarColumna_Click(object sender, EventArgs e)
         {
-            string mostrar_tabla_actualizada = "Select * from " + ComboAgregarColumna.SelectedItem.ToString();
-            OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
-            DataTable datos = new DataTable();
-            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
-            adaptador.Fill(datos);
-            GridAgregarColumna.DataSource = datos;
+            if (orc != null)
+            {
+                string mostrar_tabla_actualizada = "Select * from " + ComboAgregarColumna.SelectedItem.ToString();
+                OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
+                DataTable datos = new DataTable();
+                OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                adaptador.Fill(datos);
+                GridAgregarColumna.DataSource = datos;
+            }
+            if(server != null)
+            {
+                string mostrar_tabla_actualizada = "Select * from " + ComboAgregarColumna.SelectedItem.ToString();
+                SqlCommand cmd = new SqlCommand(mostrar_tabla_actualizada, server.conexion);
+                DataTable datos = new DataTable();
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                adaptador.Fill(datos);
+                GridAgregarColumna.DataSource = datos;
+
+            }
 
         }
 

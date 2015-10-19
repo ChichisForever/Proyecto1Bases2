@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1
                 try
                 {
 
-                    string eliminar_Columna = "ALTER TABLE " + "'" + ComboEliminarColumna.SelectedItem.ToString() + "'" + "DROP COLUMN " + "'" + comboColumnaEliminar.SelectedItem.ToString() + "'";
+                    string eliminar_Columna = "ALTER TABLE " + "'" + ComboEliminarColumna.SelectedItem.ToString() + "'" + "DROP COLUMN " + comboColumnaEliminar.SelectedItem.ToString();
                     OleDbCommand cmd = new OleDbCommand(eliminar_Columna, orc.myConnection);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("La columna  se ha borrado correctamente");
@@ -79,6 +79,17 @@ namespace WindowsFormsApplication1
             }
             if (server != null)
             {
+                try
+                {
+                string eliminar_Columna = "ALTER TABLE "  + ComboEliminarColumna.SelectedItem.ToString()  + "DROP COLUMN" + comboColumnaEliminar.SelectedItem.ToString();
+                SqlCommand cmd = new SqlCommand(eliminar_Columna, server.conexion);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("La columna  se ha alterado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error no se pudo borrar la columna de la tabla, intentelo de nuevo" + ex);
+                }
 
             }
         }
@@ -121,6 +132,34 @@ namespace WindowsFormsApplication1
             }
             if (server != null)
             {
+                //Llenar ComboEliminarColumna con las tablas
+                string tabla_escogida = ComboEliminarColumna.SelectedItem.ToString();
+                server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    this.ComboEliminarColumna.Items.Add(server.reader.GetValue(0));
+                }
+                server.reader.Close();
+
+                this.Tabla_EliminarColumna.Text = ComboEliminarColumna.SelectedItem.ToString();
+                string extraer_tabla = "Select * from " + ComboEliminarColumna.SelectedItem.ToString();
+
+                SqlCommand cmd = new SqlCommand(extraer_tabla, server.conexion);
+                DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                GridEliminarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+                //Llenar comboColumnaEliminar con las columnas
+
+                server.cmd= new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    comboColumnaEliminar.Items.Add(server.reader.GetValue(0));
+                }
+                server.reader.Close();
 
             }
 
@@ -129,12 +168,26 @@ namespace WindowsFormsApplication1
         //Funcion que muestra los datos actualizados después de eliminar una columna
         private void MostrarDatosEliminarColumna_Click(object sender, EventArgs e)
         {
-            string mostrar_tabla_actualizada = "Select * from " + ComboEliminarColumna.SelectedItem.ToString();
-            OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
-            DataTable datos = new DataTable();
-            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
-            adaptador.Fill(datos);
-            GridEliminarColumna.DataSource = datos;
+
+            if (orc != null)
+            {
+                string mostrar_tabla_actualizada = "Select * from " + ComboEliminarColumna.SelectedItem.ToString();
+                OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
+                DataTable datos = new DataTable();
+                OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                adaptador.Fill(datos);
+                GridEliminarColumna.DataSource = datos;
+            }
+            if(server != null)
+            {
+                string mostrar_tabla_actualizada = "Select * from " + ComboEliminarColumna.SelectedItem.ToString();
+                SqlCommand cmd = new SqlCommand(mostrar_tabla_actualizada, server.conexion);
+                DataTable datos = new DataTable();
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                adaptador.Fill(datos);
+                GridEliminarColumna.DataSource = datos;
+
+            }
 
         }
 
