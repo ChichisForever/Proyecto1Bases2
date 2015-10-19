@@ -40,6 +40,8 @@
             this.ComboAgregarColumna = new System.Windows.Forms.ComboBox();
             this.Escoger_Tabla_actualizar = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxTamanioAgregar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.GridAgregarColumna)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,7 +83,7 @@
             // 
             // buttonAgregarColumna
             // 
-            this.buttonAgregarColumna.Location = new System.Drawing.Point(51, 293);
+            this.buttonAgregarColumna.Location = new System.Drawing.Point(39, 334);
             this.buttonAgregarColumna.Name = "buttonAgregarColumna";
             this.buttonAgregarColumna.Size = new System.Drawing.Size(130, 23);
             this.buttonAgregarColumna.TabIndex = 40;
@@ -148,11 +150,29 @@
             this.label13.TabIndex = 33;
             this.label13.Text = "Agregar una columna ";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(39, 255);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 13);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "Ingrese el tamaño :";
+            // 
+            // textBoxTamanioAgregar
+            // 
+            this.textBoxTamanioAgregar.Location = new System.Drawing.Point(261, 255);
+            this.textBoxTamanioAgregar.Name = "textBoxTamanioAgregar";
+            this.textBoxTamanioAgregar.Size = new System.Drawing.Size(150, 20);
+            this.textBoxTamanioAgregar.TabIndex = 46;
+            // 
             // AgregarColumna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(962, 423);
+            this.Controls.Add(this.textBoxTamanioAgregar);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonMostrarDatosAgregarColumna);
             this.Controls.Add(this.Tabla_AgregarColumna);
             this.Controls.Add(this.label3);
@@ -187,5 +207,7 @@
         private System.Windows.Forms.ComboBox ComboAgregarColumna;
         private System.Windows.Forms.Label Escoger_Tabla_actualizar;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxTamanioAgregar;
     }
 }

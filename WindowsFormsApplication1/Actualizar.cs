@@ -99,25 +99,95 @@ namespace WindowsFormsApplication1
         
             if (orc != null)
             {
-                this.Tabla_actualizar.Text = Combo_actualizar.SelectedItem.ToString();
-                string extraer_tabla = "Select * from " + Combo_actualizar.SelectedItem.ToString();
+                string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
+                //Llenar ComboEliminar con las tablas
+                orc.cmd.CommandText = "Select Table_Name from user_tables";
+                    orc.reader = orc.cmd.ExecuteReader();
+                    while (orc.reader.Read())
+                    {
+                        Combo_actualizar.Items.Add(orc.reader.GetString(0));
+                    }
+                    orc.reader.Close();
+
+                    this.Tabla_actualizar.Text = Combo_actualizar.SelectedItem.ToString();
+                    string extraer_tabla = "Select * from " + Combo_actualizar.SelectedItem.ToString();
                 
-                OleDbCommand cmd = new OleDbCommand(extraer_tabla, orc.myConnection);
-                DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
-                OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
-                adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
-                GridActualizar.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+                    OleDbCommand cmd = new OleDbCommand(extraer_tabla, orc.myConnection);
+                    DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                    OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                    adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                    GridActualizar.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+                //Llenar comboBoxColumnaID con las columnas
+
+                    orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+                    orc.reader = orc.cmd.ExecuteReader();
+                    while (orc.reader.Read())
+                    {
+                    comboBoxColumnaActualizar.Items.Add(orc.reader.GetValue(0));
+                    }
+                    orc.reader.Close();
+
+                }
+                if(server != null)
+                {
+
+                }
 
             }
-            if(server != null)
+        private void comboBoxColumnaActualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Llenar comboBoxColumnaActualizar con columnas
+            string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
+            string columna_escogida = comboBoxColumnaActualizar.SelectedItem.ToString();
+            orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
             {
-
+                comboBoxColumnaActualizar.Items.Add(orc.reader.GetValue(0));
             }
+            orc.reader.Close();
+
+            //Llenar comboBoxColumnaIDActualizar con id's
+            orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'"; 
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+                comboBoxColumnaIDActualizar.Items.Add(orc.reader.GetValue(0));
+            }
+            orc.reader.Close();
 
         }
 
+       private void comboBoxColumnaIDActualizar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //Llenar comboBoxColumnaIDActualizar con id's
+            string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
+            string columna_escogida = comboBoxColumnaIDActualizar.SelectedItem.ToString();
+            orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+                comboBoxColumnaIDActualizar.Items.Add(orc.reader.GetValue(0));
+            }
+            orc.reader.Close();
+
+            //Llenar comboBoxIDActualizar con id's
+            orc.cmd.CommandText = "SELECT " + columna_escogida + " FROM " + tabla_escogida;
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+                comboBoxIDActualizar.Items.Add(orc.reader.GetValue(0));
+            }
+            orc.reader.Close();
+
+
+        }
+
+
         //Funcion que muestra los datos de la tabla después de actualizarla
-       private void MostrarDatosActualizar_Click(object sender, EventArgs e)
+        private void MostrarDatosActualizar_Click(object sender, EventArgs e)
         {
             string mostrar_tabla_actualizada = "Select * from " + Combo_actualizar.SelectedItem.ToString();
             OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);

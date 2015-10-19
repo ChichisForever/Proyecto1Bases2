@@ -170,6 +170,7 @@
             this.comboBoxColumnaActualizar.Name = "comboBoxColumnaActualizar";
             this.comboBoxColumnaActualizar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxColumnaActualizar.TabIndex = 40;
+            this.comboBoxColumnaActualizar.SelectedIndexChanged += new System.EventHandler(this.comboBoxColumnaActualizar_SelectedIndexChanged);
             // 
             // comboBoxColumnaIDActualizar
             // 
@@ -178,6 +179,7 @@
             this.comboBoxColumnaIDActualizar.Name = "comboBoxColumnaIDActualizar";
             this.comboBoxColumnaIDActualizar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxColumnaIDActualizar.TabIndex = 41;
+            this.comboBoxColumnaIDActualizar.SelectedIndexChanged += new System.EventHandler(this.comboBoxColumnaIDActualizar_SelectedIndexChanged);
             // 
             // comboBoxIDActualizar
             // 
@@ -186,6 +188,7 @@
             this.comboBoxIDActualizar.Name = "comboBoxIDActualizar";
             this.comboBoxIDActualizar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxIDActualizar.TabIndex = 42;
+           
             // 
             // Actualizar
             // 

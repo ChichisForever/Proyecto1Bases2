@@ -68,7 +68,9 @@ namespace WindowsFormsApplication1
                 {
                     string Nombre_ColumnaAgregar = TextBoxColumnaAgregar.Text;
                     string tipo_Columna = TextBoxTipoColumnaAgregar.Text;
-                    string delete = "ALTER TABLE " + "'" + ComboAgregarColumna.SelectedItem.ToString() + "'" + "ADD " + Nombre_ColumnaAgregar + " " + "=" + " " + tipo_Columna;
+                    string tamanio_Columna = textBoxTamanioAgregar.Text;
+                    int tamanio_numero = int.Parse(tamanio_Columna);
+                    string delete = "ALTER TABLE " + "'" + ComboAgregarColumna.SelectedItem.ToString() + "'" + "ADD " + Nombre_ColumnaAgregar + " " + tipo_Columna + "(" + tamanio_numero + ")";
                     OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("La columna se ha agregado correctamente");

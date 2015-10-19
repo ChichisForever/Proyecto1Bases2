@@ -88,6 +88,16 @@ namespace WindowsFormsApplication1
 
             if (orc != null)
             {
+                string tabla_escogida = ComboEliminarColumna.SelectedItem.ToString();
+                //Llenar ComboEliminarColumna con las tablas
+                orc.cmd.CommandText = "Select Table_Name from user_tables";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    ComboEliminarColumna.Items.Add(orc.reader.GetString(0));
+                }
+                orc.reader.Close();
+               
                 this.Tabla_EliminarColumna.Text = ComboEliminarColumna.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + ComboEliminarColumna.SelectedItem.ToString();
 
@@ -96,6 +106,17 @@ namespace WindowsFormsApplication1
                 OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
                 adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
                 GridEliminarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+                //Llenar comboColumnaEliminar con las columnas
+
+                orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    comboColumnaEliminar.Items.Add(orc.reader.GetValue(0));
+                }
+                orc.reader.Close();
+
 
             }
             if (server != null)

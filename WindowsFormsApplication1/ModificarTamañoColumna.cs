@@ -94,6 +94,17 @@ namespace WindowsFormsApplication1
 
             if (orc != null)
             {
+                //Llenar  ComboModificarTamaño con las tablas
+                string tabla_escogida = ComboModificarTamaño.SelectedItem.ToString();
+                orc.cmd.CommandText = "Select Table_Name from user_tables";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    ComboModificarTamaño.Items.Add(orc.reader.GetString(0));
+                }
+                orc.reader.Close();
+
+                //Despliega la tabla de acuerdo a la que se seleccione en el combobox
                 this.Tabla_ModificarTamaño.Text = ComboModificarTamaño.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + ComboModificarTamaño.SelectedItem.ToString();
 
@@ -102,6 +113,17 @@ namespace WindowsFormsApplication1
                 OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
                 adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
                 GridModificarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+                //Llenar comboColumnaModificar con las columnas
+
+                orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    comboColumnaModificar.Items.Add(orc.reader.GetValue(0));
+                }
+                orc.reader.Close();
+
 
             }
             if (server != null)
