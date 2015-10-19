@@ -115,13 +115,13 @@ namespace WindowsFormsApplication1
             {
                 //Llenar ComboEliminar con las tablas
                 string tabla_escogida = ComboEliminar.SelectedItem.ToString();
-                orc.cmd.CommandText = "Select Table_Name from user_tables";
+                /*orc.cmd.CommandText = "Select Table_Name from user_tables";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
                 {
                     ComboEliminar.Items.Add(orc.reader.GetString(0));
                 }
-                orc.reader.Close();
+                orc.reader.Close();*/
 
                 //Despliega la tabla de acuerdo a la que se seleccione en el combobox
                 this.Nombre_tabla_eliminar.Text = ComboEliminar.SelectedItem.ToString();
@@ -149,13 +149,13 @@ namespace WindowsFormsApplication1
             {
                 //Llenar ComboEliminar con las tablas
                 string tabla_escogida_server = ComboEliminar.SelectedItem.ToString();
-                server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
+               /* server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {
                     this.ComboEliminar.Items.Add(server.reader.GetValue(0));
                 }
-                server.reader.Close();
+                server.reader.Close();*/
 
                 //Despliega la tabla de acuerdo a la que se seleccione en el combobox
                 this.Nombre_tabla_eliminar.Text = ComboEliminar.SelectedItem.ToString();
@@ -192,13 +192,13 @@ namespace WindowsFormsApplication1
             {
                 string tabla_escogida = ComboEliminar.SelectedItem.ToString();
                 string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
-                orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+                /*orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
                 {
                     comboBoxColumnaID.Items.Add(orc.reader.GetValue(0));
                 }
-                orc.reader.Close();
+                orc.reader.Close();*/
 
                 //Llenar comboBoxIDEliminar con los IDs
                 //string tabla_escogida = ComboEliminar.SelectedItem.ToString();
@@ -217,13 +217,13 @@ namespace WindowsFormsApplication1
             {
                 string tabla_escogida = ComboEliminar.SelectedItem.ToString();
                 string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
-                server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
+                /*server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {
                     comboBoxColumnaID.Items.Add(server.reader.GetValue(0));
                 }
-                server.reader.Close();
+                server.reader.Close();*/
 
                 //Llenar comboBoxIDEliminar con los IDs
                 //string tabla_escogida = ComboEliminar.SelectedItem.ToString();
@@ -235,9 +235,6 @@ namespace WindowsFormsApplication1
                     comboBoxIDEliminar.Items.Add(server.reader.GetValue(0));
                 }
                 server.reader.Close();
-
-
-
 
             }
         }

@@ -116,14 +116,7 @@ namespace WindowsFormsApplication1
             if (orc != null)
             {
                 string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
-                //Llenar ComboEliminar con las tablas
-                orc.cmd.CommandText = "Select Table_Name from user_tables";
-                orc.reader = orc.cmd.ExecuteReader();
-                while (orc.reader.Read())
-                {
-                    Combo_actualizar.Items.Add(orc.reader.GetString(0));
-                }
-                orc.reader.Close();
+                
 
                 this.Tabla_actualizar.Text = Combo_actualizar.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + Combo_actualizar.SelectedItem.ToString();
@@ -149,13 +142,13 @@ namespace WindowsFormsApplication1
             {
                 //Llenar ComboEliminar con las tablas
                 string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
-                server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
+                /*server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {
                     this.Combo_actualizar.Items.Add(server.reader[0]);
                 }
-                server.reader.Close();
+                server.reader.Close();*/
 
                 this.Tabla_actualizar.Text = Combo_actualizar.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + Combo_actualizar.SelectedItem.ToString();
@@ -186,14 +179,14 @@ namespace WindowsFormsApplication1
             {
                 //Llenar comboBoxColumnaActualizar con columnas
                 string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
-                string columna_escogida = comboBoxColumnaActualizar.SelectedItem.ToString();
+               /* string columna_escogida = comboBoxColumnaActualizar.SelectedItem.ToString();
                 orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
                 {
                     comboBoxColumnaActualizar.Items.Add(orc.reader.GetValue(0));
                 }
-                orc.reader.Close();
+                orc.reader.Close();*/
 
                 //Llenar comboBoxColumnaIDActualizar con id's
                 orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
@@ -210,13 +203,13 @@ namespace WindowsFormsApplication1
 
                 //Llenar comboBoxColumnaID con las columnas
                 string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
-                server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
+               /* server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {
                     comboBoxColumnaActualizar.Items.Add(server.reader.GetValue(0));
                 }
-                server.reader.Close();
+                server.reader.Close();*/
 
                 //Llenar comboBoxColumnaIDActualizar con las columnas
 
@@ -239,13 +232,13 @@ namespace WindowsFormsApplication1
                 //Llenar comboBoxColumnaIDActualizar con id's
                 string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
                 string columna_escogida = comboBoxColumnaIDActualizar.SelectedItem.ToString();
-                orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+                /*orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
                 {
                     comboBoxColumnaIDActualizar.Items.Add(orc.reader.GetValue(0));
                 }
-                orc.reader.Close();
+                orc.reader.Close();*/
 
                 //Llenar comboBoxIDActualizar con id's
                 orc.cmd.CommandText = "SELECT " + columna_escogida + " FROM " + tabla_escogida;
@@ -261,13 +254,13 @@ namespace WindowsFormsApplication1
                 //Llenar comboBoxColumnaIDActualizar con las columnas
                 string tabla_escogida = Combo_actualizar.SelectedItem.ToString();
                 string columna_escogida = comboBoxColumnaIDActualizar.SelectedItem.ToString();
-                server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
+                /*server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {
                     comboBoxColumnaIDActualizar.Items.Add(server.reader.GetValue(0));
                 }
-                server.reader.Close();
+                server.reader.Close();*/
 
                 //Llenar comboBoxIDActualizar con id's
                 server.cmd = new SqlCommand("SELECT " + columna_escogida + " FROM " + tabla_escogida, server.conexion);

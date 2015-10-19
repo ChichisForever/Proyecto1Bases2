@@ -115,13 +115,13 @@ namespace WindowsFormsApplication1
             {
                 //Llenar  ComboModificarTamaño con las tablas
                 string tabla_escogida = ComboModificarTamaño.SelectedItem.ToString();
-                orc.cmd.CommandText = "Select Table_Name from user_tables";
+                /*orc.cmd.CommandText = "Select Table_Name from user_tables";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
                 {
                     ComboModificarTamaño.Items.Add(orc.reader.GetString(0));
                 }
-                orc.reader.Close();
+                orc.reader.Close();*/
 
                 //Despliega la tabla de acuerdo a la que se seleccione en el combobox
                 this.Tabla_ModificarTamaño.Text = ComboModificarTamaño.SelectedItem.ToString();
@@ -149,13 +149,13 @@ namespace WindowsFormsApplication1
             {
                 //Llenar  ComboModificarTamaño con las tablas
                 string tabla_escogida = ComboModificarTamaño.SelectedItem.ToString();
-                server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
+                /*server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {
                     this.ComboModificarTamaño.Items.Add(server.reader.GetValue(0));
                 }
-                server.reader.Close();
+                server.reader.Close();*/
 
                 //Despliega la tabla de acuerdo a la que se seleccione en el combobox
                 this.Tabla_ModificarTamaño.Text = ComboModificarTamaño.SelectedItem.ToString();
