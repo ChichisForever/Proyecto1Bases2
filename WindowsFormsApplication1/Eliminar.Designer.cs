@@ -141,6 +141,7 @@
             this.comboBoxIDEliminar.Name = "comboBoxIDEliminar";
             this.comboBoxIDEliminar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxIDEliminar.TabIndex = 37;
+            this.comboBoxIDEliminar.Click += new System.EventHandler(this.comboBoxIDEliminar_SelectedIndexChanged);
             // 
             // comboBoxColumnaID
             // 
