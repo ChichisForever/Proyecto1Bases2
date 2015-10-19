@@ -42,7 +42,8 @@ namespace WindowsFormsApplication1
 
         public void Datos_oracle()
         {
-            try {
+            try
+            {
                 //Llenar ComboEliminar con las tablas
                 orc.cmd.CommandText = "Select Table_Name from user_tables";
                 orc.reader = orc.cmd.ExecuteReader();
@@ -79,7 +80,7 @@ namespace WindowsFormsApplication1
                     string Nombre_idEliminar = comboBoxColumnaID.SelectedItem.ToString();
                     string id_eliminar = comboBoxIDEliminar.SelectedItem.ToString();
                     //int id_eliminar_numero = int.Parse(id_eliminar); // Convierte el string de un textBox a int en este caso el id de las tablas
-                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE " + Nombre_idEliminar +" " + "=" +" " + id_eliminar ;
+                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE " + Nombre_idEliminar + " " + "=" + " " + id_eliminar;
                     OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Los datos se han borrado correctamente");
@@ -109,10 +110,11 @@ namespace WindowsFormsApplication1
 
         private void comboEliminar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string tabla_escogida = ComboEliminar.SelectedItem.ToString();
+
             if (orc != null)
             {
                 //Llenar ComboEliminar con las tablas
+                string tabla_escogida = ComboEliminar.SelectedItem.ToString();
                 orc.cmd.CommandText = "Select Table_Name from user_tables";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
@@ -130,64 +132,146 @@ namespace WindowsFormsApplication1
                 OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
                 adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
                 GridEliminar.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+                //Llenar comboBoxColumnaID con las columnas
+
+                orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    comboBoxColumnaID.Items.Add(orc.reader.GetValue(0));
+                }
+                orc.reader.Close();
             }
 
-            //Llenar comboBoxColumnaID con las columnas
-            
-            orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
+
+            if (server != null)
             {
-                comboBoxColumnaID.Items.Add(orc.reader.GetValue(0));
-            }
-            orc.reader.Close();
+                //Llenar ComboEliminar con las tablas
+                string tabla_escogida_server = ComboEliminar.SelectedItem.ToString();
+                server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    this.ComboEliminar.Items.Add(server.reader.GetValue(0));
+                }
+                server.reader.Close();
 
-         
+                //Despliega la tabla de acuerdo a la que se seleccione en el combobox
+                this.Nombre_tabla_eliminar.Text = ComboEliminar.SelectedItem.ToString();
+                string extraer_tabla = "Select * from " + ComboEliminar.SelectedItem.ToString();
+
+                SqlCommand cmd = new SqlCommand(extraer_tabla, server.conexion);
+                DataTable datos = new DataTable(); // Guarda los datos en una tabla para poder mostrarlos
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                adaptador.Fill(datos); // Llena la tabla con los datos obtenidos del query
+                GridEliminar.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
+
+                //Llenar comboBoxColumnaID con las columnas
+
+                server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida_server + "'", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    comboBoxColumnaID.Items.Add(server.reader.GetValue(0));
+                }
+                server.reader.Close();
+
+
+            }
+
+
 
 
         }
 
         private void comboBoxIDEliminar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string tabla_escogida = ComboEliminar.SelectedItem.ToString();
-            string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
-            orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
-            {
-                comboBoxColumnaID.Items.Add(orc.reader.GetValue(0));
-            }
-            orc.reader.Close();
 
-            //Llenar comboBoxIDEliminar con los IDs
-            //string tabla_escogida = ComboEliminar.SelectedItem.ToString();
-            //string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
-            orc.cmd.CommandText = "SELECT " + columna_escogida + " FROM " + tabla_escogida;
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
+            if (orc != null)
             {
-                comboBoxIDEliminar.Items.Add(orc.reader.GetValue(0));
-            }
-            orc.reader.Close();
+                string tabla_escogida = ComboEliminar.SelectedItem.ToString();
+                string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
+                orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    comboBoxColumnaID.Items.Add(orc.reader.GetValue(0));
+                }
+                orc.reader.Close();
 
+                //Llenar comboBoxIDEliminar con los IDs
+                //string tabla_escogida = ComboEliminar.SelectedItem.ToString();
+                //string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
+                orc.cmd.CommandText = "SELECT " + columna_escogida + " FROM " + tabla_escogida;
+                orc.reader = orc.cmd.ExecuteReader();
+                while (orc.reader.Read())
+                {
+                    comboBoxIDEliminar.Items.Add(orc.reader.GetValue(0));
+                }
+                orc.reader.Close();
+
+            }
+
+            if (server != null)
+            {
+                string tabla_escogida = ComboEliminar.SelectedItem.ToString();
+                string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
+                server.cmd = new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    comboBoxColumnaID.Items.Add(server.reader.GetValue(0));
+                }
+                server.reader.Close();
+
+                //Llenar comboBoxIDEliminar con los IDs
+                //string tabla_escogida = ComboEliminar.SelectedItem.ToString();
+                //string columna_escogida = comboBoxColumnaID.SelectedItem.ToString();
+                server.cmd = new SqlCommand("SELECT " + columna_escogida + " FROM " + tabla_escogida, server.conexion);
+                server.reader = server.cmd.ExecuteReader();
+                while (server.reader.Read())
+                {
+                    comboBoxIDEliminar.Items.Add(server.reader.GetValue(0));
+                }
+                server.reader.Close();
+
+
+
+
+            }
         }
 
-      
+
 
         //Funcion que muestra los datos actualizados después de eliminar algún dato
         private void MostrarDatosEliminar_Click(object sender, EventArgs e)
         {
-            string mostrar_tabla_actualizada = "Select * from " + ComboEliminar.SelectedItem.ToString();
-            OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
-            DataTable datos = new DataTable();
-            OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
-            adaptador.Fill(datos);
-            GridEliminar.DataSource = datos;
 
+            if (orc != null)
+            {
+                string mostrar_tabla_actualizada = "Select * from " + ComboEliminar.SelectedItem.ToString();
+                OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
+                DataTable datos = new DataTable();
+                OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
+                adaptador.Fill(datos);
+                GridEliminar.DataSource = datos;
+
+            }
+            if (server != null)
+            {
+                string mostrar_tabla_actualizada = "Select * from " + ComboEliminar.SelectedItem.ToString();
+                SqlCommand cmd = new SqlCommand(mostrar_tabla_actualizada, server.conexion);
+                DataTable datos = new DataTable();
+                SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
+                adaptador.Fill(datos);
+                GridEliminar.DataSource = datos;
+
+            }
         }
     }
 
-    }
+}
 
 
 
