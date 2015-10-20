@@ -72,12 +72,6 @@
             this.espacioUtilizado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.espacioDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.infoSesion = new System.Windows.Forms.DataGridView();
-            this.identificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hostname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Esquema = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comandosql = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.DdlObject = new System.Windows.Forms.TabPage();
@@ -107,6 +101,13 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
+            this.identificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hostname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Esquema = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comandosql = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableparticionesw)).BeginInit();
@@ -486,6 +487,7 @@
             this.infoSesion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.infoSesion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.identificador,
+            this.Serial,
             this.status,
             this.hostname,
             this.Esquema,
@@ -493,38 +495,9 @@
             this.usuario});
             this.infoSesion.Location = new System.Drawing.Point(46, 74);
             this.infoSesion.Name = "infoSesion";
-            this.infoSesion.Size = new System.Drawing.Size(645, 150);
+            this.infoSesion.Size = new System.Drawing.Size(845, 150);
             this.infoSesion.TabIndex = 2;
-            // 
-            // identificador
-            // 
-            this.identificador.HeaderText = "Identificador";
-            this.identificador.Name = "identificador";
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
-            // 
-            // hostname
-            // 
-            this.hostname.HeaderText = "Hostname";
-            this.hostname.Name = "hostname";
-            // 
-            // Esquema
-            // 
-            this.Esquema.HeaderText = "esquema";
-            this.Esquema.Name = "Esquema";
-            // 
-            // comandosql
-            // 
-            this.comandosql.HeaderText = "Comando Sql";
-            this.comandosql.Name = "comandosql";
-            // 
-            // usuario
-            // 
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.Name = "usuario";
+            this.infoSesion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.info4_Click);
             // 
             // label9
             // 
@@ -824,6 +797,41 @@
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
             // 
+            // identificador
+            // 
+            this.identificador.HeaderText = "Identificador";
+            this.identificador.Name = "identificador";
+            // 
+            // Serial
+            // 
+            this.Serial.HeaderText = "Serial";
+            this.Serial.Name = "Serial";
+            // 
+            // status
+            // 
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            // 
+            // hostname
+            // 
+            this.hostname.HeaderText = "Hostname";
+            this.hostname.Name = "hostname";
+            // 
+            // Esquema
+            // 
+            this.Esquema.HeaderText = "Esquema";
+            this.Esquema.Name = "Esquema";
+            // 
+            // comandosql
+            // 
+            this.comandosql.HeaderText = "Comando SQL";
+            this.comandosql.Name = "comandosql";
+            // 
+            // usuario
+            // 
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            // 
             // Administrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -890,12 +898,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView infoSesion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn identificador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hostname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Esquema;
-        private System.Windows.Forms.DataGridViewTextBoxColumn comandosql;
-        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
         private System.Windows.Forms.DataGridView infoTablespace;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomTablespace;
         private System.Windows.Forms.DataGridViewTextBoxColumn tamanio;
@@ -942,5 +944,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn funcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_p;
+        private System.Windows.Forms.DataGridViewTextBoxColumn identificador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Serial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hostname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Esquema;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comandosql;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
     }
 }

@@ -126,3 +126,6 @@ C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Deb
 C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Eliminar.resources
 C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.EliminarColumna.resources
 C:\Users\Sofia\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ModificarTamañoColumna.resources
+C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.AgregarColumna.resources
+C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.EliminarColumna.resources
+C:\Users\Liza\Documents\GitHub\Proyecto1Bases2\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ModificarTamañoColumna.resources

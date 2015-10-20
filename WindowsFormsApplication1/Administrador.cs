@@ -367,6 +367,14 @@ namespace WindowsFormsApplication1
                 MessageBox.Show("Parece que no tenemos suficientes permisos para mostrar la información del tablespace");
             }
 
+            orc.cmd = orc.myConnection.CreateCommand();
+            orc.cmd.CommandText = "select DISTINCT SID, SERIAL#, STATUS, SYS.utl_inaddr.get_host_name, SCHEMA#, SQL_ID, USERNAME from V$SESSION, dual";
+            orc.reader = orc.cmd.ExecuteReader();
+            while (orc.reader.Read())
+            {
+
+                this.infoSesion.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1), orc.reader.GetValue(2).ToString(), orc.reader.GetValue(3).ToString(), orc.reader.GetValue(4), orc.reader.GetValue(5), orc.reader.GetValue(6).ToString());
+            }
 
 
         }
@@ -423,6 +431,13 @@ namespace WindowsFormsApplication1
             while (server.reader.Read())
             {
                 this.comboBoxDDL.Items.Add(server.reader[0]);
+            }
+            server.reader.Close();
+            server.cmd = new SqlCommand("select session_id, Serial = null, status, host_name, (select SCHEMA_NAME()) AS 'Schema', comando = null, nt_user_name from sys.dm_exec_sessions", server.conexion);
+            server.reader = server.cmd.ExecuteReader();
+            while (server.reader.Read())
+            {
+                this.infoSesion.Rows.Add(server.reader[0], server.reader[1].ToString(), server.reader[2].ToString(), server.reader[3].ToString(), server.reader[4].ToString(), server.reader[5].ToString(), server.reader[6].ToString());
             }
             server.reader.Close();
         }
@@ -530,11 +545,6 @@ namespace WindowsFormsApplication1
                 this.lblparticion.Visible = false;
                 
             }
-
-
-            
-
-
         }
 
         private void cboxvista_SelectedIndexChanged(object sender, EventArgs e)
@@ -932,6 +942,11 @@ namespace WindowsFormsApplication1
         }
 
         private void info3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void info4_Click(object sender, DataGridViewCellEventArgs e)
         {
 
         }
