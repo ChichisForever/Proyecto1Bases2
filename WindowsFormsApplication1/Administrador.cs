@@ -786,7 +786,7 @@ namespace WindowsFormsApplication1
         private void EjecutarDLLOracle(String tipo)
         {
             string objeto = comboBoxDDL.SelectedItem.ToString();
-            using (OracleConnection oraConn = new OracleConnection("data source=proyectoBases;user id=pdb;password=Liza"))
+            using (OracleConnection oraConn = new OracleConnection("data source=" + orc.database + ";user id=" + orc.user + ";password=" + orc.contrasennia))
             {
                 oraConn.Open();
 

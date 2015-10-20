@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
     {
         public string conexion;
        public string user;
-        string contrasennia;
+        public string contrasennia;
        public string database;
        public OleDbConnection myConnection;
   
