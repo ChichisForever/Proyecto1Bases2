@@ -290,7 +290,6 @@ namespace WindowsFormsApplication1
         //Función que realiza ma muestra de datos
         private void mostrar_datos_oracle()
         {
-
             this.dbname.Text = orc.database;
             this.label9.Text = "Informaciòn TableSpaces";
             this.listObjetos.View = View.Details;
@@ -331,27 +330,6 @@ namespace WindowsFormsApplication1
             }
             orc.reader.Close();
 
-            //Tipos de Objetos
-            orc.cmd = orc.myConnection.CreateCommand();
-            orc.cmd.CommandText = "select object_name from user_objects";
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
-            {
-                this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
-            }
-            orc.reader.Close();
-
-            //Nombres de los Objetos
-            orc.cmd = orc.myConnection.CreateCommand();
-            orc.cmd.CommandText = "select distinct object_type from user_objects";
-            orc.reader = orc.cmd.ExecuteReader();
-            while (orc.reader.Read())
-            {
-                this.comboBoxDDLTipo.Items.Add(orc.reader.GetValue(0));
-            }
-            orc.reader.Close();
-
-
             try {
                 orc.cmd = orc.myConnection.CreateCommand();
                 orc.cmd.CommandText = "Select user_tablespaces.tablespace_name,sys.v_$datafile.bytes,(sys.v_$datafile.bytes-sys.dba_free_space.bytes),sys.dba_free_space.bytes from sys.dba_free_space  inner join sys.v_$tablespace on sys.dba_free_space.tablespace_name = sys.v_$tablespace.name inner join user_tablespaces on sys.v_$tablespace.name = user_tablespaces.tablespace_name inner join sys.v_$datafile on sys.v_$datafile.TS# = sys.v_$tablespace.TS#";
@@ -376,8 +354,11 @@ namespace WindowsFormsApplication1
                 this.infoSesion.Rows.Add(orc.reader.GetValue(0), orc.reader.GetValue(1), orc.reader.GetValue(2).ToString(), orc.reader.GetValue(3).ToString(), orc.reader.GetValue(4), orc.reader.GetValue(5), orc.reader.GetValue(6).ToString());
             }
 
-
+            this.comboBoxDDLTipo.Items.Add("INDEX");
+            this.comboBoxDDLTipo.Items.Add("TABLE");
+            this.comboBoxDDLTipo.Items.Add("VIEW");
         }
+
         private void mostrar_datos_sqlserver()
         {
             this.dbname.Text = this.server.nbase;
@@ -419,20 +400,7 @@ namespace WindowsFormsApplication1
                 this.infoTablespace.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
             }
             server.reader.Close();
-            server.cmd = new SqlCommand("select DISTINCT type_desc from sys.objects;", server.conexion);
-            server.reader = server.cmd.ExecuteReader();
-            while (server.reader.Read())
-            {
-                this.comboBoxDDLTipo.Items.Add(server.reader[0]);
-            }
-            server.reader.Close();
-            server.cmd = new SqlCommand("select DISTINCT name from sys.objects;", server.conexion);
-            server.reader = server.cmd.ExecuteReader();
-            while (server.reader.Read())
-            {
-                this.comboBoxDDL.Items.Add(server.reader[0]);
-            }
-            server.reader.Close();
+
             server.cmd = new SqlCommand("select session_id, Serial = null, status, host_name, (select SCHEMA_NAME()) AS 'Schema', comando = null, nt_user_name from sys.dm_exec_sessions", server.conexion);
             server.reader = server.cmd.ExecuteReader();
             while (server.reader.Read())
@@ -440,6 +408,10 @@ namespace WindowsFormsApplication1
                 this.infoSesion.Rows.Add(server.reader[0], server.reader[1].ToString(), server.reader[2].ToString(), server.reader[3].ToString(), server.reader[4].ToString(), server.reader[5].ToString(), server.reader[6].ToString());
             }
             server.reader.Close();
+
+            this.comboBoxDDL.Items.Add("INDEX");
+            this.comboBoxDDL.Items.Add("TABLE");
+            this.comboBoxDDL.Items.Add("VIEW");
         }
 
         private void tablas_SelectedIndexChanged(object sender, EventArgs e)
@@ -929,16 +901,16 @@ namespace WindowsFormsApplication1
 
         private void comboBoxDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string tipo = comboBoxDDLTipo.SelectedItem.ToString();
             if (orc != null)
             {
                 try
                 {
                     orc.cmd = orc.myConnection.CreateCommand();
-                    orc.cmd.CommandText = "select object_name from user_objects";
+                    orc.cmd.CommandText = "select object_name from user_objects where object_type = '" + tipo + "'";
                     orc.reader = orc.cmd.ExecuteReader();
                     while (orc.reader.Read())
                     {
-
                         this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
                     }
                     orc.reader.Close();
@@ -954,7 +926,7 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
-                    server.cmd = new SqlCommand("select DISTINCT name from sys.objects;", server.conexion);
+                    server.cmd = new SqlCommand("select name from sys.objects where type_desc = '" + tipo + "'", server.conexion);
                     server.reader = server.cmd.ExecuteReader();
                     while (server.reader.Read())
                     {
@@ -976,30 +948,6 @@ namespace WindowsFormsApplication1
 
         private void comboBoxDDLTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (orc != null)
-            {
-                orc.cmd = orc.myConnection.CreateCommand();
-                orc.cmd.CommandText = "select object_type from user_objects";
-                orc.reader = orc.cmd.ExecuteReader();
-                while (orc.reader.Read())
-                {
-
-                    this.comboBoxDDLTipo.Items.Add(orc.reader.GetString(0));
-                }
-                orc.reader.Close();
-
-            }
-
-            if (server != null)
-            {
-                server.cmd = new SqlCommand("select DISTINCT type_desc from sys.objects;", server.conexion);
-                server.reader = server.cmd.ExecuteReader();
-                while (server.reader.Read())
-                {
-                    this.comboBoxDDLTipo.Items.Add(server.reader[0]);
-                }
-                server.reader.Close();
-            }
 
         }
 
