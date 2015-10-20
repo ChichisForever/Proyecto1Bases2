@@ -67,7 +67,7 @@ namespace WindowsFormsApplication1
                 try
                 {
 
-                    string eliminar_Columna = "ALTER TABLE " + "'" + ComboEliminarColumna.SelectedItem.ToString() + "'" + "DROP COLUMN " + comboColumnaEliminar.SelectedItem.ToString();
+                    string eliminar_Columna = "ALTER TABLE " + ComboEliminarColumna.SelectedItem.ToString() + " DROP COLUMN " + comboColumnaEliminar.SelectedItem.ToString();
                     OleDbCommand cmd = new OleDbCommand(eliminar_Columna, orc.myConnection);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("La columna  se ha borrado correctamente");
@@ -81,7 +81,7 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
-                string eliminar_Columna = "ALTER TABLE "  + ComboEliminarColumna.SelectedItem.ToString()  + "DROP COLUMN" + comboColumnaEliminar.SelectedItem.ToString();
+                string eliminar_Columna = "ALTER TABLE "  + ComboEliminarColumna.SelectedItem.ToString()  + " DROP COLUMN " + comboColumnaEliminar.SelectedItem.ToString();
                 SqlCommand cmd = new SqlCommand(eliminar_Columna, server.conexion);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("La columna  se ha alterado correctamente");

@@ -69,13 +69,13 @@ namespace WindowsFormsApplication1
                     string Nombre_ColumnaModificar = comboColumnaModificar.SelectedItem.ToString();
                     string tipo_Modificar = textBoxTipoModificar.Text;
 
-                    string tamanio_Modificar = textBoxTipoModificar.Text;
-                    int tamanio_numero = int.Parse(tamanio_Modificar);
-
-                    //int id_eliminar_numero = int.Parse(id_eliminar); // Convierte el string de un textBox a int en este caso el id de las tablas
-                    string delete = "ALTER TABLE " + "'" + ComboModificarTamaño.SelectedItem.ToString() + "'" + "'" + "MODIFY " + Nombre_ColumnaModificar + " " + tipo_Modificar + "(" + tamanio_numero + ")";
-                    OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
+                    string tamanio_Modificar = textBoxTamanioModificar.Text;
+                    //int tamanio_numero = int.Parse(tamanio_Modificar);// Convierte el string de un textBox a int en este caso el id de las tablas
+                    string modificar = "ALTER TABLE " + ComboModificarTamaño.SelectedItem.ToString()  + " MODIFY " + Nombre_ColumnaModificar + " " + tipo_Modificar + "(" + tamanio_Modificar + ")";
+                    OleDbCommand cmd = new OleDbCommand(modificar, orc.myConnection);
+                    MessageBox.Show(modificar);
                     cmd.ExecuteNonQuery();
+                    
                     MessageBox.Show("La columna se ha modificado correctamente");
                 }
                 catch (Exception ex)
@@ -90,15 +90,15 @@ namespace WindowsFormsApplication1
 
                 string Nombre_ColumnaModificar = comboColumnaModificar.SelectedItem.ToString();
                 string tipo_Modificar = textBoxTipoModificar.Text;
-
-                string tamanio_Modificar = textBoxTipoModificar.Text;
-                int tamanio_numero = int.Parse(tamanio_Modificar);
-
+                string tamanio_Modificar = textBoxTamanioModificar.Text;
+               
                 //int id_eliminar_numero = int.Parse(id_eliminar); // Convierte el string de un textBox a int en este caso el id de las tablas
-                string delete = "ALTER TABLE " + ComboModificarTamaño.SelectedItem.ToString()   + "MODIFY " + Nombre_ColumnaModificar + " " + tipo_Modificar + "(" + tamanio_numero + ")";
-                OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
+                string modificar = "ALTER TABLE " + ComboModificarTamaño.SelectedItem.ToString()   + " ALTER COLUMN " + Nombre_ColumnaModificar + " " + tipo_Modificar + "(" + tamanio_Modificar + ")";
+                SqlCommand cmd = new SqlCommand(modificar, server.conexion);
+                    MessageBox.Show(modificar);  
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("La columna se ha modificado correctamente");
+                   
+                    MessageBox.Show("La columna se ha modificado correctamente");
                 }
                 catch (Exception ex)
                 {
@@ -186,21 +186,26 @@ namespace WindowsFormsApplication1
         {
             if (orc != null)
             {
-                string mostrar_tabla_actualizada = "Select * from " + ComboModificarTamaño.SelectedItem.ToString();
+               
+                string tabla_escogida = ComboModificarTamaño.SelectedItem.ToString();
+                string Nombre_ColumnaModificar = comboColumnaModificar.SelectedItem.ToString();
+                string mostrar_tabla_actualizada = "Select COLUMN_NAME,DATA_TYPE, DATA_LENGTH FROM user_tab_columns WHERE TABLE_NAME = " + "'"+ tabla_escogida +"'" + " AND COLUMN_NAME = " + "'"+ Nombre_ColumnaModificar+ "'";
                 OleDbCommand cmd = new OleDbCommand(mostrar_tabla_actualizada, orc.myConnection);
                 DataTable datos = new DataTable();
                 OleDbDataAdapter adaptador = new OleDbDataAdapter(cmd);
                 adaptador.Fill(datos);
-                GridModificarColumna.DataSource = datos;
+                GridTipoActualizado.DataSource = datos;
             }
             if(server != null)
             {
-                string mostrar_tabla_actualizada = "Select * from " + ComboModificarTamaño.SelectedItem.ToString();
+                string tabla_escogida = ComboModificarTamaño.SelectedItem.ToString();
+                string Nombre_ColumnaModificar = comboColumnaModificar.SelectedItem.ToString();
+                string mostrar_tabla_actualizada = "Select COLUMN_NAME, DATA_TYPE,CHARACTER_MAXIMUM_LENGTH from INFORMATION_SCHEMA.COLUMNS where Table_Name = "+"'"+ tabla_escogida + "'" +"AND COLUMN_NAME= " +"'"+ Nombre_ColumnaModificar +"'"+ " AND TABLE_CATALOG= '" + server.nbase + "'";
                 SqlCommand cmd = new SqlCommand(mostrar_tabla_actualizada, server.conexion);
                 DataTable datos = new DataTable();
                 SqlDataAdapter adaptador = new SqlDataAdapter(cmd);
                 adaptador.Fill(datos);
-                GridModificarColumna.DataSource = datos;
+                GridTipoActualizado.DataSource = datos;
             }
 
         }

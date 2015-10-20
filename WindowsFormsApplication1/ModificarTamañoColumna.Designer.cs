@@ -42,7 +42,9 @@
             this.ComboModificarTamaño = new System.Windows.Forms.ComboBox();
             this.Escoger_Tabla_actualizar = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.GridTipoActualizado = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.GridModificarColumna)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridTipoActualizado)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxTamanioModificar
@@ -87,18 +89,18 @@
             // 
             // buttonMostrarDatosModificarTamaño
             // 
-            this.buttonMostrarDatosModificarTamaño.Location = new System.Drawing.Point(595, 383);
+            this.buttonMostrarDatosModificarTamaño.Location = new System.Drawing.Point(624, 397);
             this.buttonMostrarDatosModificarTamaño.Name = "buttonMostrarDatosModificarTamaño";
             this.buttonMostrarDatosModificarTamaño.Size = new System.Drawing.Size(237, 23);
             this.buttonMostrarDatosModificarTamaño.TabIndex = 68;
-            this.buttonMostrarDatosModificarTamaño.Text = "Mostrar datos actualizados";
+            this.buttonMostrarDatosModificarTamaño.Text = "Mostrar Tipo Actualizado";
             this.buttonMostrarDatosModificarTamaño.UseVisualStyleBackColor = true;
             this.buttonMostrarDatosModificarTamaño.Click += new System.EventHandler(this.MostrarDatosModificar_Click);
             // 
             // Tabla_ModificarTamaño
             // 
             this.Tabla_ModificarTamaño.AutoSize = true;
-            this.Tabla_ModificarTamaño.Location = new System.Drawing.Point(676, 65);
+            this.Tabla_ModificarTamaño.Location = new System.Drawing.Point(691, 35);
             this.Tabla_ModificarTamaño.Name = "Tabla_ModificarTamaño";
             this.Tabla_ModificarTamaño.Size = new System.Drawing.Size(108, 13);
             this.Tabla_ModificarTamaño.TabIndex = 67;
@@ -107,7 +109,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(604, 65);
+            this.label3.Location = new System.Drawing.Point(621, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 66;
@@ -116,9 +118,9 @@
             // GridModificarColumna
             // 
             this.GridModificarColumna.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridModificarColumna.Location = new System.Drawing.Point(498, 97);
+            this.GridModificarColumna.Location = new System.Drawing.Point(528, 58);
             this.GridModificarColumna.Name = "GridModificarColumna";
-            this.GridModificarColumna.Size = new System.Drawing.Size(417, 256);
+            this.GridModificarColumna.Size = new System.Drawing.Size(447, 192);
             this.GridModificarColumna.TabIndex = 65;
             // 
             // buttonModificarColumna
@@ -167,11 +169,20 @@
             this.label13.TabIndex = 60;
             this.label13.Text = "Modificar tamaño de una columna";
             // 
+            // GridTipoActualizado
+            // 
+            this.GridTipoActualizado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GridTipoActualizado.Location = new System.Drawing.Point(545, 271);
+            this.GridTipoActualizado.Name = "GridTipoActualizado";
+            this.GridTipoActualizado.Size = new System.Drawing.Size(417, 110);
+            this.GridTipoActualizado.TabIndex = 74;
+            // 
             // ModificarTamañoColumna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 475);
+            this.ClientSize = new System.Drawing.Size(987, 475);
+            this.Controls.Add(this.GridTipoActualizado);
             this.Controls.Add(this.textBoxTamanioModificar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxTipoModificar);
@@ -189,6 +200,7 @@
             this.Name = "ModificarTamañoColumna";
             this.Text = "ModificarTamañoColumna";
             ((System.ComponentModel.ISupportInitialize)(this.GridModificarColumna)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GridTipoActualizado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,5 +222,6 @@
         private System.Windows.Forms.ComboBox ComboModificarTamaño;
         private System.Windows.Forms.Label Escoger_Tabla_actualizar;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView GridTipoActualizado;
     }
 }

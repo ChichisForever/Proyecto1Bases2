@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
     {
         public Conexion_Oracle orc;
         private Conexion_MSS server;
-        public Eliminar elim;
+       
 
        
         public Administrador(Conexion_Oracle o,Conexion_MSS m)
@@ -492,6 +492,7 @@ namespace WindowsFormsApplication1
             if (server != null)
             {
                 server.cmd = new SqlCommand("Select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,IS_NULLABLE from INFORMATION_SCHEMA.COLUMNS where Table_Name = '"+tablas.SelectedItem.ToString() +"' and TABLE_CATALOG='"+server.nbase+"'", server.conexion);
+                
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {

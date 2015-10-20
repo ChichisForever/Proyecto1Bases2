@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Data.OleDb;
+using Oracle.DataAccess.Client;
+
 
 
 namespace WindowsFormsApplication1
@@ -64,15 +66,20 @@ namespace WindowsFormsApplication1
         {
             if (orc != null)
             {
+               
                 try
                 {
+
                     string Nombre_ColumnaAgregar = TextBoxColumnaAgregar.Text;
                     string tipo_Columna = TextBoxTipoColumnaAgregar.Text;
                     string tamanio_Columna = textBoxTamanioAgregar.Text;
-                    int tamanio_numero = int.Parse(tamanio_Columna);
-                    string delete = "ALTER TABLE " + "'" + ComboAgregarColumna.SelectedItem.ToString() + "'" + "ADD " + Nombre_ColumnaAgregar + " " + tipo_Columna + "(" + tamanio_numero + ")";
-                    OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
+                    //int tamanio_numero = int.Parse(tamanio_Columna);
+                    string add = "ALTER TABLE " + ComboAgregarColumna.SelectedItem.ToString() + " ADD " + Nombre_ColumnaAgregar +" "+tipo_Columna + "(" + tamanio_Columna + ")";
+                MessageBox.Show(add);
+                    OleDbCommand cmd = new OleDbCommand(add, orc.myConnection);
                     cmd.ExecuteNonQuery();
+                 
+                    
                     MessageBox.Show("La columna se ha agregado correctamente");
                 }
                 catch (Exception ex)
@@ -89,8 +96,8 @@ namespace WindowsFormsApplication1
                     string tipo_Columna = TextBoxTipoColumnaAgregar.Text;
                     string tamanio_Columna = textBoxTamanioAgregar.Text;
                     int tamanio_numero = int.Parse(tamanio_Columna);
-                    string delete = "ALTER TABLE " + ComboAgregarColumna.SelectedItem.ToString() + "ADD " + Nombre_ColumnaAgregar + " " + tipo_Columna + "(" + tamanio_numero + ")";
-                    SqlCommand cmd = new SqlCommand(delete, server.conexion);
+                    string add = "ALTER TABLE " + ComboAgregarColumna.SelectedItem.ToString() + " ADD " + Nombre_ColumnaAgregar + " " + tipo_Columna + "(" + tamanio_numero + ")";
+                    SqlCommand cmd = new SqlCommand(add, server.conexion);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("La columna se ha agregado correctamente");
                 }
