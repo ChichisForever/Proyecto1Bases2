@@ -47,7 +47,7 @@
             // 
             // buttonMostrarDatosAgregarColumna
             // 
-            this.buttonMostrarDatosAgregarColumna.Location = new System.Drawing.Point(609, 368);
+            this.buttonMostrarDatosAgregarColumna.Location = new System.Drawing.Point(629, 367);
             this.buttonMostrarDatosAgregarColumna.Name = "buttonMostrarDatosAgregarColumna";
             this.buttonMostrarDatosAgregarColumna.Size = new System.Drawing.Size(237, 23);
             this.buttonMostrarDatosAgregarColumna.TabIndex = 44;
@@ -58,7 +58,7 @@
             // Tabla_AgregarColumna
             // 
             this.Tabla_AgregarColumna.AutoSize = true;
-            this.Tabla_AgregarColumna.Location = new System.Drawing.Point(684, 60);
+            this.Tabla_AgregarColumna.Location = new System.Drawing.Point(721, 60);
             this.Tabla_AgregarColumna.Name = "Tabla_AgregarColumna";
             this.Tabla_AgregarColumna.Size = new System.Drawing.Size(108, 13);
             this.Tabla_AgregarColumna.TabIndex = 43;
@@ -67,7 +67,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(606, 60);
+            this.label3.Location = new System.Drawing.Point(643, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 42;
@@ -78,12 +78,12 @@
             this.GridAgregarColumna.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridAgregarColumna.Location = new System.Drawing.Point(503, 88);
             this.GridAgregarColumna.Name = "GridAgregarColumna";
-            this.GridAgregarColumna.Size = new System.Drawing.Size(417, 256);
+            this.GridAgregarColumna.Size = new System.Drawing.Size(486, 256);
             this.GridAgregarColumna.TabIndex = 41;
             // 
             // buttonAgregarColumna
             // 
-            this.buttonAgregarColumna.Location = new System.Drawing.Point(39, 334);
+            this.buttonAgregarColumna.Location = new System.Drawing.Point(117, 358);
             this.buttonAgregarColumna.Name = "buttonAgregarColumna";
             this.buttonAgregarColumna.Size = new System.Drawing.Size(130, 23);
             this.buttonAgregarColumna.TabIndex = 40;
@@ -126,7 +126,7 @@
             // ComboAgregarColumna
             // 
             this.ComboAgregarColumna.FormattingEnabled = true;
-            this.ComboAgregarColumna.Location = new System.Drawing.Point(141, 60);
+            this.ComboAgregarColumna.Location = new System.Drawing.Point(290, 63);
             this.ComboAgregarColumna.Name = "ComboAgregarColumna";
             this.ComboAgregarColumna.Size = new System.Drawing.Size(121, 21);
             this.ComboAgregarColumna.TabIndex = 35;
@@ -170,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 423);
+            this.ClientSize = new System.Drawing.Size(1001, 456);
             this.Controls.Add(this.textBoxTamanioAgregar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.buttonMostrarDatosAgregarColumna);

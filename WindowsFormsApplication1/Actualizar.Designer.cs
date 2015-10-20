@@ -50,7 +50,7 @@
             // Combo_actualizar
             // 
             this.Combo_actualizar.FormattingEnabled = true;
-            this.Combo_actualizar.Location = new System.Drawing.Point(118, 46);
+            this.Combo_actualizar.Location = new System.Drawing.Point(143, 46);
             this.Combo_actualizar.Name = "Combo_actualizar";
             this.Combo_actualizar.Size = new System.Drawing.Size(121, 21);
             this.Combo_actualizar.TabIndex = 17;
@@ -59,7 +59,7 @@
             // Escoger_Tabla_actualizar
             // 
             this.Escoger_Tabla_actualizar.AutoSize = true;
-            this.Escoger_Tabla_actualizar.Location = new System.Drawing.Point(13, 49);
+            this.Escoger_Tabla_actualizar.Location = new System.Drawing.Point(38, 49);
             this.Escoger_Tabla_actualizar.Name = "Escoger_Tabla_actualizar";
             this.Escoger_Tabla_actualizar.Size = new System.Drawing.Size(100, 13);
             this.Escoger_Tabla_actualizar.TabIndex = 16;
@@ -68,7 +68,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(345, 9);
+            this.label13.Location = new System.Drawing.Point(400, 9);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(144, 13);
             this.label13.TabIndex = 18;
@@ -76,7 +76,7 @@
             // 
             // buttonActualizar
             // 
-            this.buttonActualizar.Location = new System.Drawing.Point(58, 372);
+            this.buttonActualizar.Location = new System.Drawing.Point(109, 372);
             this.buttonActualizar.Name = "buttonActualizar";
             this.buttonActualizar.Size = new System.Drawing.Size(130, 23);
             this.buttonActualizar.TabIndex = 26;
@@ -86,7 +86,7 @@
             // 
             // TextBoxValorActualizar
             // 
-            this.TextBoxValorActualizar.Location = new System.Drawing.Point(238, 105);
+            this.TextBoxValorActualizar.Location = new System.Drawing.Point(263, 105);
             this.TextBoxValorActualizar.Name = "TextBoxValorActualizar";
             this.TextBoxValorActualizar.Size = new System.Drawing.Size(150, 20);
             this.TextBoxValorActualizar.TabIndex = 23;
@@ -94,7 +94,7 @@
             // valor_actualizar
             // 
             this.valor_actualizar.AutoSize = true;
-            this.valor_actualizar.Location = new System.Drawing.Point(13, 105);
+            this.valor_actualizar.Location = new System.Drawing.Point(38, 105);
             this.valor_actualizar.Name = "valor_actualizar";
             this.valor_actualizar.Size = new System.Drawing.Size(139, 13);
             this.valor_actualizar.TabIndex = 22;
@@ -103,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(561, 49);
+            this.label3.Location = new System.Drawing.Point(630, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 29;
@@ -111,7 +111,7 @@
             // 
             // buttonDatosActualizados_Actualizar
             // 
-            this.buttonDatosActualizados_Actualizar.Location = new System.Drawing.Point(523, 372);
+            this.buttonDatosActualizados_Actualizar.Location = new System.Drawing.Point(592, 372);
             this.buttonDatosActualizados_Actualizar.Name = "buttonDatosActualizados_Actualizar";
             this.buttonDatosActualizados_Actualizar.Size = new System.Drawing.Size(237, 23);
             this.buttonDatosActualizados_Actualizar.TabIndex = 28;
@@ -124,13 +124,13 @@
             this.GridActualizar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridActualizar.Location = new System.Drawing.Point(483, 80);
             this.GridActualizar.Name = "GridActualizar";
-            this.GridActualizar.Size = new System.Drawing.Size(356, 252);
+            this.GridActualizar.Size = new System.Drawing.Size(480, 252);
             this.GridActualizar.TabIndex = 27;
             // 
             // Tabla_actualizar
             // 
             this.Tabla_actualizar.AutoSize = true;
-            this.Tabla_actualizar.Location = new System.Drawing.Point(627, 49);
+            this.Tabla_actualizar.Location = new System.Drawing.Point(696, 46);
             this.Tabla_actualizar.Name = "Tabla_actualizar";
             this.Tabla_actualizar.Size = new System.Drawing.Size(108, 13);
             this.Tabla_actualizar.TabIndex = 30;
@@ -139,7 +139,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 156);
+            this.label2.Location = new System.Drawing.Point(37, 156);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(217, 13);
             this.label2.TabIndex = 39;
@@ -148,7 +148,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 269);
+            this.label1.Location = new System.Drawing.Point(37, 269);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 13);
             this.label1.TabIndex = 37;
@@ -157,7 +157,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 203);
+            this.label4.Location = new System.Drawing.Point(37, 203);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(191, 13);
             this.label4.TabIndex = 35;
@@ -166,7 +166,7 @@
             // comboBoxColumnaActualizar
             // 
             this.comboBoxColumnaActualizar.FormattingEnabled = true;
-            this.comboBoxColumnaActualizar.Location = new System.Drawing.Point(250, 153);
+            this.comboBoxColumnaActualizar.Location = new System.Drawing.Point(275, 153);
             this.comboBoxColumnaActualizar.Name = "comboBoxColumnaActualizar";
             this.comboBoxColumnaActualizar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxColumnaActualizar.TabIndex = 40;
@@ -175,7 +175,7 @@
             // comboBoxColumnaIDActualizar
             // 
             this.comboBoxColumnaIDActualizar.FormattingEnabled = true;
-            this.comboBoxColumnaIDActualizar.Location = new System.Drawing.Point(250, 203);
+            this.comboBoxColumnaIDActualizar.Location = new System.Drawing.Point(275, 203);
             this.comboBoxColumnaIDActualizar.Name = "comboBoxColumnaIDActualizar";
             this.comboBoxColumnaIDActualizar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxColumnaIDActualizar.TabIndex = 41;
@@ -184,17 +184,16 @@
             // comboBoxIDActualizar
             // 
             this.comboBoxIDActualizar.FormattingEnabled = true;
-            this.comboBoxIDActualizar.Location = new System.Drawing.Point(250, 269);
+            this.comboBoxIDActualizar.Location = new System.Drawing.Point(275, 269);
             this.comboBoxIDActualizar.Name = "comboBoxIDActualizar";
             this.comboBoxIDActualizar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxIDActualizar.TabIndex = 42;
-           
             // 
             // Actualizar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 448);
+            this.ClientSize = new System.Drawing.Size(1009, 499);
             this.Controls.Add(this.comboBoxIDActualizar);
             this.Controls.Add(this.comboBoxColumnaIDActualizar);
             this.Controls.Add(this.comboBoxColumnaActualizar);

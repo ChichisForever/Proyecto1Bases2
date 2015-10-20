@@ -46,7 +46,7 @@
             // Escoger_Tabla_eliminar
             // 
             this.Escoger_Tabla_eliminar.AutoSize = true;
-            this.Escoger_Tabla_eliminar.Location = new System.Drawing.Point(12, 43);
+            this.Escoger_Tabla_eliminar.Location = new System.Drawing.Point(55, 48);
             this.Escoger_Tabla_eliminar.Name = "Escoger_Tabla_eliminar";
             this.Escoger_Tabla_eliminar.Size = new System.Drawing.Size(100, 13);
             this.Escoger_Tabla_eliminar.TabIndex = 14;
@@ -55,7 +55,7 @@
             // ComboEliminar
             // 
             this.ComboEliminar.FormattingEnabled = true;
-            this.ComboEliminar.Location = new System.Drawing.Point(135, 40);
+            this.ComboEliminar.Location = new System.Drawing.Point(178, 45);
             this.ComboEliminar.Name = "ComboEliminar";
             this.ComboEliminar.Size = new System.Drawing.Size(121, 21);
             this.ComboEliminar.TabIndex = 15;
@@ -75,13 +75,13 @@
             this.GridEliminar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridEliminar.Location = new System.Drawing.Point(451, 78);
             this.GridEliminar.Name = "GridEliminar";
-            this.GridEliminar.Size = new System.Drawing.Size(369, 246);
+            this.GridEliminar.Size = new System.Drawing.Size(477, 246);
             this.GridEliminar.TabIndex = 19;
             // 
             // Tabla_eliminar
             // 
             this.Tabla_eliminar.AutoSize = true;
-            this.Tabla_eliminar.Location = new System.Drawing.Point(530, 48);
+            this.Tabla_eliminar.Location = new System.Drawing.Point(586, 45);
             this.Tabla_eliminar.Name = "Tabla_eliminar";
             this.Tabla_eliminar.Size = new System.Drawing.Size(37, 13);
             this.Tabla_eliminar.TabIndex = 20;
@@ -89,7 +89,7 @@
             // 
             // ButtonDatos_actualizados_eliminar
             // 
-            this.ButtonDatos_actualizados_eliminar.Location = new System.Drawing.Point(546, 348);
+            this.ButtonDatos_actualizados_eliminar.Location = new System.Drawing.Point(614, 353);
             this.ButtonDatos_actualizados_eliminar.Name = "ButtonDatos_actualizados_eliminar";
             this.ButtonDatos_actualizados_eliminar.Size = new System.Drawing.Size(158, 23);
             this.ButtonDatos_actualizados_eliminar.TabIndex = 21;
@@ -99,7 +99,7 @@
             // 
             // ButtonBorrar
             // 
-            this.ButtonBorrar.Location = new System.Drawing.Point(74, 348);
+            this.ButtonBorrar.Location = new System.Drawing.Point(117, 353);
             this.ButtonBorrar.Name = "ButtonBorrar";
             this.ButtonBorrar.Size = new System.Drawing.Size(130, 23);
             this.ButtonBorrar.TabIndex = 22;
@@ -110,7 +110,7 @@
             // Nombre_tabla_eliminar
             // 
             this.Nombre_tabla_eliminar.AutoSize = true;
-            this.Nombre_tabla_eliminar.Location = new System.Drawing.Point(608, 48);
+            this.Nombre_tabla_eliminar.Location = new System.Drawing.Point(664, 45);
             this.Nombre_tabla_eliminar.Name = "Nombre_tabla_eliminar";
             this.Nombre_tabla_eliminar.Size = new System.Drawing.Size(108, 13);
             this.Nombre_tabla_eliminar.TabIndex = 31;
@@ -119,7 +119,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 227);
+            this.label1.Location = new System.Drawing.Point(55, 232);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 34;
@@ -128,7 +128,7 @@
             // id_eliminar
             // 
             this.id_eliminar.AutoSize = true;
-            this.id_eliminar.Location = new System.Drawing.Point(12, 123);
+            this.id_eliminar.Location = new System.Drawing.Point(55, 128);
             this.id_eliminar.Name = "id_eliminar";
             this.id_eliminar.Size = new System.Drawing.Size(130, 13);
             this.id_eliminar.TabIndex = 36;
@@ -137,7 +137,7 @@
             // comboBoxIDEliminar
             // 
             this.comboBoxIDEliminar.FormattingEnabled = true;
-            this.comboBoxIDEliminar.Location = new System.Drawing.Point(130, 227);
+            this.comboBoxIDEliminar.Location = new System.Drawing.Point(173, 232);
             this.comboBoxIDEliminar.Name = "comboBoxIDEliminar";
             this.comboBoxIDEliminar.Size = new System.Drawing.Size(121, 21);
             this.comboBoxIDEliminar.TabIndex = 37;
@@ -146,7 +146,7 @@
             // comboBoxColumnaID
             // 
             this.comboBoxColumnaID.FormattingEnabled = true;
-            this.comboBoxColumnaID.Location = new System.Drawing.Point(135, 123);
+            this.comboBoxColumnaID.Location = new System.Drawing.Point(178, 128);
             this.comboBoxColumnaID.Name = "comboBoxColumnaID";
             this.comboBoxColumnaID.Size = new System.Drawing.Size(121, 21);
             this.comboBoxColumnaID.TabIndex = 38;
@@ -155,7 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 428);
+            this.ClientSize = new System.Drawing.Size(977, 428);
             this.Controls.Add(this.comboBoxColumnaID);
             this.Controls.Add(this.comboBoxIDEliminar);
             this.Controls.Add(this.id_eliminar);

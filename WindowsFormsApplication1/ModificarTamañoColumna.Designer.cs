@@ -82,7 +82,7 @@
             // comboColumnaModificar
             // 
             this.comboColumnaModificar.FormattingEnabled = true;
-            this.comboColumnaModificar.Location = new System.Drawing.Point(237, 133);
+            this.comboColumnaModificar.Location = new System.Drawing.Point(255, 136);
             this.comboColumnaModificar.Name = "comboColumnaModificar";
             this.comboColumnaModificar.Size = new System.Drawing.Size(121, 21);
             this.comboColumnaModificar.TabIndex = 69;
@@ -125,7 +125,7 @@
             // 
             // buttonModificarColumna
             // 
-            this.buttonModificarColumna.Location = new System.Drawing.Point(53, 383);
+            this.buttonModificarColumna.Location = new System.Drawing.Point(135, 397);
             this.buttonModificarColumna.Name = "buttonModificarColumna";
             this.buttonModificarColumna.Size = new System.Drawing.Size(130, 23);
             this.buttonModificarColumna.TabIndex = 64;
@@ -145,7 +145,7 @@
             // ComboModificarTamaño
             // 
             this.ComboModificarTamaño.FormattingEnabled = true;
-            this.ComboModificarTamaño.Location = new System.Drawing.Point(237, 77);
+            this.ComboModificarTamaño.Location = new System.Drawing.Point(255, 74);
             this.ComboModificarTamaño.Name = "ComboModificarTamaño";
             this.ComboModificarTamaño.Size = new System.Drawing.Size(121, 21);
             this.ComboModificarTamaño.TabIndex = 62;
@@ -163,7 +163,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(403, 25);
+            this.label13.Location = new System.Drawing.Point(394, 19);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(167, 13);
             this.label13.TabIndex = 60;

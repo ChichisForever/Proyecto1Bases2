@@ -639,15 +639,15 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(568, 127);
+            this.label6.Location = new System.Drawing.Point(617, 159);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(272, 13);
+            this.label6.Size = new System.Drawing.Size(206, 13);
             this.label6.TabIndex = 30;
-            this.label6.Text = "Edición de Tablas(Insercion,eliminar, actualizar registros)";
+            this.label6.Text = "Edición de Tablas(Eliminar, actualizar filas)";
             // 
             // Modificar_Columna
             // 
-            this.Modificar_Columna.Location = new System.Drawing.Point(273, 250);
+            this.Modificar_Columna.Location = new System.Drawing.Point(281, 250);
             this.Modificar_Columna.Name = "Modificar_Columna";
             this.Modificar_Columna.Size = new System.Drawing.Size(111, 23);
             this.Modificar_Columna.TabIndex = 29;
@@ -667,7 +667,7 @@
             // 
             // Agregar_Columna
             // 
-            this.Agregar_Columna.Location = new System.Drawing.Point(30, 250);
+            this.Agregar_Columna.Location = new System.Drawing.Point(19, 250);
             this.Agregar_Columna.Name = "Agregar_Columna";
             this.Agregar_Columna.Size = new System.Drawing.Size(111, 23);
             this.Agregar_Columna.TabIndex = 27;
@@ -678,16 +678,16 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(65, 141);
+            this.label7.Location = new System.Drawing.Point(65, 159);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(269, 13);
-            this.label7.TabIndex = 26;
+            this.label7.TabIndex = 31;
             this.label7.Text = "Edición de Tablas(Agregar,eliminar, modificar columnas)";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(419, 65);
+            this.label5.Location = new System.Drawing.Point(430, 50);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 20;
@@ -695,7 +695,7 @@
             // 
             // actualizar
             // 
-            this.actualizar.Location = new System.Drawing.Point(739, 239);
+            this.actualizar.Location = new System.Drawing.Point(739, 250);
             this.actualizar.Name = "actualizar";
             this.actualizar.Size = new System.Drawing.Size(118, 23);
             this.actualizar.TabIndex = 19;
@@ -705,7 +705,7 @@
             // 
             // eliminar
             // 
-            this.eliminar.Location = new System.Drawing.Point(571, 239);
+            this.eliminar.Location = new System.Drawing.Point(571, 250);
             this.eliminar.Name = "eliminar";
             this.eliminar.Size = new System.Drawing.Size(123, 23);
             this.eliminar.TabIndex = 18;

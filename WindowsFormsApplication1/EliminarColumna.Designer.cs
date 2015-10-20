@@ -51,7 +51,7 @@
             // 
             // buttonMostrarDatosEliminarColumna
             // 
-            this.buttonMostrarDatosEliminarColumna.Location = new System.Drawing.Point(628, 358);
+            this.buttonMostrarDatosEliminarColumna.Location = new System.Drawing.Point(628, 368);
             this.buttonMostrarDatosEliminarColumna.Name = "buttonMostrarDatosEliminarColumna";
             this.buttonMostrarDatosEliminarColumna.Size = new System.Drawing.Size(237, 23);
             this.buttonMostrarDatosEliminarColumna.TabIndex = 54;
@@ -62,7 +62,7 @@
             // Tabla_EliminarColumna
             // 
             this.Tabla_EliminarColumna.AutoSize = true;
-            this.Tabla_EliminarColumna.Location = new System.Drawing.Point(718, 52);
+            this.Tabla_EliminarColumna.Location = new System.Drawing.Point(735, 52);
             this.Tabla_EliminarColumna.Name = "Tabla_EliminarColumna";
             this.Tabla_EliminarColumna.Size = new System.Drawing.Size(108, 13);
             this.Tabla_EliminarColumna.TabIndex = 53;
@@ -71,7 +71,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(625, 52);
+            this.label3.Location = new System.Drawing.Point(642, 52);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 52;
@@ -80,14 +80,14 @@
             // GridEliminarColumna
             // 
             this.GridEliminarColumna.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GridEliminarColumna.Location = new System.Drawing.Point(543, 77);
+            this.GridEliminarColumna.Location = new System.Drawing.Point(495, 80);
             this.GridEliminarColumna.Name = "GridEliminarColumna";
-            this.GridEliminarColumna.Size = new System.Drawing.Size(417, 256);
+            this.GridEliminarColumna.Size = new System.Drawing.Size(503, 256);
             this.GridEliminarColumna.TabIndex = 51;
             // 
             // buttonEliminarColumna
             // 
-            this.buttonEliminarColumna.Location = new System.Drawing.Point(45, 346);
+            this.buttonEliminarColumna.Location = new System.Drawing.Point(128, 368);
             this.buttonEliminarColumna.Name = "buttonEliminarColumna";
             this.buttonEliminarColumna.Size = new System.Drawing.Size(130, 23);
             this.buttonEliminarColumna.TabIndex = 50;
