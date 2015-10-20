@@ -832,20 +832,92 @@ namespace WindowsFormsApplication1
         private void EjecutarDDLMSS(String tipo)
         {
             string objeto = comboBoxDDL.SelectedItem.ToString();
-            String comando = "DECLARE @find NVARCHAR(4000) " +
-                                   "SELECT @find = '" + objeto + "'; " +
-                                   "WITH  definitions AS (SELECT  so.name, OBJECT_DEFINITION(id) AS TEXT " +
-                                   "FROM sys.sysobjects so WHERE name NOT LIKE 'sys%') " +
-                                   "SELECT  name,SUBSTRING(TEXT,CHARINDEX(@find,TEXT COLLATE Latin1_General_CI_AI) ,50) " +
-                                   "AS context FROM definitions " +
-                                   "WHERE CHARINDEX(@find, TEXT COLLATE Latin1_General_CI_AI) <> 0";
-            // query para mostrar ddl 
+            List<string> Columnas = new List<string>();
+            List<string> FKS = new List<string>();
+            List<string> PKS = new List<string>();
+            List<string> Types = new List<string>();
+            string command = "select * from " + objeto + ";";
+            string connectionString = "Server=localhost;Database=Administrador_DB;Trusted_Connection=True;";
+            string response = "CREATE TABLE " + objeto + " ( ";
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = connectionString;
+            SqlCommand myCommand;
+            SqlDataReader myReader;
+            connection.Open();
+            myCommand = new SqlCommand(command, connection);
+            myReader = myCommand.ExecuteReader();
+            if (myReader.HasRows)
+            {
+                for (int i = 0; i < myReader.FieldCount; i++)
+                {
+                    Columnas.Add(myReader.GetName(i).ToString());
+                }
+                connection.Close();
+                for (int i = 0; i < Columnas.Count; i++)
+                {
+                    connection.Open();
+                    myCommand = new SqlCommand("select * from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE as s where s.CONSTRAINT_NAME like '%FK_%' and s.TABLE_NAME = '" + objeto + "' and s.COLUMN_NAME = '" + Columnas[i] + "';", connection);
+                    myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        if (myReader["COLUMN_NAME"].ToString() != "")
+                        {
+                            FKS.Add(myReader["COLUMN_NAME"].ToString());
+                        }
+                    }
+                    connection.Close();
+                }
+                for (int i = 0; i < Columnas.Count; i++)
+                {
+                    connection.Open();
+                    myCommand = new SqlCommand("select * from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE as s where s.CONSTRAINT_NAME like '%PK_%' and s.TABLE_NAME = '" + objeto + "' and s.COLUMN_NAME = '" + Columnas[i] + "';", connection);
+                    myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        if (myReader["COLUMN_NAME"].ToString() != "")
+                        {
+                            PKS.Add(myReader["COLUMN_NAME"].ToString());
+                        }
+                    }
+                    connection.Close();
+                }
+                connection.Open();
+                myCommand = new SqlCommand("select '  ['+column_name+'] ' + data_type + coalesce('('+cast(character_maximum_length as varchar)+')','') + ' ' + case when exists ( select id from syscolumns where object_name(id)='" + objeto + "' and name=column_name and columnproperty(id,name,'IsIdentity') = 1 ) then 'IDENTITY(' + cast(ident_seed('" + objeto + "') as varchar) + ',' + cast(ident_incr('" + objeto + "') as varchar) + ')' else '' end  + ' ' + ( case when IS_NULLABLE = 'No' then 'NOT ' else '' end ) + 'NULL ' + coalesce('DEFAULT '+COLUMN_DEFAULT,'') + ',' as col from information_schema.columns where table_name = '" + objeto + "' order by ordinal_position;", connection);
+                myReader = myCommand.ExecuteReader();
+                while (myReader.Read())
+                {
+                    if (myReader["col"].ToString() != "")
+                    {
+                        Types.Add(myReader["col"].ToString());
+                    }
+                }
+                connection.Close();
+                for (int i = 0; i < Types.Count; i++)
+                {
+                    response += Types[i].ToString() + " ";
+                }
+                for (int i = 0; i < PKS.Count; i++)
+                {
+                    response += "PRIMARY KEY (" + PKS[i].ToString() + ") ";
+                }
+                for (int i = 0; i < FKS.Count; i++)
+                {
+                    connection.Open();
+                    myCommand = new SqlCommand("select 'CONSTRAINT ['+ c1.CONSTRAINT_NAME +'] FOREING KEY (['+c1.COLUMN_NAME+']) REFERENCES ['+ c2.TABLE_SCHEMA+'].['+c2.TABLE_NAME+'] (['+c2.COLUMN_NAME+'])' as Cons from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE as c1,INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE as c2, INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS as r where c1.CONSTRAINT_NAME = r.CONSTRAINT_NAME and r.UNIQUE_CONSTRAINT_NAME = c2.CONSTRAINT_NAME and c1.COLUMN_NAME = '" + FKS[i].ToString() + "';", connection);
+                    myReader = myCommand.ExecuteReader();
+                    while (myReader.Read())
+                    {
+                        if (myReader["Cons"].ToString() != "")
+                        {
+                            response += (myReader["Cons"].ToString()) + "";
+                        }
+                    }
+                    connection.Close();
+                }
+            }
             try
             {
-                SqlCommand myCommand = new SqlCommand(comando, server.conexion);
-                SqlDataReader myReader = myCommand.ExecuteReader();
-
-                this.cuadroMostrarDDL.Text = myReader.ToString();
+                this.cuadroMostrarDDL.Text = response;
             }
 
             catch
