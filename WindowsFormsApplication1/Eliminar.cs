@@ -80,9 +80,11 @@ namespace WindowsFormsApplication1
                     string Nombre_idEliminar = comboBoxColumnaID.SelectedItem.ToString();
                     string id_eliminar = comboBoxIDEliminar.SelectedItem.ToString();
                     //int id_eliminar_numero = int.Parse(id_eliminar); // Convierte el string de un textBox a int en este caso el id de las tablas
-                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + "WHERE " + Nombre_idEliminar + " " + "=" + " " + id_eliminar;
+                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + " WHERE " + Nombre_idEliminar + " " + "=" + " " + id_eliminar;
                     OleDbCommand cmd = new OleDbCommand(delete, orc.myConnection);
+                    MessageBox.Show(delete);
                     cmd.ExecuteNonQuery();
+
                     MessageBox.Show("Los datos se han borrado correctamente");
                 }
                 catch (Exception ex)
@@ -96,8 +98,9 @@ namespace WindowsFormsApplication1
                 {
                     string Nombre_idEliminar = comboBoxColumnaID.SelectedItem.ToString();
                     string id_eliminar = comboBoxIDEliminar.SelectedItem.ToString();
-                    string delete = "DELETE FROM " + ComboEliminar.SelectedItem.ToString() + "FROM " + ComboEliminar.SelectedItem.ToString() + " WHERE '" + Nombre_idEliminar + "' = " + id_eliminar;
+                    string delete = "DELETE " + ComboEliminar.SelectedItem.ToString() + " WHERE " + Nombre_idEliminar + " = " + id_eliminar;
                     SqlCommand cmd = new SqlCommand(delete, server.conexion);
+                    MessageBox.Show(delete);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Los datos se han borrado correctamente");
                 }

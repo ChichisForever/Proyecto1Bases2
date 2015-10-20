@@ -76,8 +76,9 @@ namespace WindowsFormsApplication1
                     //int id_actualizar_numero = int.Parse(id_actualizar); // Convierte el string de un textBox a int en este caso el id de las tablas
                     string valor_actualizar = TextBoxValorActualizar.Text;
                     string columna_actualizar = comboBoxColumnaActualizar.SelectedItem.ToString();
-                    string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + "SET" + columna_actualizar + "=" + valor_actualizar + "WHERE" + Nombre_idActualizar + "=" + id_actualizar;
+                    string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + " SET " + columna_actualizar + "=" + "'" + valor_actualizar + "'" + " WHERE " + Nombre_idActualizar + "=" + id_actualizar;
                     OleDbCommand cmd = new OleDbCommand(update, orc.myConnection);
+                    MessageBox.Show(update);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Los datos de la tabla se han actualizado correctamente");
                 }
@@ -94,8 +95,9 @@ namespace WindowsFormsApplication1
                     string id_actualizar = comboBoxIDActualizar.SelectedItem.ToString();
                     string valor_actualizar = TextBoxValorActualizar.Text;
                     string columna_actualizar = comboBoxColumnaActualizar.SelectedItem.ToString();
-                    string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + "SET" + columna_actualizar + "=" + valor_actualizar + "WHERE" + Nombre_idActualizar + "=" + id_actualizar;
+                    string update = "UPDATE " + Combo_actualizar.SelectedItem.ToString() + " SET " + columna_actualizar + "=" + "'" + valor_actualizar + "'" + " WHERE " + Nombre_idActualizar + "=" + id_actualizar;
                     SqlCommand cmd = new SqlCommand(update, server.conexion);
+                    MessageBox.Show(update);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Los datos de la tabla se han actualizado correctamente");
                 }
