@@ -72,6 +72,13 @@
             this.espacioUtilizado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.espacioDisponible = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.infoSesion = new System.Windows.Forms.DataGridView();
+            this.identificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Serial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hostname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Esquema = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comandosql = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.DdlObject = new System.Windows.Forms.TabPage();
@@ -101,13 +108,6 @@
             this.gridObjetos = new System.Windows.Forms.DataGridView();
             this.ejecutarObjeto = new System.Windows.Forms.Button();
             this.queryObjetos = new System.Windows.Forms.RichTextBox();
-            this.identificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Serial = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hostname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Esquema = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comandosql = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ventana.SuspendLayout();
             this.Informacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableparticionesw)).BeginInit();
@@ -137,7 +137,7 @@
             this.ventana.Controls.Add(this.edicionTablas);
             this.ventana.Controls.Add(this.ejecutarQuerys);
             this.ventana.Controls.Add(this.objetos);
-            this.ventana.Location = new System.Drawing.Point(0, 2);
+            this.ventana.Location = new System.Drawing.Point(0, 3);
             this.ventana.Name = "ventana";
             this.ventana.SelectedIndex = 0;
             this.ventana.Size = new System.Drawing.Size(974, 671);
@@ -499,6 +499,41 @@
             this.infoSesion.TabIndex = 2;
             this.infoSesion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.info4_Click);
             // 
+            // identificador
+            // 
+            this.identificador.HeaderText = "Identificador";
+            this.identificador.Name = "identificador";
+            // 
+            // Serial
+            // 
+            this.Serial.HeaderText = "Serial";
+            this.Serial.Name = "Serial";
+            // 
+            // status
+            // 
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            // 
+            // hostname
+            // 
+            this.hostname.HeaderText = "Hostname";
+            this.hostname.Name = "hostname";
+            // 
+            // Esquema
+            // 
+            this.Esquema.HeaderText = "Esquema";
+            this.Esquema.Name = "Esquema";
+            // 
+            // comandosql
+            // 
+            this.comandosql.HeaderText = "Comando SQL";
+            this.comandosql.Name = "comandosql";
+            // 
+            // usuario
+            // 
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -796,41 +831,6 @@
             this.queryObjetos.TabIndex = 0;
             this.queryObjetos.Text = "";
             this.queryObjetos.TextChanged += new System.EventHandler(this.queryObjetos_TextChanged);
-            // 
-            // identificador
-            // 
-            this.identificador.HeaderText = "Identificador";
-            this.identificador.Name = "identificador";
-            // 
-            // Serial
-            // 
-            this.Serial.HeaderText = "Serial";
-            this.Serial.Name = "Serial";
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
-            // 
-            // hostname
-            // 
-            this.hostname.HeaderText = "Hostname";
-            this.hostname.Name = "hostname";
-            // 
-            // Esquema
-            // 
-            this.Esquema.HeaderText = "Esquema";
-            this.Esquema.Name = "Esquema";
-            // 
-            // comandosql
-            // 
-            this.comandosql.HeaderText = "Comando SQL";
-            this.comandosql.Name = "comandosql";
-            // 
-            // usuario
-            // 
-            this.usuario.HeaderText = "Usuario";
-            this.usuario.Name = "usuario";
             // 
             // Administrador
             // 

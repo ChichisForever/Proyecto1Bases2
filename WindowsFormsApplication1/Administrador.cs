@@ -487,7 +487,7 @@ namespace WindowsFormsApplication1
                     tablaEscogida.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
                 }
                 server.reader.Close();
-            }
+            
 
             int contador = 0;
             server.cmd = new SqlCommand("SELECT *FROM sys.tables AS t JOIN sys.indexes AS i ON t.[object_id] = i.[object_id]  AND i.[type] IN (0,1) JOIN sys.partition_schemes ps ON i.data_space_id = ps.data_space_id  WHERE t.name ='" + tablas.SelectedItem.ToString() + "'", server.conexion);
@@ -500,23 +500,24 @@ namespace WindowsFormsApplication1
 
             server.reader.Close();
 
-            if (contador > 0)
-            {
-                this.tableparticionesw.Visible = true;
-                this.lblparticion.Visible = true;
-                server.cmd = new SqlCommand("SELECT i.name AS IndexName, p.partition_number, f.name, f.type_desc  FROM sys.tables AS t JOIN sys.indexes AS i ON t.object_id = i.object_id JOIN sys.partitions AS p ON i.object_id = p.object_id AND i.index_id = p.index_id JOIN  sys.partition_schemes AS s ON i.data_space_id = s.data_space_id JOIN sys.partition_functions AS f  ON s.function_id = f.function_id WHERE t.name = '" + this.tablas.SelectedItem.ToString() + "'AND i.type <= 1 ORDER BY p.partition_number", server.conexion);
-                server.reader = server.cmd.ExecuteReader();
-                while (server.reader.Read())
+                if (contador > 0)
                 {
-                    this.tableparticionesw.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
+                    this.tableparticionesw.Visible = true;
+                    this.lblparticion.Visible = true;
+                    server.cmd = new SqlCommand("SELECT i.name AS IndexName, p.partition_number, f.name, f.type_desc  FROM sys.tables AS t JOIN sys.indexes AS i ON t.object_id = i.object_id JOIN sys.partitions AS p ON i.object_id = p.object_id AND i.index_id = p.index_id JOIN  sys.partition_schemes AS s ON i.data_space_id = s.data_space_id JOIN sys.partition_functions AS f  ON s.function_id = f.function_id WHERE t.name = '" + this.tablas.SelectedItem.ToString() + "'AND i.type <= 1 ORDER BY p.partition_number", server.conexion);
+                    server.reader = server.cmd.ExecuteReader();
+                    while (server.reader.Read())
+                    {
+                        this.tableparticionesw.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
+                    }
+                    server.reader.Close();
                 }
-                server.reader.Close();
-            }
-            else
-            {
-                this.tableparticionesw.Visible = false;
-                this.lblparticion.Visible = false;
+                else
+                {
+                    this.tableparticionesw.Visible = false;
+                    this.lblparticion.Visible = false;
 
+                }
             }
         }
 
@@ -902,7 +903,19 @@ namespace WindowsFormsApplication1
 
         private void comboBoxDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
+        }
+
+        private void label3_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxDDLTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.comboBoxDDL.Items.Clear();
             string tipo = comboBoxDDLTipo.SelectedItem.ToString();
+            
             if (orc != null)
             {
                 if (tipo == "TABLE")
@@ -1041,15 +1054,6 @@ namespace WindowsFormsApplication1
                     }
                 }
             }
-        }
-
-        private void label3_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBoxDDLTipo_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
