@@ -23,16 +23,16 @@ namespace WindowsFormsApplication1
     {
         public Conexion_Oracle orc;
         private Conexion_MSS server;
-       
 
-       
-        public Administrador(Conexion_Oracle o,Conexion_MSS m)
+
+
+        public Administrador(Conexion_Oracle o, Conexion_MSS m)
         {
             //Se inicializan las variables con el objeto creado anteriormente
             orc = o;
-            server = m;                
+            server = m;
             InitializeComponent();
-            
+
             if (orc != null)
             {
                 mostrar_datos_oracle();
@@ -41,12 +41,12 @@ namespace WindowsFormsApplication1
             if (this.server != null)
             {
                 mostrar_datos_sqlserver();
-               // elim.Datos_sqlserver(server);
-                
+                // elim.Datos_sqlserver(server);
+
             }
         }
 
-      
+
 
         private void Administrador_Load(object sender, EventArgs e)
         {
@@ -148,28 +148,28 @@ namespace WindowsFormsApplication1
             if (orc != null)
             {
                 string query = entradaQuery.Text;
-                    try {
-                       string nuevoquery = "EXPLAIN PLAN FOR " + query;
-                       OleDbCommand resultado = new OleDbCommand(nuevoquery, orc.myConnection);
-                       resultado.ExecuteNonQuery();
-                       string ExcPlan = "select plan_table_output from table(dbms_xplan.display('plan_table', null, 'basic'))";
-                       OleDbCommand plan = new OleDbCommand(ExcPlan, orc.myConnection);
-                       DataTable datos = new DataTable();
-                       OleDbDataAdapter adaptador = new OleDbDataAdapter(plan);
-                       adaptador.Fill(datos);
-                       GridExecPlan.DataSource = datos;
+                try {
+                    string nuevoquery = "EXPLAIN PLAN FOR " + query;
+                    OleDbCommand resultado = new OleDbCommand(nuevoquery, orc.myConnection);
+                    resultado.ExecuteNonQuery();
+                    string ExcPlan = "select plan_table_output from table(dbms_xplan.display('plan_table', null, 'basic'))";
+                    OleDbCommand plan = new OleDbCommand(ExcPlan, orc.myConnection);
+                    DataTable datos = new DataTable();
+                    OleDbDataAdapter adaptador = new OleDbDataAdapter(plan);
+                    adaptador.Fill(datos);
+                    GridExecPlan.DataSource = datos;
 
                     //DataTable datos = new DataTable();
                     //datos.Load(read);
 
                 }
                 catch (Exception ex)
-                    {
-                        MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
-                    }
-
-                
+                {
+                    MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
                 }
+
+
+            }
 
             if (this.server != null)
             {
@@ -195,12 +195,12 @@ namespace WindowsFormsApplication1
 
         }
 
-   
-      
-        
+
+
+
         private void eliminar_Click(object sender, EventArgs e)
         {
-            Eliminar frm = new Eliminar(orc,server);
+            Eliminar frm = new Eliminar(orc, server);
             frm.Show();
             //this.Hide();
 
@@ -210,7 +210,7 @@ namespace WindowsFormsApplication1
         {
             Actualizar frm = new Actualizar(orc, server);
             frm.Show();
-           // this.Hide();
+            // this.Hide();
 
 
         }
@@ -365,23 +365,23 @@ namespace WindowsFormsApplication1
             this.label9.Text = "Informacion Archivos del Sistema";
             this.ventana.TabPages.Remove(objetos);
             this.listObjetos.View = View.Details;
-            this.listObjetos.Columns.Add("Selecione uno", 100,HorizontalAlignment.Center);
+            this.listObjetos.Columns.Add("Selecione uno", 100, HorizontalAlignment.Center);
             this.listObjetos.Items.Add("Procedimientos");
             this.listObjetos.Items.Add("Funciones");
             this.listObjetos.Items.Add("Sinonimos");
             this.listObjetos.Items.Add("Triggers");
 
-            server.cmd = new SqlCommand("Select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_CATALOG='"+server.nbase+ "' and Table_Type='BASE TABLE'", server.conexion);
+            server.cmd = new SqlCommand("Select TABLE_NAME from INFORMATION_SCHEMA.TABLES where TABLE_CATALOG='" + server.nbase + "' and Table_Type='BASE TABLE'", server.conexion);
             server.reader = server.cmd.ExecuteReader();
-            while (server.reader.Read()){
+            while (server.reader.Read()) {
                 this.tablas.Items.Add(server.reader[0]);
 
             }
             server.reader.Close();
-            server.cmd = new SqlCommand("Select sys.indexes.name,INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.TABLE_NAME,INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.COLUMN_NAME,sys.indexes.is_unique from sys.indexes  inner join INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE on sys.indexes.name = INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.CONSTRAINT_NAME; ",server.conexion);
+            server.cmd = new SqlCommand("Select sys.indexes.name,INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.TABLE_NAME,INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.COLUMN_NAME,sys.indexes.is_unique from sys.indexes  inner join INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE on sys.indexes.name = INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE.CONSTRAINT_NAME; ", server.conexion);
             server.reader = server.cmd.ExecuteReader();
             while (server.reader.Read())
-             {
+            {
                 this.indices.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
             }
             server.reader.Close();
@@ -394,9 +394,9 @@ namespace WindowsFormsApplication1
             server.reader.Close();
 
             //Informacion de Archivos del sistema
-            server.cmd=new SqlCommand("SELECT f.name,total_bytes,(total_bytes-available_bytes),available_bytes FROM sys.database_files AS f CROSS APPLY sys.dm_os_volume_stats(DB_ID(f.name), f.file_id); ", server.conexion);
+            server.cmd = new SqlCommand("SELECT f.name,total_bytes,(total_bytes-available_bytes),available_bytes FROM sys.database_files AS f CROSS APPLY sys.dm_os_volume_stats(DB_ID(f.name), f.file_id); ", server.conexion);
             server.reader = server.cmd.ExecuteReader();
-            while (server.reader.Read()){
+            while (server.reader.Read()) {
                 this.infoTablespace.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
             }
             server.reader.Close();
@@ -409,9 +409,10 @@ namespace WindowsFormsApplication1
             }
             server.reader.Close();
 
-            this.comboBoxDDL.Items.Add("INDEX");
-            this.comboBoxDDL.Items.Add("TABLE");
-            this.comboBoxDDL.Items.Add("VIEW");
+            this.comboBoxDDLTipo.Items.Add("USER_TABLE");
+            this.comboBoxDDLTipo.Items.Add("VIEW");
+            this.comboBoxDDLTipo.Items.Add("PRIMARY_KEY_CONSTRAINT");
+            this.comboBoxDDLTipo.Items.Add("UNIQUE_CONSTRAINT");
         }
 
         private void tablas_SelectedIndexChanged(object sender, EventArgs e)
@@ -454,7 +455,7 @@ namespace WindowsFormsApplication1
                 orc.reader.Close();
                 this.tableParticiones.Rows.Clear();
                 orc.cmd = orc.myConnection.CreateCommand();
-                orc.cmd.CommandText = "Select partition_name,composite from user_tab_partitions where table_name='"+tablas.SelectedItem.ToString()+"'";
+                orc.cmd.CommandText = "Select partition_name,composite from user_tab_partitions where table_name='" + tablas.SelectedItem.ToString() + "'";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
                 {
@@ -468,35 +469,35 @@ namespace WindowsFormsApplication1
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
                 {
-                    this.lbltipoparticiones.Text = lbltipoparticiones.Text + "   " +orc.reader.GetValue(0);
+                    this.lbltipoparticiones.Text = lbltipoparticiones.Text + "   " + orc.reader.GetValue(0);
                 }
                 orc.reader.Close();
-                
+
 
 
             }
-            
+
             if (server != null)
             {
-                server.cmd = new SqlCommand("Select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,IS_NULLABLE from INFORMATION_SCHEMA.COLUMNS where Table_Name = '"+tablas.SelectedItem.ToString() +"' and TABLE_CATALOG='"+server.nbase+"'", server.conexion);
-                
+                server.cmd = new SqlCommand("Select COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,IS_NULLABLE from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tablas.SelectedItem.ToString() + "' and TABLE_CATALOG='" + server.nbase + "'", server.conexion);
+
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
                 {
-                    tablaEscogida.Rows.Add(server.reader[0],server.reader[1], server.reader[2], server.reader[3]);
+                    tablaEscogida.Rows.Add(server.reader[0], server.reader[1], server.reader[2], server.reader[3]);
                 }
                 server.reader.Close();
             }
 
-            int contador=0;
-            server.cmd = new SqlCommand("SELECT *FROM sys.tables AS t JOIN sys.indexes AS i ON t.[object_id] = i.[object_id]  AND i.[type] IN (0,1) JOIN sys.partition_schemes ps ON i.data_space_id = ps.data_space_id  WHERE t.name ='"+ tablas.SelectedItem.ToString()+"'",server.conexion);
+            int contador = 0;
+            server.cmd = new SqlCommand("SELECT *FROM sys.tables AS t JOIN sys.indexes AS i ON t.[object_id] = i.[object_id]  AND i.[type] IN (0,1) JOIN sys.partition_schemes ps ON i.data_space_id = ps.data_space_id  WHERE t.name ='" + tablas.SelectedItem.ToString() + "'", server.conexion);
             server.reader = server.cmd.ExecuteReader();
             while (server.reader.Read())
             {
                 contador = contador + 1;
             }
 
-           
+
             server.reader.Close();
 
             if (contador > 0)
@@ -515,7 +516,7 @@ namespace WindowsFormsApplication1
             {
                 this.tableparticionesw.Visible = false;
                 this.lblparticion.Visible = false;
-                
+
             }
         }
 
@@ -545,7 +546,7 @@ namespace WindowsFormsApplication1
                 }
                 server.reader.Close();
 
-                    
+
             }
         }
 
@@ -707,7 +708,7 @@ namespace WindowsFormsApplication1
                         MessageBox.Show("Ops.Parece que tenemos un problema" + ex);
                     }
                 }
-                 else {
+                else {
                     try
                     {
                         server.cmd = new SqlCommand(query, server.conexion);
@@ -793,8 +794,8 @@ namespace WindowsFormsApplication1
 
                     cmd.ExecuteNonQuery();
 
-                    this.cuadroMostrarDDL.Text=(((Oracle.DataAccess.Types.OracleClob)clobparam.Value).Value);
-                   
+                    this.cuadroMostrarDDL.Text = (((Oracle.DataAccess.Types.OracleClob)clobparam.Value).Value);
+
                     clobparam.Dispose();
                 }
             }
@@ -904,39 +905,140 @@ namespace WindowsFormsApplication1
             string tipo = comboBoxDDLTipo.SelectedItem.ToString();
             if (orc != null)
             {
-                try
+                if (tipo == "TABLE")
                 {
-                    orc.cmd = orc.myConnection.CreateCommand();
-                    orc.cmd.CommandText = "select object_name from user_objects where object_type = '" + tipo + "'";
-                    orc.reader = orc.cmd.ExecuteReader();
-                    while (orc.reader.Read())
+                    try
                     {
-                        this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+                        orc.cmd = orc.myConnection.CreateCommand();
+                        orc.cmd.CommandText = "select object_name from user_objects where object_type = 'TABLE'";
+                        orc.reader = orc.cmd.ExecuteReader();
+                        while (orc.reader.Read())
+                        {
+                            this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+                        }
+                        orc.reader.Close();
                     }
-                    orc.reader.Close();
-
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    }
                 }
-                catch (Exception)
+
+                if (tipo == "VIEW")
                 {
-                    MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    try
+                    {
+                        orc.cmd = orc.myConnection.CreateCommand();
+                        orc.cmd.CommandText = "select object_name from user_objects where object_type = 'VIEW'";
+                        orc.reader = orc.cmd.ExecuteReader();
+                        while (orc.reader.Read())
+                        {
+                            this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+                        }
+                        orc.reader.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    }
+                }
+
+                if (tipo == "INDEX")
+                {
+                    try
+                    {
+                        orc.cmd = orc.myConnection.CreateCommand();
+                        orc.cmd.CommandText = "select object_name from user_objects where object_type = 'INDEX'";
+                        orc.reader = orc.cmd.ExecuteReader();
+                        while (orc.reader.Read())
+                        {
+                            this.comboBoxDDL.Items.Add(orc.reader.GetValue(0));
+                        }
+                        orc.reader.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    }
                 }
             }
 
             if (server != null)
             {
-                try
+                if (tipo == "USER_TABLE")
                 {
-                    server.cmd = new SqlCommand("select name from sys.objects where type_desc = '" + tipo + "'", server.conexion);
-                    server.reader = server.cmd.ExecuteReader();
-                    while (server.reader.Read())
+                    try
                     {
-                        this.comboBoxDDL.Items.Add(server.reader[0]);
+                        server.cmd = new SqlCommand("select name from sys.objects where type_desc = 'USER_TABLE'", server.conexion);
+                        server.reader = server.cmd.ExecuteReader();
+                        while (server.reader.Read())
+                        {
+                            this.comboBoxDDL.Items.Add(server.reader[0]);
+                        }
+                        server.reader.Close();
                     }
-                    server.reader.Close();
+
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    }
                 }
-                catch (Exception)
+
+                if (tipo == "VIEW")
                 {
-                    MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    try
+                    {
+                        server.cmd = new SqlCommand("select name from sys.objects where type_desc = 'VIEW'", server.conexion);
+                        server.reader = server.cmd.ExecuteReader();
+                        while (server.reader.Read())
+                        {
+                            this.comboBoxDDL.Items.Add(server.reader[0]);
+                        }
+                        server.reader.Close();
+                    }
+
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    }
+                }
+
+                if (tipo == "PRIMARY_KEY_CONSTRAINT")
+                {
+                    try
+                    {
+                        server.cmd = new SqlCommand("select name from sys.objects where type_desc = 'PRIMARY_KEY_CONSTRAINT'", server.conexion);
+                        server.reader = server.cmd.ExecuteReader();
+                        while (server.reader.Read())
+                        {
+                            this.comboBoxDDL.Items.Add(server.reader[0]);
+                        }
+                        server.reader.Close();
+                    }
+
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    }
+                }
+
+                if (tipo == "UNIQUE_CONSTRAINT")
+                {
+                    try
+                    {
+                        server.cmd = new SqlCommand("select name from sys.objects where type_desc = 'UNIQUE_CONSTRAINT'", server.conexion);
+                        server.reader = server.cmd.ExecuteReader();
+                        while (server.reader.Read())
+                        {
+                            this.comboBoxDDL.Items.Add(server.reader[0]);
+                        }
+                        server.reader.Close();
+                    }
+
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Ocurrió un Problema, no se pudo conectar con la base de datos.");
+                    }
                 }
             }
         }
