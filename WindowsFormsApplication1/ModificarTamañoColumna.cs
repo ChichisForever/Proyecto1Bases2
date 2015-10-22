@@ -40,6 +40,7 @@ namespace WindowsFormsApplication1
         {
 
             //Llenar ComboEliminar con las tablas
+            this.ComboModificarTamaño.Items.Clear();
             orc.cmd.CommandText = "Select Table_Name from user_tables";
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
@@ -51,6 +52,7 @@ namespace WindowsFormsApplication1
 
         private void Datos_sqlserver()
         {
+            this.ComboModificarTamaño.Items.Clear();
             server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
             server.reader = server.cmd.ExecuteReader();
             while (server.reader.Read())
@@ -70,7 +72,7 @@ namespace WindowsFormsApplication1
                     string tipo_Modificar = textBoxTipoModificar.Text;
 
                     string tamanio_Modificar = textBoxTamanioModificar.Text;
-                    //int tamanio_numero = int.Parse(tamanio_Modificar);// Convierte el string de un textBox a int en este caso el id de las tablas
+                    
                     string modificar = "ALTER TABLE " + ComboModificarTamaño.SelectedItem.ToString()  + " MODIFY " + Nombre_ColumnaModificar + " " + tipo_Modificar + "(" + tamanio_Modificar + ")";
                     OleDbCommand cmd = new OleDbCommand(modificar, orc.myConnection);
                     MessageBox.Show(modificar);
@@ -92,7 +94,7 @@ namespace WindowsFormsApplication1
                 string tipo_Modificar = textBoxTipoModificar.Text;
                 string tamanio_Modificar = textBoxTamanioModificar.Text;
                
-                //int id_eliminar_numero = int.Parse(id_eliminar); // Convierte el string de un textBox a int en este caso el id de las tablas
+                
                 string modificar = "ALTER TABLE " + ComboModificarTamaño.SelectedItem.ToString()   + " ALTER COLUMN " + Nombre_ColumnaModificar + " " + tipo_Modificar + "(" + tamanio_Modificar + ")";
                 SqlCommand cmd = new SqlCommand(modificar, server.conexion);
                     MessageBox.Show(modificar);  
@@ -115,13 +117,7 @@ namespace WindowsFormsApplication1
             {
                 //Llenar  ComboModificarTamaño con las tablas
                 string tabla_escogida = ComboModificarTamaño.SelectedItem.ToString();
-                /*orc.cmd.CommandText = "Select Table_Name from user_tables";
-                orc.reader = orc.cmd.ExecuteReader();
-                while (orc.reader.Read())
-                {
-                    ComboModificarTamaño.Items.Add(orc.reader.GetString(0));
-                }
-                orc.reader.Close();*/
+                
 
                 //Despliega la tabla de acuerdo a la que se seleccione en el combobox
                 this.Tabla_ModificarTamaño.Text = ComboModificarTamaño.SelectedItem.ToString();
@@ -134,6 +130,7 @@ namespace WindowsFormsApplication1
                 GridModificarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
 
                 //Llenar comboColumnaModificar con las columnas
+                this.comboColumnaModificar.Items.Clear();
 
                 orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
                 orc.reader = orc.cmd.ExecuteReader();
@@ -149,13 +146,7 @@ namespace WindowsFormsApplication1
             {
                 //Llenar  ComboModificarTamaño con las tablas
                 string tabla_escogida = ComboModificarTamaño.SelectedItem.ToString();
-                /*server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
-                server.reader = server.cmd.ExecuteReader();
-                while (server.reader.Read())
-                {
-                    this.ComboModificarTamaño.Items.Add(server.reader.GetValue(0));
-                }
-                server.reader.Close();*/
+              
 
                 //Despliega la tabla de acuerdo a la que se seleccione en el combobox
                 this.Tabla_ModificarTamaño.Text = ComboModificarTamaño.SelectedItem.ToString();
@@ -168,6 +159,7 @@ namespace WindowsFormsApplication1
                 GridModificarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
 
                 //Llenar comboColumnaModificar con las columnas
+                this.comboColumnaModificar.Items.Clear();
 
                 server.cmd=  new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
                 server.reader = server.cmd.ExecuteReader();

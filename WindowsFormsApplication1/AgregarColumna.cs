@@ -42,6 +42,7 @@ namespace WindowsFormsApplication1
         {
 
             //Llenar ComboEliminar con las tablas
+            this.ComboAgregarColumna.Items.Clear();
             orc.cmd.CommandText = "Select Table_Name from user_tables";
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
@@ -53,6 +54,7 @@ namespace WindowsFormsApplication1
 
         private void Datos_sqlserver()
         {
+            this.ComboAgregarColumna.Items.Clear();
             server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
             server.reader = server.cmd.ExecuteReader();
             while (server.reader.Read())
@@ -114,14 +116,7 @@ namespace WindowsFormsApplication1
 
             if (orc != null)
             {
-                //Llenar ComboEliminar con las tablas
-                /*orc.cmd.CommandText = "Select Table_Name from user_tables";
-                orc.reader = orc.cmd.ExecuteReader();
-                while (orc.reader.Read())
-                {
-                    ComboAgregarColumna.Items.Add(orc.reader.GetString(0));
-                }
-                orc.reader.Close();*/
+               
 
                 this.Tabla_AgregarColumna.Text = ComboAgregarColumna.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + ComboAgregarColumna.SelectedItem.ToString();
@@ -136,13 +131,7 @@ namespace WindowsFormsApplication1
             if (server != null)
             {
 
-                /*server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
-                server.reader = server.cmd.ExecuteReader();
-                while (server.reader.Read())
-                {
-                    this.ComboAgregarColumna.Items.Add(server.reader[0]);
-                }
-                server.reader.Close();*/
+                
 
                 this.Tabla_AgregarColumna.Text = ComboAgregarColumna.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + ComboAgregarColumna.SelectedItem.ToString();

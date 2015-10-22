@@ -202,7 +202,7 @@ namespace WindowsFormsApplication1
         {
             Eliminar frm = new Eliminar(orc, server);
             frm.Show();
-            //this.Hide();
+           
 
         }
 
@@ -210,7 +210,7 @@ namespace WindowsFormsApplication1
         {
             Actualizar frm = new Actualizar(orc, server);
             frm.Show();
-            // this.Hide();
+           
 
 
         }
@@ -219,7 +219,7 @@ namespace WindowsFormsApplication1
         {
             AgregarColumna frm = new AgregarColumna(orc, server);
             frm.Show();
-            // this.Hide();
+            
 
 
         }
@@ -228,8 +228,7 @@ namespace WindowsFormsApplication1
         {
             EliminarColumna frm = new EliminarColumna(orc, server);
             frm.Show();
-            // this.Hide();
-
+         
 
         }
 
@@ -237,7 +236,7 @@ namespace WindowsFormsApplication1
         {
             ModificarTamañoColumna frm = new ModificarTamañoColumna(orc, server);
             frm.Show();
-            // this.Hide();
+           
 
 
         }
@@ -728,7 +727,7 @@ namespace WindowsFormsApplication1
 
 
 
-        private void mostrarDDL_Click(object sender, EventArgs e)
+       private void mostrarDDL_Click(object sender, EventArgs e)
         {
             if (orc != null)
             {
@@ -756,8 +755,8 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-
-        private void EjecutarDLLOracle(String tipo)
+        
+       private void EjecutarDLLOracle(String tipo)
         {
             string objeto = comboBoxDDL.SelectedItem.ToString();
             using (OracleConnection oraConn = new OracleConnection("data source=" + orc.database + ";user id=" + orc.user + ";password=" + orc.contrasennia))

@@ -38,6 +38,8 @@ namespace WindowsFormsApplication1
         private void Datos_oracle()
         {
             //Llenar ComboEliminar con las tablas
+            this.ComboEliminarColumna.Items.Clear();
+
             orc.cmd.CommandText = "Select Table_Name from user_tables";
             orc.reader = orc.cmd.ExecuteReader();
             while (orc.reader.Read())
@@ -50,6 +52,7 @@ namespace WindowsFormsApplication1
 
         private void Datos_sqlserver()
         {
+            this.ComboEliminarColumna.Items.Clear();
             server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
             server.reader = server.cmd.ExecuteReader();
             while (server.reader.Read())
@@ -101,13 +104,6 @@ namespace WindowsFormsApplication1
             {
                 string tabla_escogida = ComboEliminarColumna.SelectedItem.ToString();
                 //Llenar ComboEliminarColumna con las tablas
-               /* orc.cmd.CommandText = "Select Table_Name from user_tables";
-                orc.reader = orc.cmd.ExecuteReader();
-                while (orc.reader.Read())
-                {
-                    ComboEliminarColumna.Items.Add(orc.reader.GetString(0));
-                }
-                orc.reader.Close();*/
                
                 this.Tabla_EliminarColumna.Text = ComboEliminarColumna.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + ComboEliminarColumna.SelectedItem.ToString();
@@ -119,7 +115,7 @@ namespace WindowsFormsApplication1
                 GridEliminarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
 
                 //Llenar comboColumnaEliminar con las columnas
-
+                this.comboColumnaEliminar.Items.Clear();
                 orc.cmd.CommandText = "SELECT COLUMN_NAME FROM user_tab_cols WHERE table_name = '" + tabla_escogida + "'";
                 orc.reader = orc.cmd.ExecuteReader();
                 while (orc.reader.Read())
@@ -134,13 +130,7 @@ namespace WindowsFormsApplication1
             {
                 //Llenar ComboEliminarColumna con las tablas
                 string tabla_escogida = ComboEliminarColumna.SelectedItem.ToString();
-                /*server.cmd = new SqlCommand("SELECT table_name FROM information_schema.tables", server.conexion);
-                server.reader = server.cmd.ExecuteReader();
-                while (server.reader.Read())
-                {
-                    this.ComboEliminarColumna.Items.Add(server.reader.GetValue(0));
-                }
-                server.reader.Close();*/
+            
 
                 this.Tabla_EliminarColumna.Text = ComboEliminarColumna.SelectedItem.ToString();
                 string extraer_tabla = "Select * from " + ComboEliminarColumna.SelectedItem.ToString();
@@ -152,7 +142,7 @@ namespace WindowsFormsApplication1
                 GridEliminarColumna.DataSource = datos; // Pone los datos del resultado de la consulta en el gridView
 
                 //Llenar comboColumnaEliminar con las columnas
-
+                this.comboColumnaEliminar.Items.Clear();
                 server.cmd= new SqlCommand("Select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where Table_Name = '" + tabla_escogida + "'", server.conexion);
                 server.reader = server.cmd.ExecuteReader();
                 while (server.reader.Read())
