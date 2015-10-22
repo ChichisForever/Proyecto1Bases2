@@ -84,9 +84,9 @@ namespace WindowsFormsApplication1
                     
                     MessageBox.Show("La columna se ha agregado correctamente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error al agregar la columna, intentelo de nuevo" + ex);
+                    MessageBox.Show("Error al agregar la columna, intentelo de nuevo");
                 }
             }
             if (server != null)
@@ -103,9 +103,9 @@ namespace WindowsFormsApplication1
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("La columna se ha agregado correctamente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error al agregar la columna, intentelo de nuevo" + ex);
+                    MessageBox.Show("Error al agregar la columna, intentelo de nuevo");
                 }
 
             }

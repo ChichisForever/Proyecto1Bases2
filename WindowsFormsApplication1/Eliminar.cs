@@ -89,9 +89,9 @@ namespace WindowsFormsApplication1
 
                     MessageBox.Show("Los datos se han borrado correctamente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error al borrar los datos de la tabla, intentelo de nuevo" + ex);
+                    MessageBox.Show("Error al borrar los datos de la tabla, intentelo de nuevo");
                 }
             }
             if (server != null)

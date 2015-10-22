@@ -75,9 +75,9 @@ namespace WindowsFormsApplication1
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("La columna  se ha borrado correctamente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error no se pudo borrar la columna de la tabla, intentelo de nuevo" + ex);
+                    MessageBox.Show("Error no se pudo borrar la columna de la tabla, intentelo de nuevo");
                 }
             }
             if (server != null)
@@ -89,9 +89,9 @@ namespace WindowsFormsApplication1
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("La columna  se ha alterado correctamente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error no se pudo borrar la columna de la tabla, intentelo de nuevo" + ex);
+                    MessageBox.Show("Error no se pudo borrar la columna de la tabla, intentelo de nuevo");
                 }
 
             }

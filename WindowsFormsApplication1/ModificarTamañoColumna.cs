@@ -80,9 +80,9 @@ namespace WindowsFormsApplication1
                     
                     MessageBox.Show("La columna se ha modificado correctamente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error al modificar la columna, intentelo de nuevo" + ex);
+                    MessageBox.Show("Error al modificar la columna, intentelo de nuevo");
                 }
             }
             if (server != null)
@@ -102,9 +102,9 @@ namespace WindowsFormsApplication1
                    
                     MessageBox.Show("La columna se ha modificado correctamente");
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("Error al modificar la columna, intentelo de nuevo" + ex);
+                    MessageBox.Show("Error al modificar la columna, intentelo de nuevo");
                 }
 
             }
